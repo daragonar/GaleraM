@@ -9,8 +9,9 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Eventos } from "../pages/eventos/eventos";
 import { Usuario } from "../pages/usuario/usuario";
-import { NgCalendarModule  } from 'ionic2-calendar';
+import { Calendario } from "../pages/calendario/calendario";
 
+import { NgCalendarModule  } from 'ionic2-calendar';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -22,7 +23,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     TabsPage,
     Eventos,
-    Usuario
+    Usuario,
+    Calendario
   ],
   imports: [
     NgCalendarModule,
@@ -37,7 +39,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     TabsPage,
     Eventos,
-    Usuario
+    Usuario,
+    Calendario
   ],
   providers: [
     StatusBar,

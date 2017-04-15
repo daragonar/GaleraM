@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
-import { Usuario } from './usuario';
-
+import { Calendario } from './calendario';
 
 @NgModule({
   declarations: [
-    Usuario,
+    Calendario,
   ],
   imports: [
-    IonicModule.forRoot(Usuario),
+    IonicModule.forRoot(Calendario),
   ],
   exports: [
-    Usuario
+    Calendario
   ]
 })
-export class UsuarioModule {}
+export class CalendarioModule {}

@@ -1,0 +1,72 @@
+<!--
+  Generated template for the Calendario page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header text-center>
+  <ion-navbar color="dark">
+    <ion-title>
+      <img src="../assets/img/logofooter2.png" height="80px"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <calendar [eventSource]="eventSource" [currentDate]="calendar.currentDate" >
+  </calendar>
+  <p>Eventos de prueba</p>
+  <ion-list>
+  <ion-item-sliding #slidingitem>
+      <ion-item>
+          Evento Prueba 1
+      </ion-item>
+  <!-- slide left items down here -->
+      <ion-item-options side='left'>
+          <button (click)='favorite(slidingitem)'>Sigue esta Categoría <ion-icon name="heart"></ion-icon></button>
+      </ion-item-options>
+  <!-- slide right items down here -->
+      <ion-item-options side='right'>
+          <button (click)='unread(slidingitem)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
+      </ion-item-options>
+  </ion-item-sliding>
+  <ion-item-sliding #slidingitem>
+      <ion-item>
+          Evento Prueba 2
+      </ion-item>
+  <!-- slide left items down here -->
+      <ion-item-options side='left'>
+          <button (click)='favorite(slidingitem)'>Sigue esta Categoría <ion-icon name="heart"></ion-icon></button>
+      </ion-item-options>
+  <!-- slide right items down here -->
+      <ion-item-options side='right'>
+          <button (click)='unread(slidingitem)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
+      </ion-item-options>
+  </ion-item-sliding>
+  <ion-item-sliding #slidingitem>
+      <ion-item>
+          Evento Prueba 3
+      </ion-item>
+  <!-- slide left items down here -->
+      <ion-item-options side='left'>
+          <button (click)='favorite(slidingitem)'>Sigue esta Categoría <ion-icon name="heart"></ion-icon></button>
+      </ion-item-options>
+  <!-- slide right items down here -->
+      <ion-item-options side='right'>
+          <button (click)='unread(slidingitem)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
+      </ion-item-options>
+  </ion-item-sliding>
+  <ion-item-sliding #slidingitem>
+      <ion-item>
+          Evento Prueba 4
+      </ion-item>
+  <!-- slide left items down here -->
+      <ion-item-options side='left'>
+          <button (click)='favorite(slidingitem)'>Sigue esta Categoría <ion-icon name="heart"></ion-icon></button>
+      </ion-item-options>
+  <!-- slide right items down here -->
+      <ion-item-options side='right'>
+          <button (click)='unread(slidingitem)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
+      </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+</ion-content>

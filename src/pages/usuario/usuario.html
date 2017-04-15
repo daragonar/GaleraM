@@ -7,20 +7,52 @@
 <ion-header text-center>
   <ion-navbar color="dark">
     <ion-title>
-      <img src="http://www.lagaleramagazine.es/wp-content/uploads/2016/07/logofooter2.png" height="80px"></ion-title>
+      <img src="../assets/img/logofooter2.png" height="80px"></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h1></h1>
-  <calendar [eventSource]="eventSource" [currentDate]="calendar.currentDate" step="30">
-  </calendar>
   <ion-grid>
     <ion-row>
-      <ion-col col-4>
-        <button ion-button (click)="loadEvents()">Load Events</button>
+      <ion-col text-center>
+        <h2>Mis Eventos</h2>
       </ion-col>
-      <ion-col col-8></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col >
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="img/marty-avatar.png">
+          </ion-avatar>
+          <h2>Favoritos</h2>
+          <p>Eventos : 0</p>
+          <p>Categorias : 0</p>
+          <p>
+<ion-icon name="heart"></ion-icon>
+<ion-icon name="heart"></ion-icon>
+<ion-icon name="heart"></ion-icon>
+<ion-icon name="heart"></ion-icon>
+<ion-icon name="heart"></ion-icon>
+<ion-icon name="heart"></ion-icon>
+<ion-icon name="heart"></ion-icon>
+<ion-icon name="heart"></ion-icon>
+
+          </p>
+        </ion-item>
+      </ion-col>
+
+      <ion-col >
+<ion-item class="notificaciones">
+          <h2>Notificaciones</h2>
+          <p>Eventos : 0</p>
+          <p>Categorias : 0</p>
+          
+        </ion-item>
+
+
+
+      </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>
