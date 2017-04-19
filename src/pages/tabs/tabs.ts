@@ -27,24 +27,32 @@ export class TabsPage {
 
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Modify your album',
+      title: 'Siguenos en redes sociales',
       buttons: [
         {
-          text: 'Destructive',
-          role: 'destructive',
+          text: 'Instagram',
+          icon : 'logo-instagram',
           handler: () => {
-            console.log('Destructive clicked');
+            console.log('Instagram');
           }
         },{
-          text: 'Archive',
+          text: 'Facebook',
+          icon:'logo-facebook',
           handler: () => {
-            console.log('Archive clicked');
+            console.log('Facebook');
+          }
+        },{
+          text: 'Twitter',
+          icon: 'logo-twitter',
+          handler: () => {
+            console.log('Twitter');
           }
         },{
           text: 'Cancel',
           role: 'cancel',
+          icon: 'close',
           handler: () => {
-            console.log('Cancel clicked');
+            console.log('Cerrar');
           }
         }
       ]
