@@ -48,7 +48,7 @@ export class TabsPage {
             console.log('Twitter');
           }
         },{
-          text: 'Cancel',
+          text: 'Cerrar',
           role: 'cancel',
           icon: 'close',
           handler: () => {
