@@ -9,27 +9,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  */
 @IonicPage()
 @Component({
-  selector: 'page-calendario',
-  templateUrl: 'calendario.html',
+    selector: 'page-calendario',
+    templateUrl: 'calendario.html',
 })
 export class Calendario {
-  eventSource;
-  calendar = {
+    eventSource;
+    viewTitle;
+    isToday: boolean;
+    calendar = {
         mode: 'month',
         currentDate: new Date()
     };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.loadEvents();
-}
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+        this.loadEvents();
+    }
+    onViewTitleChanged(title) {
+        this.viewTitle = title;
+    }
+    today() {
+        this.calendar.currentDate = new Date();
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Calendario');
-  }
-  loadEvents() {
+    loadEvents() {
         this.eventSource = this.createRandomEvents();
     }
-  createRandomEvents() {
+    createRandomEvents() {
         var events = [];
         for (var i = 0; i < 50; i += 1) {
             var date = new Date();
@@ -48,7 +53,8 @@ export class Calendario {
                     title: 'All Day - ' + i,
                     startTime: startTime,
                     endTime: endTime,
-                    allDay: true
+                    allDay: true,
+                    campoTest: "hola"
                 });
             } else {
                 var startMinute = Math.floor(Math.random() * 24 * 60);
@@ -59,7 +65,8 @@ export class Calendario {
                     title: 'Event - ' + i,
                     startTime: startTime,
                     endTime: endTime,
-                    allDay: false
+                    allDay: false,
+                    campoTest: "pruebas"
                 });
             }
         }

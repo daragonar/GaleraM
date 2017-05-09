@@ -12,61 +12,43 @@
 </ion-header>
 
 <ion-content padding>
-  <calendar [eventSource]="eventSource" [currentDate]="calendar.currentDate" >
+  <h3 text-center>{{viewTitle}}</h3>
+  <calendar [eventSource]="eventSource" [currentDate]="calendar.currentDate" (onTitleChanged)="onViewTitleChanged($event)"
+    [monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate">
   </calendar>
-  <p>Eventos de prueba</p>
-  <ion-list>
-  <ion-item-sliding #slidingitem>
-      <ion-item>
-          Evento Prueba 1
-      </ion-item>
-  <!-- slide left items down here -->
-      <ion-item-options side='left'>
+  <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+    <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
+        <ion-item text-center>
+            <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+        </ion-item>
+      <ion-item-sliding #slidingitem *ngFor="let event of selectedDate?.events">
+        <ion-item (click)="eventSelected(event)">
+          <ion-thumbnail item-left>
+            <img src="https://placeimg.com/480/480/tech">
+          </ion-thumbnail>
+        <h2><span class="event-detail"> {{event.title}}</span> ---- <span class="event-detail"> {{event.campoTest}}</span></h2>
+          <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">
+
+              {{event.startTime|date: 'dd/MM/yyyy HH:mm'}}
+                            -
+                            {{event.endTime|date: 'dd/MM/yyyy HH:mm'}}
+                        </span>
+          <span *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">{{allDayLabel}}</span>
+          
+        </ion-item>
+        <!-- slide left items down here -->
+        <ion-item-options side='left'>
           <button (click)='favorite(slidingitem)'>Sigue esta Categoría <ion-icon name="heart"></ion-icon></button>
-      </ion-item-options>
-  <!-- slide right items down here -->
-      <ion-item-options side='right'>
+        </ion-item-options>
+        <!-- slide right items down here -->
+        <ion-item-options side='right'>
           <button (click)='unread(slidingitem)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
-      </ion-item-options>
-  </ion-item-sliding>
-  <ion-item-sliding #slidingitem>
-      <ion-item>
-          Evento Prueba 2
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item *ngIf="selectedDate?.events.length==0">
+        <div class="no-events-label">{{noEventsLabel}}</div>
       </ion-item>
-  <!-- slide left items down here -->
-      <ion-item-options side='left'>
-          <button (click)='favorite(slidingitem)'>Sigue esta Categoría <ion-icon name="heart"></ion-icon></button>
-      </ion-item-options>
-  <!-- slide right items down here -->
-      <ion-item-options side='right'>
-          <button (click)='unread(slidingitem)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
-      </ion-item-options>
-  </ion-item-sliding>
-  <ion-item-sliding #slidingitem>
-      <ion-item>
-          Evento Prueba 3
-      </ion-item>
-  <!-- slide left items down here -->
-      <ion-item-options side='left'>
-          <button (click)='favorite(slidingitem)'>Sigue esta Categoría <ion-icon name="heart"></ion-icon></button>
-      </ion-item-options>
-  <!-- slide right items down here -->
-      <ion-item-options side='right'>
-          <button (click)='unread(slidingitem)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
-      </ion-item-options>
-  </ion-item-sliding>
-  <ion-item-sliding #slidingitem>
-      <ion-item>
-          Evento Prueba 4
-      </ion-item>
-  <!-- slide left items down here -->
-      <ion-item-options side='left'>
-          <button (click)='favorite(slidingitem)'>Sigue esta Categoría <ion-icon name="heart"></ion-icon></button>
-      </ion-item-options>
-  <!-- slide right items down here -->
-      <ion-item-options side='right'>
-          <button (click)='unread(slidingitem)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
-      </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
+    </ion-list>
+  </template>
+
 </ion-content>
