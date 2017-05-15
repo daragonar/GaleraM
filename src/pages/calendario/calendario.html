@@ -22,11 +22,11 @@
             <button ion-button [disabled]="isToday" (click)="today()">Today</button>
         </ion-item>
       <ion-item-sliding #slidingitem *ngFor="let event of selectedDate?.events">
-        <ion-item (click)="eventSelected(event)">
+        <ion-item (click)="eventSelected(event,event.id)">
           <ion-thumbnail item-left>
-            <img src="https://placeimg.com/480/480/tech">
+            <img src="{{event.image}}">
           </ion-thumbnail>
-        <h2><span class="event-detail"> {{event.title}}</span> ---- <span class="event-detail"> {{event.campoTest}}</span></h2>
+        <h2><span class="event-detail"> {{event.title}}</span> ---- <span class="event-detail"> </span></h2>
           <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">
 
               {{event.startTime|date: 'dd/MM/yyyy HH:mm'}}

@@ -23,4 +23,15 @@ public ApiURL:string  = "https://www.lagaleramagazine.es/wp-json";
     return this.http.get(this.ApiURL+"/tribe/events/v1/events/"+id).map(res => res.json());
   }
 
+  getEventsByDate(date, page=1){
+    //return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+date+"&page="+page).map(res => res.json());
+    return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+date+"&page="+page).map(res => res.json());
+  }
+
+getEventsByCategory(category){
+
+}
+
+getEventsNextPage(page){}
+
 }

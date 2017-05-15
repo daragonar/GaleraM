@@ -1,63 +1,56 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { EventProvider } from "../../providers/event-provider";
-import { DetalleEvento } from "../detalle-evento/detalle-evento";
 
 
 /**
- * Generated class for the Eventos page.
+ * Generated class for the DetalleEvento page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-eventos',
-  templateUrl: 'eventos.html',
-  providers: [EventProvider]
+  selector: 'page-detalle-evento',
+  templateUrl: 'detalle-evento.html',
+    providers: [EventProvider]
 })
-export class Eventos {
-public EventosLista: Array<string>;
+export class DetalleEvento {
+public EventoLista: Array<string>;
 private loader:any;
+private id:number;
 
-  constructor(
-    public navCtrl: NavController, 
+  constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private eventosService: EventProvider,
     public loadingCtrl: LoadingController) {
-    this.loader = this.loadingCtrl.create({
+      this.loader = this.loadingCtrl.create({
       content: "Obteniendo Eventos...",
     });
-}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Eventos');
-    this.presentLoading();
-    this.getEventos();
+    this.id= navParams.get('item');
   }
 
-   presentLoading() {
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad DetalleEvento');
+    this.presentLoading();
+    this.getEvento(this.id);
+  }
+presentLoading() {
     this.loader.present();
   }
 
   hideLoading(){
     this.loader.dismiss();
   }
-
-  getEventos=function(){
-    this.eventosService.getEvents().subscribe(
+  getEvento=function( id ){
+    this.eventosService.getEvent(id).subscribe(
       result=>{
-        this.EventosLista=result.events;
+        console.log(result);
+        this.EventoLista=result.events;
         this.hideLoading();
       }
     )
   }
 
-  eventTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(DetalleEvento, {
-      item: item
-    });
-  }
 
 }

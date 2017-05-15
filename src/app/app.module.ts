@@ -11,6 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Eventos } from "../pages/eventos/eventos";
 import { Usuario } from "../pages/usuario/usuario";
 import { Calendario } from "../pages/calendario/calendario";
+import { DetalleEvento } from "../pages/detalle-evento/detalle-evento";
 
 import { NgCalendarModule } from 'ionic2-calendar';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,7 +27,8 @@ import { EventProvider } from "../providers/event-provider";
     TabsPage,
     Eventos,
     Usuario,
-    Calendario
+    Calendario,
+    DetalleEvento
   ],
   imports: [
     NgCalendarModule,
@@ -43,7 +45,8 @@ import { EventProvider } from "../providers/event-provider";
     TabsPage,
     Eventos,
     Usuario,
-    Calendario
+    Calendario,
+    DetalleEvento
   ],
   providers: [
     StatusBar,

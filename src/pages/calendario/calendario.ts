@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { EventProvider } from "../../providers/event-provider";
+import { DetalleEvento } from "../detalle-evento/detalle-evento";
 
 /**
  * Generated class for the Calendario page.
@@ -11,9 +13,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
     selector: 'page-calendario',
     templateUrl: 'calendario.html',
+    providers: [EventProvider]
+
 })
 export class Calendario {
     eventSource;
+    loader;
     viewTitle;
     isToday: boolean;
     calendar = {
@@ -21,7 +26,15 @@ export class Calendario {
         currentDate: new Date()
     };
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private eventosService: EventProvider,
+        public loadingCtrl: LoadingController) {
+        this.loader = this.loadingCtrl.create({
+            content: "Obteniendo Eventos...",
+        });
+
+    }
+
+    ionViewDidLoad() {
         this.loadEvents();
     }
     onViewTitleChanged(title) {
@@ -32,8 +45,35 @@ export class Calendario {
     }
 
     loadEvents() {
-        this.eventSource = this.createRandomEvents();
+        this.presentLoading();
+        this.eventSource = this.cargarEventos();
     }
+
+    cargarEventos() {
+        var date=new Date()
+        var fecha= "2017-05-15";
+        console.log(fecha);
+        var eventsCalendar = [];
+        this.eventosService.getEventsByDate(fecha).subscribe(
+            result => {
+                this.hideLoading();
+                result.events.forEach(function (evento) {
+                    eventsCalendar.push({
+                    startTime:new Date(evento.start_date),
+                    endTime:new Date(evento.end_date),
+                    title: evento.title,
+                    allDay: true,
+                    id: evento.id,
+                    image: evento.image.sizes.thumbnail.url
+                    })
+                });
+            }
+        )
+        return eventsCalendar
+    }
+    /*loadEvents() {
+        this.eventSource = this.createRandomEvents();
+    }*/
     createRandomEvents() {
         var events = [];
         for (var i = 0; i < 50; i += 1) {
@@ -54,7 +94,7 @@ export class Calendario {
                     startTime: startTime,
                     endTime: endTime,
                     allDay: true,
-                    campoTest: "hola"
+                    id: i
                 });
             } else {
                 var startMinute = Math.floor(Math.random() * 24 * 60);
@@ -66,11 +106,23 @@ export class Calendario {
                     startTime: startTime,
                     endTime: endTime,
                     allDay: false,
-                    campoTest: "pruebas"
+                    id: i
                 });
             }
         }
         return events;
+    }
+    eventSelected(events, item) {
+        this.navCtrl.push(DetalleEvento, {
+            item: item
+        });
+    }
+    presentLoading() {
+        this.loader.present();
+    }
+
+    hideLoading() {
+        this.loader.dismiss();
     }
 
 }
