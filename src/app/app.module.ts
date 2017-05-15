@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
@@ -11,9 +12,10 @@ import { Eventos } from "../pages/eventos/eventos";
 import { Usuario } from "../pages/usuario/usuario";
 import { Calendario } from "../pages/calendario/calendario";
 
-import { NgCalendarModule  } from 'ionic2-calendar';
+import { NgCalendarModule } from 'ionic2-calendar';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { EventProvider } from "../providers/event-provider";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     NgCalendarModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -46,7 +49,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     { provide: LOCALE_ID, useValue: 'es-ES' },
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    EventProvider,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
   ]
 })
-export class AppModule {}
+export class AppModule { }

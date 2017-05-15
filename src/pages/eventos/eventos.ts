@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { EventProvider } from "../../providers/event-provider";
+
 
 /**
  * Generated class for the Eventos page.
@@ -11,14 +13,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-eventos',
   templateUrl: 'eventos.html',
+  providers: [EventProvider]
 })
 export class Eventos {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+public EventosLista: Array<string>;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private eventosService: EventProvider,
+    public loadingCtrl: LoadingController) {
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Eventos');
+    this.getEventos();
+  }
+
+   presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Obteniendo Eventos...",
+    });
+    loader.present();
+  }
+
+  getEventos=function(){
+    this.eventosService.getEvents().subscribe(
+      result=>{
+        this.EventosLista=result.events;
+      }
+    )
   }
 
 }
