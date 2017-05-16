@@ -25,7 +25,7 @@ private id:number;
     private eventosService: EventProvider,
     public loadingCtrl: LoadingController) {
       this.loader = this.loadingCtrl.create({
-      content: "Obteniendo Eventos...",
+      content: "Cargando evento...",
     });
     this.id= navParams.get('item');
   }

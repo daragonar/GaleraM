@@ -15,11 +15,83 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.ion-ios-customicon, .ion-ios-customicon-outline,
-.ion-md-customicon {
-  content: url(../../assets/img/ui/up.svg);
-  width: 24px;
+* {
+    font-family: "antic-slab";
+}
+
+ion-navbar .toolbar-background{
+  background-color: black;
+}
+
+ion-title img{
+  height: 40px;
+  text-align: center;
+}
+
+
+
+/*tabs--------------*/
+.tabs-md .tab-button[aria-selected=true]{
+  color:black;
+}
+
+.ion-ios-calendario, .ion-ios-calendario-outline, .ion-md-calendario {
+  content: url(../assets/img/ui/calendario.png);
+  width: 48px;
+  height: 48px;
+}
+
+.ion-ios-calendario[ng-reflect-is-active=true], .ion-ios-calendario-outline[ng-reflect-is-active=true],
+.ion-md-calendario[ng-reflect-is-active=true] {
+  content: url(../assets/img/ui/calendario-active.png);
+  width: 48px;
+  height: 48px;
+}
+
+.ion-ios-revista, .ion-ios-revista-outline, .ion-md-revista {
+  content: url(../assets/img/ui/revista.png);
+  width: 32px;
   height: 32px;
-  padding: 6px 4px 2px;
-  opacity: 0.9; 
+}
+
+.ion-ios-revista[ng-reflect-is-active=true], .ion-ios-revista-outline[ng-reflect-is-active=true], .ion-md-revista[ng-reflect-is-active=true] {
+  content: url(../assets/img/ui/revista-active.png);
+  width: 32px;
+  height: 32px;
+}
+
+.ion-ios-usuario, .ion-ios-usuario-outline, .ion-md-usuario {
+  content: url(../assets/img/ui/usuario.png);
+  width: 32px;
+  height: 32px;
+}
+
+.ion-ios-usuario[ng-reflect-is-active=true], .ion-ios-usuario-outline[ng-reflect-is-active=true], .ion-md-usuario[ng-reflect-is-active=true] {
+  content: url(../assets/img/ui/usuario-active.png);
+  width: 32px;
+  height: 32px;
+}
+
+.ion-ios-eventos, .ion-ios-eventos-outline, .ion-md-eventos {
+  content: url(../assets/img/ui/eventos.png);
+  width: 32px;
+  height: 32px;
+}
+
+.ion-ios-eventos[ng-reflect-is-active=true], .ion-ios-eventos-outline[ng-reflect-is-active=true], .ion-md-eventos[ng-reflect-is-active=true] {
+  content: url(../assets/img/ui/eventos-active.png);
+  width: 32px;
+  height: 32px;
+}
+
+.ion-ios-redes, .ion-ios-redes-outline, .ion-md-redes {
+  content: url(../assets/img/ui/redes.png);
+  width: 32px;
+  height: 32px;
+}
+
+.ion-ios-redes[ng-reflect-is-active=true], .ion-ios-redes-outline[ng-reflect-is-active=true], .ion-md-redes[ng-reflect-is-active=true] {
+  content: url(../assets/img/ui/redes-active.png);
+  width: 32px;
+  height: 32px;
 }

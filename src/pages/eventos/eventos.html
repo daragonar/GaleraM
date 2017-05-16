@@ -5,10 +5,19 @@
   Ionic pages and navigation.
 -->
 <ion-header text-center>
-  <ion-navbar color="dark">
-    <ion-title>
-      <img src="assets/img/logofooter2.png" height="80px"></ion-title>
-  </ion-navbar>
+  <ion-navbar>
+      <ion-title><img src="assets/img/logofooter2.png"></ion-title>
+      <ion-buttons left>
+        <button ion-button icon-only>
+          <ion-icon name='menu'></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons right>
+      <button ion-button icon-only>
+        <ion-icon name='search'></ion-icon>
+      </button>
+      </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 
@@ -31,8 +40,9 @@
 
   <ion-grid>
     <ion-row class="news">
-      <ion-col col-6 *ngFor="let evento of EventosLista" (click)="eventTapped($event, evento.id)" [style.background-image]="'url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style'" style="background:center center/cover"> {{evento.id}}</ion-col>
-      </ion-row>
+      <ion-col col-6 *ngFor="let evento of EventosLista" (click)="eventTapped($event, evento.id)" [style.background-image]="'url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style'"
+        style="background:center center/cover"> {{evento.id}}</ion-col>
+    </ion-row>
 
   </ion-grid>
 </ion-content>
