@@ -26,7 +26,7 @@
           <ion-thumbnail item-left>
             <img src="{{event.image}}">
           </ion-thumbnail>
-        <h2><span class="event-detail"> {{event.title}}</span> ---- <span class="event-detail"> </span></h2>
+        <h2><span class="event-detail" [innerHTML]="event.title | safe: 'html'">  </span> ---- <span class="event-detail"> </span></h2>
           <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">
 
               {{event.startTime|date: 'dd/MM/yyyy HH:mm'}}

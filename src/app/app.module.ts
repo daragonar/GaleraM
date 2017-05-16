@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { SafePipe } from '../pipes/safe';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -28,13 +29,14 @@ import { EventProvider } from "../providers/event-provider";
     Eventos,
     Usuario,
     Calendario,
-    DetalleEvento
+    DetalleEvento,
+    SafePipe
   ],
   imports: [
     NgCalendarModule,
     BrowserModule,
     IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
-    HttpModule
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,6 +56,7 @@ import { EventProvider } from "../providers/event-provider";
     SplashScreen,
     EventProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    SafePipe
   ]
 })
 export class AppModule { }
