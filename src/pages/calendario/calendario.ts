@@ -50,26 +50,28 @@ export class Calendario {
     }
 
     cargarEventos() {
-        var date=new Date()
-        var fecha= "2017-05-15";
+        var fecha= "2017-05-16";
         console.log(fecha);
         var eventsCalendar = [];
         this.eventosService.getEventsByDate(fecha).subscribe(
             result => {
                 this.hideLoading();
+                
                 result.events.forEach(function (evento) {
+                console.log(evento)
                     eventsCalendar.push({
                     startTime:new Date(evento.start_date),
                     endTime:new Date(evento.end_date),
                     title: evento.title,
-                    allDay: true,
+                    allDay: evento.all_day,
                     id: evento.id,
                     image: evento.image.sizes.thumbnail.url
                     })
                 });
+                this.calendar.currentDate=new Date();
             }
         )
-        return eventsCalendar
+        return eventsCalendar;
     }
     /*loadEvents() {
         this.eventSource = this.createRandomEvents();
@@ -94,7 +96,8 @@ export class Calendario {
                     startTime: startTime,
                     endTime: endTime,
                     allDay: true,
-                    id: i
+                    id: i,
+                    image: "http://lorempixel.com/150/150/"
                 });
             } else {
                 var startMinute = Math.floor(Math.random() * 24 * 60);
@@ -106,10 +109,12 @@ export class Calendario {
                     startTime: startTime,
                     endTime: endTime,
                     allDay: false,
-                    id: i
+                    id: i,
+                    image: "http://lorempixel.com/150/150/"
                 });
             }
         }
+        this.hideLoading();
         return events;
     }
     eventSelected(events, item) {

@@ -13,8 +13,11 @@
 
 <ion-content padding>
   <h3 text-center>{{viewTitle}}</h3>
-  <calendar [eventSource]="eventSource" [currentDate]="calendar.currentDate" (onTitleChanged)="onViewTitleChanged($event)"
-    [monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate">
+  <calendar *ngIf="eventSource!=[]"
+            [eventSource]="eventSource" 
+            [currentDate]="calendar.currentDate" 
+            (onTitleChanged)="onViewTitleChanged($event)"
+            [monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate">
   </calendar>
   <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
     <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
@@ -26,7 +29,7 @@
           <ion-thumbnail item-left>
             <img src="{{event.image}}">
           </ion-thumbnail>
-        <h2><span class="event-detail" [innerHTML]="event.title | safe: 'html'">  </span> ---- <span class="event-detail"> </span></h2>
+        <h2><span class="event-detail" [innerHTML]="event.title | safe: 'html'">  </span> <span class="event-detail"> </span></h2>
           <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">
 
               {{event.startTime|date: 'dd/MM/yyyy HH:mm'}}

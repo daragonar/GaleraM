@@ -16,7 +16,7 @@ import { EventProvider } from "../../providers/event-provider";
     providers: [EventProvider]
 })
 export class DetalleEvento {
-public EventoLista: Array<string>;
+public EventoLista: any;
 private loader:any;
 private id:number;
 
@@ -31,9 +31,10 @@ private id:number;
   }
 
   ionViewDidLoad() {
+    let evento:any;
     console.log('ionViewDidLoad DetalleEvento');
     this.presentLoading();
-    this.getEvento(this.id);
+    evento=this.getEvento(this.id);
   }
 presentLoading() {
     this.loader.present();
@@ -46,8 +47,8 @@ presentLoading() {
     this.eventosService.getEvent(id).subscribe(
       result=>{
         console.log(result);
-        this.EventoLista=result.events;
         this.hideLoading();
+                return result;
       }
     )
   }
