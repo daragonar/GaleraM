@@ -13,6 +13,8 @@
 
 
 <ion-content padding>
-<p [innerHTML]="EventoLista.title | safe: 'html'"></p>
-<p [innerHTML]="EventoLista.description | safe: 'html'"></p>
+  {{evento.start_date | date:'d MMMM, y' }} - {{evento.end_date | date:'d MMMM, y' }}
+  <h2 [innerHTML]="evento.title |safe: 'html'"></h2>
+  <img src="{{evento.image.url}}">
+  <p class="description" [innerHTML]="evento.description | removeTags | safe: 'html'"></p>
 </ion-content>

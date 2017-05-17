@@ -1,3 +1,11 @@
 page-detalle-evento {
 
 }
+
+.description{
+    text-align: justify;
+    hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+}

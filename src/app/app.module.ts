@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { SafePipe } from '../pipes/safe';
+import { RemoveTags } from '../pipes/remove-tags';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -30,7 +31,8 @@ import { EventProvider } from "../providers/event-provider";
     Usuario,
     Calendario,
     DetalleEvento,
-    SafePipe
+    SafePipe,
+    RemoveTags
   ],
   imports: [
     NgCalendarModule,
@@ -56,7 +58,8 @@ import { EventProvider } from "../providers/event-provider";
     SplashScreen,
     EventProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    SafePipe
+    SafePipe,
+    RemoveTags
   ]
 })
 export class AppModule { }

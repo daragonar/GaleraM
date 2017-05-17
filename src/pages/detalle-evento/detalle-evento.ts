@@ -16,8 +16,8 @@ import { EventProvider } from "../../providers/event-provider";
     providers: [EventProvider]
 })
 export class DetalleEvento {
-public EventoLista: any;
-private loader:any;
+  public evento: any;
+  private loader:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -26,7 +26,8 @@ private loader:any;
       this.loader = this.loadingCtrl.create({
       content: "Cargando evento...",
     });
-    this.EventoLista= navParams.get('item');
+    this.evento= navParams.get('item');
+    console.log(this.evento);
   }
 
   ionViewDidLoad() {
@@ -35,9 +36,9 @@ private loader:any;
     this.presentLoading();
     evento=this.getEvento(this.id);*/
   }
-presentLoading() {
-    this.loader.present();
-  }
+  presentLoading() {
+      this.loader.present();
+    }
 
   hideLoading(){
     this.loader.dismiss();
