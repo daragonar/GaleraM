@@ -13,5 +13,6 @@
 
 
 <ion-content padding>
-{{evento.title}}
+<p [innerHTML]="EventoLista.title | safe: 'html'"></p>
+<p [innerHTML]="EventoLista.description | safe: 'html'"></p>
 </ion-content>

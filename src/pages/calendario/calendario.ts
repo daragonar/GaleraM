@@ -65,7 +65,8 @@ export class Calendario {
                     title: evento.title,
                     allDay: evento.all_day,
                     id: evento.id,
-                    image: evento.image.sizes.thumbnail.url
+                    image: evento.image.sizes.thumbnail.url,
+                    item:evento
                     })
                 });
                 this.calendar.currentDate=new Date();

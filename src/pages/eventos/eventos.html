@@ -40,8 +40,8 @@
 
   <ion-grid>
     <ion-row class="news">
-      <ion-col col-6 *ngFor="let evento of EventosLista" (click)="eventTapped($event, evento.id)" [style.background-image]="'url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style'"
-        style="background:center center/cover"> {{evento.id}}</ion-col>
+      <ion-col col-6 *ngFor="let evento of EventosLista" (click)="eventTapped($event, evento)" [style.background-image]="'url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style'"
+        style="background:center center/cover"><p class="titulo" [innerHTML]="evento.title | safe: 'html'"></p></ion-col>
     </ion-row>
 
   </ion-grid>

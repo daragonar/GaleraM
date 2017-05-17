@@ -18,7 +18,6 @@ import { EventProvider } from "../../providers/event-provider";
 export class DetalleEvento {
 public EventoLista: any;
 private loader:any;
-private id:number;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -27,14 +26,14 @@ private id:number;
       this.loader = this.loadingCtrl.create({
       content: "Cargando evento...",
     });
-    this.id= navParams.get('item');
+    this.EventoLista= navParams.get('item');
   }
 
   ionViewDidLoad() {
-    let evento:any;
+    /*let evento:any;
     console.log('ionViewDidLoad DetalleEvento');
     this.presentLoading();
-    evento=this.getEvento(this.id);
+    evento=this.getEvento(this.id);*/
   }
 presentLoading() {
     this.loader.present();
@@ -43,7 +42,7 @@ presentLoading() {
   hideLoading(){
     this.loader.dismiss();
   }
-  getEvento=function( id ){
+  /*getEvento=function( id ){
     this.eventosService.getEvent(id).subscribe(
       result=>{
         console.log(result);
@@ -51,7 +50,7 @@ presentLoading() {
                 return result;
       }
     )
-  }
+  }*/
 
 
 }
