@@ -13,8 +13,30 @@
 
 
 <ion-content padding>
-  {{evento.start_date | date:'d MMMM, y' }} - {{evento.end_date | date:'d MMMM, y' }}
-  <h2 [innerHTML]="evento.title |safe: 'html'"></h2>
+  <p class="date">{{evento.start_date | date:'d MMMM, y' }} - {{evento.end_date | date:'d MMMM, y' }}</p>
+  <h1 class="title" [innerHTML]="evento.title |safe: 'html'"></h1>
   <img src="{{evento.image.url}}">
   <p class="description" [innerHTML]="evento.description | removeTags | safe: 'html'"></p>
+  <ion-grid>
+    <ion-row>
+        <ion-col col-12 col-sm *ngIf="(evento.description | removeTags: 'imagesrc')?.length>0">
+          <img src="{{evento?.description | removeTags: 'imagesrc'}}">
+        </ion-col>
+        <ion-col col-12 col-sm>
+          <section class="bggray">
+            <div *ngIf="evento?.venue.venue">
+              <h3>Lugar</h3>
+              <p><strong>{{evento?.venue.venue}}</strong></p>
+              <p><em>{{evento?.venue.address}}</em></p>
+              <p><em>{{evento?.venue.city}}, {{evento?.venue.province}} {{evento?.venue.zip}} {{evento?.venue.country}}</em></p>
+            </div>
+            <div>
+              <h3>Horario</h3>
+              <p></p>
+              <p>Precio</p>
+            </div>
+          </section>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -7,3 +7,23 @@ page-calendario .item{
     border-right: 4px solid #000;
 
 }
+
+.table-bordered[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1]{
+    background-color: #666666;
+    color: white;
+    border: 0px !important; 
+}
+
+.monthview-disabled{
+    background-color: #c9c9c9 !important;
+    color: white !important;
+}
+
+.monthview-primary-with-event, .monthview-secondary-with-event{
+    background-color: #666666 !important;
+    color: white !important;
+}
+
+.monthview-selected{
+    background-color: #C51E30 !important;
+}

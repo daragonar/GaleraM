@@ -2,10 +2,36 @@ page-detalle-evento {
 
 }
 
+ion-content .scroll-content{
+    padding: 15px 35px 0 35px !important;
+}
+
+h1.title{
+    font-size: 250%;
+    font-weight: normal !important;
+    margin-top: 0px !important;
+}
+
 .description{
     text-align: justify;
     hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
+    font-size: 120%;
+}
+
+.bggray{
+    background-color: #f2f2f2;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.bggray p{
+    margin: 0px !important;
+}
+
+.bggray div{
+    margin-bottom: 20px;
 }

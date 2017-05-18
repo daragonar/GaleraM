@@ -27,6 +27,7 @@ export class DetalleEvento {
       content: "Cargando evento...",
     });
     this.evento= navParams.get('item');
+    
     console.log(this.evento);
   }
 

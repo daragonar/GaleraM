@@ -26,6 +26,13 @@ export class Calendario {
         currentDate: new Date()
     };
 
+    markDisabled = (date: Date) => {
+        var current = new Date();
+        current.setDate(current.getDate() - 1);
+        console.log(current);
+        return date < current;
+    };
+
     constructor(public navCtrl: NavController, public navParams: NavParams, private eventosService: EventProvider,
         public loadingCtrl: LoadingController) {
         this.loader = this.loadingCtrl.create({
@@ -50,7 +57,9 @@ export class Calendario {
     }
 
     cargarEventos() {
-        var fecha= "2017-05-16";
+        var date = new Date();
+        var fecha= date.getUTCFullYear()+"-"+date.getUTCMonth()+"-"+date.getUTCDate();
+        //var fecha= "2017-01-15";
         console.log(fecha);
         var eventsCalendar = [];
         this.eventosService.getEventsByDate(fecha).subscribe(

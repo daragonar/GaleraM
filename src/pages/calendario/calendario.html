@@ -17,6 +17,7 @@
             [eventSource]="eventSource" 
             [currentDate]="calendar.currentDate" 
             (onTitleChanged)="onViewTitleChanged($event)"
+            [markDisabled]="markDisabled"
             [monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate">
   </calendar>
   <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
