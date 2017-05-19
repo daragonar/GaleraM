@@ -28,7 +28,7 @@ export class Calendario {
 
     markDisabled = (date: Date) => {
         var current = new Date();
-        current.setDate(current.getDate() - 1);
+        current.setDate(current.getDate());
         console.log(current);
         return date < current;
     };

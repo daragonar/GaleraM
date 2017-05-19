@@ -14,11 +14,6 @@ page-calendario .item{
     border: 0px !important; 
 }
 
-.monthview-disabled{
-    background-color: #c9c9c9 !important;
-    color: white !important;
-}
-
 .monthview-primary-with-event, .monthview-secondary-with-event{
     background-color: #666666 !important;
     color: white !important;
@@ -26,4 +21,9 @@ page-calendario .item{
 
 .monthview-selected{
     background-color: #C51E30 !important;
+}
+
+.monthview-disabled{
+    background-color: #c9c9c9 !important;
+    color: white !important;
 }
