@@ -12,14 +12,18 @@
 </ion-header>
 
 <ion-content padding>
-  <h3 text-center>{{viewTitle}}</h3>
-  <calendar *ngIf="eventSource!=[]"
-            [eventSource]="eventSource" 
-            [currentDate]="calendar.currentDate" 
-            (onTitleChanged)="onViewTitleChanged($event)"
-            [markDisabled]="markDisabled"
-            [monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate">
-  </calendar>
+  <h2 text-center>CALENDARIO DE EVENTOS</h2>
+  <div id="calendario">
+    <span text-center class="calendar-header">{{viewTitle}}</span>
+    <calendar *ngIf="eventSource!=[]"
+              [eventSource]="eventSource" 
+              [currentDate]="calendar.currentDate" 
+              (onTitleChanged)="onViewTitleChanged($event)"
+              [markDisabled]="markDisabled"
+              [startingDayWeek]="1"
+              [monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate">
+    </calendar>
+  </div>
   <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
     <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
         <ion-item text-center>

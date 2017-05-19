@@ -23,7 +23,7 @@ export class Calendario {
     isToday: boolean;
     calendar = {
         mode: 'month',
-        currentDate: new Date()
+        currentDate: new Date(),
     };
 
     markDisabled = (date: Date) => {

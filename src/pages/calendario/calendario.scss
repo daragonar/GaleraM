@@ -8,6 +8,16 @@ page-calendario .item{
 
 }
 
+.calendar-header{
+    background-color: #666666;
+    width: 100%;
+    color: white;
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
 .table-bordered[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1]{
     background-color: #666666;
     color: white;
@@ -19,11 +29,15 @@ page-calendario .item{
     color: white !important;
 }
 
-.monthview-selected{
-    background-color: #C51E30 !important;
-}
-
 .monthview-disabled{
     background-color: #c9c9c9 !important;
     color: white !important;
+}
+
+.monthview-current{
+    background-color: #CF3A5A !important;
+}
+
+.monthview-selected{
+    background-color: #C51E30 !important;
 }
