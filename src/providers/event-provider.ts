@@ -16,19 +16,27 @@ public ApiURL:string  = "https://www.lagaleramagazine.es/wp-json";
 
   }
 
-  getEvents(){
+  getEvents( perPage=50){
     return this.http.get(this.ApiURL+"/tribe/events/v1/events").map(res => res.json());
   }
   getEvent(id){
     return this.http.get(this.ApiURL+"/tribe/events/v1/events/"+id).map(res => res.json());
   }
 
-  getEventsByDate(date, page=1){
+  getEventsByStartDate(date, page=1, perPage=50){
     //return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+date+"&page="+page).map(res => res.json());
     return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+date+"&page="+page).map(res => res.json());
   }
+getEventsByEndDate(date, page=1, perPage=50){
+    //return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+date+"&page="+page).map(res => res.json());
+    return this.http.get(this.ApiURL+"/tribe/events/v1/events?end_date="+date+"&page="+page).map(res => res.json());
+  }
 
-getEventsByCategory(category){
+getEventsByRangeDate(sdate, edate , page=1, perPage=50){
+    //return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+date+"&page="+page).map(res => res.json());
+    return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+sdate+"&end_date="+edate+"&per_page="+perPage+"&page="+page).map(res => res.json());
+  }
+getEventsByCategory(category,  perPage=50){
 
 }
 

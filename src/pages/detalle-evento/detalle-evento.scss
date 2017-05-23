@@ -1,37 +1,35 @@
 page-detalle-evento {
+    ion-content .scroll-content{
+        padding: 5vw 5vw 0 5vw !important;
+    }
 
-}
+    h1.title{
+        font-size: 250%;
+        font-weight: normal !important;
+        margin-top: 0px !important;
+    }
 
-ion-content .scroll-content{
-    padding: 5vw 5vw 0 5vw !important;
-}
+    .description{
+        text-align: justify;
+        hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        font-size: 120%;
+    }
 
-h1.title{
-    font-size: 250%;
-    font-weight: normal !important;
-    margin-top: 0px !important;
-}
+    .bggray{
+        background-color: #f2f2f2;
+        border: 1px solid #eee;
+        border-radius: 2px;
+        padding: 5px;
+    }
 
-.description{
-    text-align: justify;
-    hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    -webkit-hyphens: auto;
-    font-size: 120%;
-}
+    .bggray p{
+        margin: 0px !important;
+    }
 
-.bggray{
-    background-color: #f2f2f2;
-    border: 1px solid #eee;
-    border-radius: 2px;
-    padding: 5px;
-}
-
-.bggray p{
-    margin: 0px !important;
-}
-
-.bggray div{
-    margin-bottom: 20px;
+    .bggray div{
+        margin-bottom: 20px;
+    }
 }

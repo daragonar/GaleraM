@@ -5,6 +5,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { SafePipe } from '../pipes/safe';
 import { RemoveTags } from '../pipes/remove-tags';
+import { ReversePipe } from "../pipes/reverse";
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -20,6 +21,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { EventProvider } from "../providers/event-provider";
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -32,12 +34,19 @@ import { EventProvider } from "../providers/event-provider";
     Calendario,
     DetalleEvento,
     SafePipe,
-    RemoveTags
+    RemoveTags,
+    ReversePipe
   ],
   imports: [
     NgCalendarModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
+    IonicModule.forRoot(MyApp,{ 
+          tabsPlacement: 'bottom',
+          monthNames: ['enero', 'febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre' ],
+          monthShortNames: ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],
+          dayNames: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado' ],
+          dayShortNames: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+    }),
     HttpModule,
   ],
   bootstrap: [IonicApp],
@@ -59,7 +68,8 @@ import { EventProvider } from "../providers/event-provider";
     EventProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     SafePipe,
-    RemoveTags
+    RemoveTags,
+    ReversePipe
   ]
 })
 export class AppModule { }

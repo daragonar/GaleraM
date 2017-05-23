@@ -24,15 +24,16 @@ export class Calendario {
     calendar = {
         mode: 'month',
         currentDate: new Date(),
+        startingDayWeek : 1,
+        startingDayMonth: 1,
+        formatDayHeader: 'E',
     };
 
-    markDisabled = (date: Date) => {
-        var current = new Date();
-        current.setDate(current.getDate());
-        console.log(current);
-        return date < current;
-    };
-
+  markDisabled = (date:Date) => {
+    var current = new Date();
+    current.setHours(0, 0, 0);
+    return date < current;
+  };
     constructor(public navCtrl: NavController, public navParams: NavParams, private eventosService: EventProvider,
         public loadingCtrl: LoadingController) {
         this.loader = this.loadingCtrl.create({
@@ -42,32 +43,40 @@ export class Calendario {
     }
 
     ionViewDidLoad() {
-        this.loadEvents();
+       // this.loadEvents();
+       this.presentLoading();
     }
     onViewTitleChanged(title) {
         this.viewTitle = title;
     }
+     onRangeChanged = (ev: { startTime: Date, endTime: Date }) =>{
+         
+
+        console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
+        this.cargarEventos(ev.startTime, ev.endTime);
+
+       
+
+    }
     today() {
-        this.calendar.currentDate = new Date();
+        var date = new Date();
+        date.setHours(0,0,0)
+        this.calendar.currentDate = date;
     }
 
     loadEvents() {
-        this.presentLoading();
-        this.eventSource = this.cargarEventos();
+        //this.eventSource = this.cargarEventos();
     }
 
-    cargarEventos() {
-        var date = new Date();
-        var fecha= date.getUTCFullYear()+"-"+date.getUTCMonth()+"-"+date.getUTCDate();
-        //var fecha= "2017-01-15";
-        console.log(fecha);
-        var eventsCalendar = [];
-        this.eventosService.getEventsByDate(fecha).subscribe(
+    cargarEventos(date1, date2) {
+        var sdate= date1.getUTCFullYear()+"-"+(date1.getUTCMonth()+1)+"-"+date1.getUTCDate()+" 00:00:00"  ;
+        var edate= date2.getUTCFullYear()+"-"+(date2.getUTCMonth()+1)+"-"+date2.getUTCDate()+" 23:59:59";
+
+        this.eventosService.getEventsByRangeDate(sdate,edate).subscribe(
             result => {
-                this.hideLoading();
-                
+                 var eventsCalendar = [];
                 result.events.forEach(function (evento) {
-                console.log(evento)
+                //console.log(evento)
                     eventsCalendar.push({
                     startTime:new Date(evento.start_date),
                     endTime:new Date(evento.end_date),
@@ -78,10 +87,10 @@ export class Calendario {
                     item:evento
                     })
                 });
-                this.calendar.currentDate=new Date();
+                this.eventSource=eventsCalendar
+                this.hideLoading();
             }
         )
-        return eventsCalendar;
     }
     /*loadEvents() {
         this.eventSource = this.createRandomEvents();

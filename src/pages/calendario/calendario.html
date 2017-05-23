@@ -17,11 +17,17 @@
     <span text-center class="calendar-header">{{viewTitle}}</span>
     <calendar *ngIf="eventSource!=[]"
               [eventSource]="eventSource" 
+              [formatDayHeader]="calendar.formatDayHeader"
               [currentDate]="calendar.currentDate" 
-              (onTitleChanged)="onViewTitleChanged($event)"
               [markDisabled]="markDisabled"
-              [startingDayWeek]="1"
-              [monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate">
+              [startingDayWeek] = "calendar.startingDayWeek"
+              [startingDayMonth]="calendar.startingDayMonth"              
+              [monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate"
+              (onTitleChanged)="onViewTitleChanged($event)"
+              (onRangeChanged)="onRangeChanged($event)"
+              queryMode="remote"
+              
+              >
     </calendar>
   </div>
   <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
@@ -29,7 +35,7 @@
         <ion-item text-center>
             <button ion-button [disabled]="isToday" (click)="today()">Today</button>
         </ion-item>
-      <ion-item-sliding #slidingitem *ngFor="let event of selectedDate?.events">
+      <ion-item-sliding #slidingitem *ngFor="let event of selectedDate?.events ">
         <ion-item (click)="eventSelected(event,event.item)">
           <ion-thumbnail item-left>
             <img src="{{event.image}}">
