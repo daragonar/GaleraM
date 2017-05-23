@@ -34,18 +34,21 @@ export class TabsPage {
           icon : 'logo-instagram',
           handler: () => {
             console.log('Instagram');
+            window.open('https://www.instagram.com/lagaleramagazine/', '_system');
           }
         },{
           text: 'Facebook',
           icon:'logo-facebook',
           handler: () => {
             console.log('Facebook');
+            window.open('https://www.facebook.com/lagaleramagazine/', '_system');
           }
         },{
           text: 'Twitter',
           icon: 'logo-twitter',
           handler: () => {
             console.log('Twitter');
+            window.open('https://twitter.com/galera_magazine', '_system');
           }
         },{
           text: 'Cerrar',
