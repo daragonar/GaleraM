@@ -36,27 +36,19 @@ export class Calendario {
   };
     constructor(public navCtrl: NavController, public navParams: NavParams, private eventosService: EventProvider,
         public loadingCtrl: LoadingController) {
-        this.loader = this.loadingCtrl.create({
-            content: "Obteniendo Eventos...",
-        });
 
     }
 
     ionViewDidLoad() {
        // this.loadEvents();
-       this.presentLoading();
+       //this.presentLoading();
     }
     onViewTitleChanged(title) {
         this.viewTitle = title;
     }
      onRangeChanged = (ev: { startTime: Date, endTime: Date }) =>{
-         
-
         console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
         this.cargarEventos(ev.startTime, ev.endTime);
-
-       
-
     }
     today() {
         var date = new Date();
@@ -72,25 +64,32 @@ export class Calendario {
         var sdate= date1.getUTCFullYear()+"-"+(date1.getUTCMonth()+1)+"-"+date1.getUTCDate()+" 00:00:00"  ;
         var edate= date2.getUTCFullYear()+"-"+(date2.getUTCMonth()+1)+"-"+date2.getUTCDate()+" 23:59:59";
 
-        this.eventosService.getEventsByRangeDate(sdate,edate).subscribe(
-            result => {
-                 var eventsCalendar = [];
-                result.events.forEach(function (evento) {
-                //console.log(evento)
-                    eventsCalendar.push({
-                    startTime:new Date(evento.start_date),
-                    endTime:new Date(evento.end_date),
-                    title: evento.title,
-                    allDay: evento.all_day,
-                    id: evento.id,
-                    image: evento.image.sizes.thumbnail.url,
-                    item:evento
-                    })
-                });
-                this.eventSource=eventsCalendar
-                this.hideLoading();
-            }
-        )
+        let loader = this.loadingCtrl.create({
+            content: "Obteniendo Eventos...",
+        });
+        loader.present().then(() => {
+            this.eventosService.getEventsByRangeDate(sdate,edate).subscribe(
+                result => {
+                    var eventsCalendar = [];
+                    result.events.forEach(function (evento) {
+                    //console.log(evento)
+                        eventsCalendar.push({
+                        startTime:new Date(evento.start_date),
+                        endTime:new Date(evento.end_date),
+                        title: evento.title,
+                        allDay: evento.all_day,
+                        id: evento.id,
+                        image: evento.image.sizes.thumbnail.url,
+                        item:evento
+                        })
+                    });
+                    this.eventSource=eventsCalendar
+                    loader.dismiss().then(() => {
+                        console.log("Loading dismissed");
+                    });
+                }
+            )
+        });
     }
     /*loadEvents() {
         this.eventSource = this.createRandomEvents();
@@ -133,20 +132,12 @@ export class Calendario {
                 });
             }
         }
-        this.hideLoading();
         return events;
     }
     eventSelected(events, item) {
         this.navCtrl.push(DetalleEvento, {
             item: item
         });
-    }
-    presentLoading() {
-        this.loader.present();
-    }
-
-    hideLoading() {
-        this.loader.dismiss();
     }
 
 }
