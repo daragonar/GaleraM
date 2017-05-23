@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { MyApp } from './app.component';
 import { SafePipe } from '../pipes/safe';
 import { RemoveTags } from '../pipes/remove-tags';
@@ -69,7 +70,8 @@ import { EventProvider } from "../providers/event-provider";
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     SafePipe,
     RemoveTags,
-    ReversePipe
+    ReversePipe,
+    NativeGeocoder
   ]
 })
 export class AppModule { }
