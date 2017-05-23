@@ -6,23 +6,37 @@
 -->
 <ion-header text-center>
   <ion-navbar>
-      <ion-title><img src="assets/img/logofooter2.png"></ion-title>
-      <ion-buttons left>
-        <button ion-button icon-only>
+    <ion-title><img src="assets/img/logofooter2.png"></ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="openMenu()">
           <ion-icon name='menu'></ion-icon>
         </button>
-      </ion-buttons>
-      <ion-buttons right>
-      <button ion-button icon-only>
+    </ion-buttons>
+    <ion-buttons right>
+      <button ion-button icon-only  (click)="openSearch()">
         <ion-icon name='search'></ion-icon>
       </button>
-      </ion-buttons>
-    </ion-navbar>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 
 <ion-content margin-top>
-  <ion-slides #islider id="slideEventos">
+  <ion-searchbar
+      *ngIf="searchBox"
+      showCancelButton="True"
+      cancelButtonText="X"
+      debounce =250
+      placeholder ="Buscar evento..."
+      [(ngModel)]="searchval"
+      (ionInput)="searchItems()"
+      (ionCancel)="getEventos()"
+       (ionClear)="getEventos()">
+  </ion-searchbar>
+
+  
+
+  <ion-slides #islider id="slideEventos" *ngIf="!hideSlide">
 
     <ion-slide style="background: url('http://www.lagaleramagazine.es/wp-content/uploads/2017/04/invisiblesenunmundovisible00.jpg')center center/cover;">
       <h3>Slide1</h3>
@@ -38,11 +52,23 @@
     </ion-slide>
   </ion-slides>
 
-  <ion-grid>
-    <ion-row class="news">
-      <ion-col col-6 *ngFor="let evento of EventosLista" (click)="eventTapped($event, evento)" [style.background-image]="'url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style'"
-        style="background:center center/cover"><p class="titulo" [innerHTML]="evento.title | safe: 'html'"></p></ion-col>
-    </ion-row>
 
-  </ion-grid>
+
+      <ion-grid>
+        <ion-row class="news">
+          <ion-col col-6 *ngFor="let evento of EventosLista" (click)="eventTapped($event, evento)" [style.background-image]="'url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style'"
+            style="background:center center/cover">
+            <p class="titulo" [innerHTML]="evento.title | safe: 'html'"></p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+  <!-- Add a method doInfinite -->
+  <ion-infinite-scroll *ngIf="nextUrl || nextUrl!='undefined'" (ionInfinite)="doInfinite($event)" >
+    <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+      loadingText="Cargando mas eventos...">
+    > 
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

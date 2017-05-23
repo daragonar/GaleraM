@@ -36,10 +36,15 @@ getEventsByRangeDate(sdate, edate , page=1, perPage=50){
     //return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+date+"&page="+page).map(res => res.json());
     return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+sdate+"&end_date="+edate+"&per_page="+perPage+"&page="+page).map(res => res.json());
   }
-getEventsByCategory(category,  perPage=50){
-
+getEventsByCategory(category){
+ return this.http.get(this.ApiURL+"/tribe/events/v1/events/?categories="+category).map(res => res.json());
 }
+getEventsSearch(search){
+    return this.http.get(this.ApiURL+"/tribe/events/v1/events/?search="+search).map(res => res.json());
+  }
 
-getEventsNextPage(page){}
+getEventsNextPage(page){
+return this.http.get(page).map(res => res.json());
+}
 
 }
