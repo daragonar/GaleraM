@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActionSheetController } from 'ionic-angular';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AppAvailability} from '@ionic-native/app-availability';
+import { Device } from '@ionic-native/device';
 
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
@@ -22,7 +24,13 @@ export class TabsPage {
   tab5Root = Usuario;
   tab6Root = Calendario;
 
-  constructor(public actionSheetCtrl: ActionSheetController) {
+  constructor(
+    public actionSheetCtrl: ActionSheetController,
+    private device:Device,
+    public iab:InAppBrowser,
+    private appAvailability:AppAvailability,
+  ){
+
   }  
 
   presentActionSheet() {
@@ -34,21 +42,21 @@ export class TabsPage {
           icon : 'logo-instagram',
           handler: () => {
             console.log('Instagram');
-            window.open('https://www.instagram.com/lagaleramagazine/', '_system');
+            this.openInstagram("lagaleramagazine");
           }
         },{
           text: 'Facebook',
           icon:'logo-facebook',
           handler: () => {
             console.log('Facebook');
-            window.open('https://www.facebook.com/lagaleramagazine/', '_system');
+            this.openFacebook("lagaleramagazine");
           }
         },{
           text: 'Twitter',
           icon: 'logo-twitter',
           handler: () => {
             console.log('Twitter');
-            window.open('https://twitter.com/galera_magazine', '_system');
+            this.openTwitter("lagalera_magazine");
           }
         },{
           text: 'Cerrar',
@@ -62,4 +70,38 @@ export class TabsPage {
     });
     actionSheet.present();
   }
+
+  launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
+    let app: string;
+    if (this.device.platform === 'iOS') {
+      app = iosSchemaName;
+    } else if (this.device.platform === 'Android') {
+      app = androidPackageName;
+    } else {
+      let browser = this.iab.create(httpUrl + username, '_system');
+      return;
+    }
+
+    this.appAvailability.check(app).then(
+      () => { // success callback
+        let browser = this.iab.create(appUrl + username, '_system');
+      },
+      () => { // error callback
+        let browser = this.iab.create(httpUrl + username, '_system');
+      }
+    );
+  }
+
+  openInstagram(username: string) {
+    this.launchExternalApp('instagram://', 'com.instagram.android', 'instagram://user?username=', 'https://www.instagram.com/', username);
+  }
+
+  openTwitter(username: string) {
+    this.launchExternalApp('twitter://', 'com.twitter.android', 'twitter://user?screen_name=', 'https://twitter.com/', username);
+  }
+
+  openFacebook(username: string) {
+    this.launchExternalApp('fb://', 'com.facebook.katana', 'fb://profile/', 'https://www.facebook.com/', username);
+  }
+
 }
