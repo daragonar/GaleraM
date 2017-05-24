@@ -64,7 +64,7 @@
       </ion-grid>
 
   <!-- Add a method doInfinite -->
-  <ion-infinite-scroll *ngIf="nextUrl || nextUrl!='undefined'" (ionInfinite)="doInfinite($event)" >
+  <ion-infinite-scroll  (ionInfinite)="doInfinite($event)" >
     <ion-infinite-scroll-content
     loadingSpinner="bubbles"
       loadingText="Cargando mas eventos...">

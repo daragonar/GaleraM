@@ -24,6 +24,7 @@ export class Eventos {
   public searchval: string;
   public hideSlide: boolean;
   public categoria: number;
+  public check:string;
 
 
   constructor(
@@ -41,7 +42,6 @@ export class Eventos {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Eventos');
     this.presentLoading();
     this.getEventos();
   }
@@ -59,6 +59,7 @@ export class Eventos {
     this.eventosService.getEvents().subscribe(
       result => {
         this.EventosLista = result.events;
+        this.check = result.next_rest_url;
         this.nextUrl = result.next_rest_url;
         this.hideLoading();
       }
@@ -72,6 +73,7 @@ export class Eventos {
       result => {
         this.EventosLista = result.events;
         this.nextUrl = result.next_rest_url;
+        this.check = result.next_rest_url;
         this.nextUrl += "&categories=" + this.categoria;
       }
     )
@@ -89,10 +91,9 @@ export class Eventos {
         result => {
           result.events.forEach(evento => {
             this.EventosLista.push(evento);
-            console.log(evento)
-            console.log(this.EventosLista.length)
           });
           this.nextUrl = result.next_rest_url;
+          this.check = result.next_rest_url;
         }
       )
     }
@@ -106,21 +107,24 @@ export class Eventos {
   }
 
   doInfinite = function (event) {
-    if (this.nextUrl!= 'undefined') {
+    if (this.check != undefined) {
+     
       this.eventosService.getEventsNextPage(this.nextUrl).subscribe(
         result => {
           result.events.forEach(evento => {
             this.EventosLista.push(evento);
           });
           this.nextUrl = result.next_rest_url;
+          this.check = result.next_rest_url;
           if (this.categoria!=null) {
             this.nextUrl += "&categories=" + this.categoria;
           }
           event.complete();
         }
       )
+    }else{
+      event.enabled=false;
     }
-    console.log(this.nextUrl);
 
   }
 
