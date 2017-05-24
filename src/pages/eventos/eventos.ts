@@ -107,10 +107,11 @@ export class Eventos {
   }
 
   doInfinite = function (event) {
-    if (this.check != undefined) {
-     
+    //console.log("ckeck = "+this.check);
+    if (this.check != undefined) { //Comprobamos si hay más páginas
       this.eventosService.getEventsNextPage(this.nextUrl).subscribe(
         result => {
+          console.log(this.nextUrl);
           result.events.forEach(evento => {
             this.EventosLista.push(evento);
           });
@@ -123,9 +124,9 @@ export class Eventos {
         }
       )
     }else{
-      event.enabled=false;
+      //console.log("NO hay más páginas");
+      event.complete();
     }
-
   }
 
 

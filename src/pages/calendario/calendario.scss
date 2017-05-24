@@ -24,12 +24,12 @@ page-calendario .item{
     border: 0px !important; 
 }
 
-.monthview-primary-with-event, .monthview-secondary-with-event{
+.monthview-primary-with-event{
     background-color: #666666 !important;
     color: white !important;
 }
 
-.monthview-disabled{
+.monthview-disabled, .text-muted{
     background-color: #c9c9c9 !important;
     color: white !important;
 }
