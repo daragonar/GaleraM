@@ -28,3 +28,23 @@ page-eventos .titulo{
     color: #fff ;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+#categories{
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: rgba(153, 153, 153, 0.61);
+    font-size: 120%;
+}
+
+#categories.hide{
+    display: none;
+}
+
+#categories .col button{
+    background-color: #3c3c3c;
+    color: white;
+    height:40px; 
+    width: 100%;
+    font-size: 11pt;
+}

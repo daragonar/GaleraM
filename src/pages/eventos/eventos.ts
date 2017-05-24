@@ -67,26 +67,19 @@ export class Eventos {
   }
 
   openMenu = function () {
-    this.EventosLista = [];
-    this.categoria = 294;
-    this.eventosService.getEventsByCategory(this.categoria).subscribe(
-      result => {
-        this.EventosLista = result.events;
-        this.nextUrl = result.next_rest_url;
-        this.check = result.next_rest_url;
-        this.nextUrl += "&categories=" + this.categoria;
-      }
-    )
-
+     this.showMenu === true ? (this.showMenu = false) : (this.showMenu = true);
+     this.searchBox = false;
   }
 
   openSearch = function () {
-    this.searchBox === true ? (this.searchBox = false) : (this.searchBox = true)
+    this.searchBox === true ? (this.searchBox = false) : (this.searchBox = true);
+    this.showMenu = false;
   }
 
   searchItems = function () {
     this.EventosLista = [];
     if (this.searchval != "") {
+      this.hideSlide=true;
       this.eventosService.getEventsSearch(this.searchval).subscribe(
         result => {
           result.events.forEach(evento => {
@@ -96,6 +89,8 @@ export class Eventos {
           this.check = result.next_rest_url;
         }
       )
+    }else{
+      this.hideSlide=false;
     }
   }
 
@@ -104,6 +99,20 @@ export class Eventos {
     this.navCtrl.push(DetalleEvento, {
       item: item
     });
+  }
+
+  categoryTapped(category) {
+    this.EventosLista = [];
+    this.categoria = category;
+    this.hideSlide=true;
+    this.eventosService.getEventsByCategory(this.categoria).subscribe(
+      result => {
+        this.EventosLista = result.events;
+        this.nextUrl = result.next_rest_url;
+        this.check = result.next_rest_url;
+        this.nextUrl += "&categories=" + this.categoria;
+      }
+    )
   }
 
   doInfinite = function (event) {
