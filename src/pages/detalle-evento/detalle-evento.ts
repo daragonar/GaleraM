@@ -20,35 +20,25 @@ import { EventProvider } from "../../providers/event-provider";
 export class DetalleEvento {
   public evento: any;
   private loader: any;
-  private latitude:number;
-  private longitude:number;
+  private posicion:LatLng;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private eventosService: EventProvider,
     public loadingCtrl: LoadingController,
     private googleMaps: GoogleMaps,
-    private converGeocoder: NativeGeocoder) {
-    this.loader = this.loadingCtrl.create({
-      content: "Cargando evento...",
-    });
-    this.evento = navParams.get('item');
-    console.log(this.evento);
-    this.converGeocoder.forwardGeocode(this.evento.venue.address)
-    .then((coordinates: NativeGeocoderForwardResult) => console.log('The coordinates are latitude=' + coordinates.latitude + ' and longitude=' + coordinates.longitude))
-    .catch((error: any) => console.log(error));
-  }
+    private converGeocoder: NativeGeocoder)
+    {
+      this.loader = this.loadingCtrl.create({
+        content: "Cargando evento...",
+      });
+      this.evento = navParams.get('item');
+    }
 
   ngAfterViewInit() {
     this.loadMap();
   }
 
-  ionViewDidLoad() {
-    /*let evento:any;
-    console.log('ionViewDidLoad DetalleEvento');
-    this.presentLoading();
-    evento=this.getEvento(this.id);*/
-  }
   presentLoading() {
     this.loader.present();
   }
@@ -64,35 +54,39 @@ export class DetalleEvento {
 
     // listen to MAP_READY event
     // You must wait for this event to fire before adding something to the map or modifying it in anyway
-    map.one(GoogleMapsEvent.MAP_READY).then(
-      () => {
-        console.log('Map is ready!');
-        // Now you can add elements to the map like the marker
-      }
-    );
+    
+    map.one(GoogleMapsEvent.MAP_READY).then(() => {
+      this.converGeocoder.forwardGeocode(this.evento.venue.address+", "+this.evento.venue.city+", "+this.evento.venue.province)
+      .then((coordinates: NativeGeocoderForwardResult) => {
+        console.log(coordinates.latitude, coordinates.longitude);
+        this.posicion = new LatLng(Number(coordinates.latitude), Number(coordinates.longitude));
 
-    // create LatLng object
-    let posicion: LatLng = new LatLng(43.0741904,-89.3809802);
+        // create CameraPosition
+        let cameraPosition: CameraPosition = {
+          target: this.posicion,
+          zoom: 18,
+          tilt: 30
+        };
 
-    // create CameraPosition
-    let cameraPosition: CameraPosition = {
-      target: posicion,
-      zoom: 18,
-      tilt: 30
-    };
+        // move the map's camera to position
+        map.moveCamera(cameraPosition);
 
-    // move the map's camera to position
-    map.moveCamera(cameraPosition);
+        // create new marker
+        let markerOptions: MarkerOptions = {
+          position: this.posicion,
+          title: this.evento.venue.venue
+        };
 
-    // create new marker
-    let markerOptions: MarkerOptions = {
-      position: posicion,
-      title: 'Mapa'
-    };
-
-    const marker = map.addMarker(markerOptions)
-      .then((marker: Marker) => {
-          marker.showInfoWindow();
+        const marker = map.addMarker(markerOptions)
+        .then((marker: Marker) => {
+            marker.showInfoWindow();
         });
-    }
+
+      })
+      .catch((error: any) => console.log(error));
+
+      console.log('Map is ready!');
+      // Now you can add elements to the map like the marker
+    });
+  }
 }

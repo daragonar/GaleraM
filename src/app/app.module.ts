@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker} from '@ionic-native/google-maps';
+import { GoogleMaps } from '@ionic-native/google-maps';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppAvailability} from '@ionic-native/app-availability';
