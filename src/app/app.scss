@@ -29,11 +29,13 @@ ion-title img{
   text-align: center;
 }
 
-
+.tabs-ios .tab-button-icon{
+  height: auto!important;
+}
 
 /*tabs--------------*/
-.tabs-md .tab-button[aria-selected=true]{
-  color:black;
+.tab-button[aria-selected=true]{
+  color:black !important;
 }
 
 .ion-ios-calendario, .ion-ios-calendario-outline, .ion-md-calendario {
