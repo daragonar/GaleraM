@@ -1,4 +1,8 @@
 page-detalle-evento {
+    h1, h2, h3, p{
+        font-family: "antic-slab";
+    }
+
     ion-content .scroll-content{
         padding: 5vw 5vw 0 5vw !important;
     }

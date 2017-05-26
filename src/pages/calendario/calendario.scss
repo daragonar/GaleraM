@@ -1,43 +1,44 @@
 page-calendario {
+    font-family: "antic-slab";
 
-}
-page-calendario .item{
-    height: 60px;
-    border-left: 4px solid #f00;
-    border-right: 4px solid #000;
+    .item{
+        height: 60px;
+        border-left: 4px solid #f00;
+        border-right: 4px solid #000;
 
-}
+    }
 
-.calendar-header{
-    background-color: #666666;
-    width: 100%;
-    color: white;
-    display: block;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 5px 0;
-}
+    .calendar-header{
+        background-color: #666666;
+        width: 100%;
+        color: white;
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 5px 0;
+    }
 
-.table-bordered[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1]{
-    background-color: #666666;
-    color: white;
-    border: 0px !important; 
-}
+    .table-bordered[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1]{
+        background-color: #666666;
+        color: white;
+        border: 0px !important; 
+    }
 
-.monthview-primary-with-event{
-    background-color: #666666 !important;
-    color: white !important;
-}
+    .monthview-primary-with-event{
+        background-color: #666666 !important;
+        color: white !important;
+    }
 
-.monthview-disabled, .text-muted{
-    background-color: #c9c9c9 !important;
-    color: white !important;
-}
+    .monthview-disabled, .text-muted{
+        background-color: #c9c9c9 !important;
+        color: white !important;
+    }
 
-.monthview-current{
-    background-color: #CF3A5A !important;
-}
+    .monthview-current{
+        background-color: #CF3A5A !important;
+    }
 
-.monthview-selected{
-    background-color: #C51E30 !important;
+    .monthview-selected{
+        background-color: #C51E30 !important;
+    }
 }

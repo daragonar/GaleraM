@@ -12,8 +12,7 @@ import 'rxjs/add/operator/map';
 export class EventProvider {
 public ApiURL:string  = "https://www.lagaleramagazine.es/wp-json";
   constructor(public http: Http) {
-    console.log('Hello EventProvider Provider');
-
+    //console.log('Hello EventProvider Provider');
   }
 
   getEvents( perPage=50){

@@ -35,20 +35,22 @@
         <ion-item text-center>
             <button ion-button [disabled]="isToday" (click)="today()">Today</button>
         </ion-item>
-      <ion-item-sliding #slidingitem *ngFor="let event of selectedDate?.events ">
-        <ion-item (click)="eventSelected(event,event.item)">
+      <ion-item-sliding #slidingitem *ngFor="let evento of selectedDate?.events ">
+        <ion-item (click)="eventSelected(evento,evento.item)">
           <ion-thumbnail item-left>
-            <img src="{{event.image}}">
+            <img src="{{evento.image}}">
           </ion-thumbnail>
-        <h2><span class="event-detail" [innerHTML]="event.title | safe: 'html'">  </span> <span class="event-detail"> </span></h2>
-          <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">
-
-              {{event.startTime|date: 'dd/MM/yyyy HH:mm'}}
-                            -
-                            {{event.endTime|date: 'dd/MM/yyyy HH:mm'}}
-                        </span>
-          <span *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">{{allDayLabel}}</span>
-          
+          <span class="monthview-eventdetail-timecolumn">
+            {{evento.startTime|date:'d MMMM, y'}}
+          </span>
+          {{evento.startTime}}
+          {{evento.endTime}}
+          <span *ngIf="evento.endTime != evento.startTime" class="monthview-eventdetail-timecolumn">
+            ~ {{evento.endTime|date:'d MMMM, y'}}
+          </span>
+          <h2>
+            <span class="event-detail" [innerHTML]="evento.title | safe: 'html'"></span> <span class="event-detail"></span>
+          </h2>          
         </ion-item>
         <!-- slide left items down here -->
         <ion-item-options side='left'>

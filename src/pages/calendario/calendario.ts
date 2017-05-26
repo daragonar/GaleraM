@@ -34,8 +34,12 @@ export class Calendario {
     current.setHours(0, 0, 0);
     return date < current;
   };
-    constructor(public navCtrl: NavController, public navParams: NavParams, private eventosService: EventProvider,
-        public loadingCtrl: LoadingController) {
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        private eventosService: EventProvider,
+        public loadingCtrl: LoadingController
+    ){
 
     }
 
@@ -72,15 +76,15 @@ export class Calendario {
                 result => {
                     var eventsCalendar = [];
                     result.events.forEach(function (evento) {
-                    //console.log(evento)
+                    console.log(evento)
                         eventsCalendar.push({
-                        startTime:new Date(evento.start_date),
-                        endTime:new Date(evento.end_date),
-                        title: evento.title,
-                        allDay: evento.all_day,
-                        id: evento.id,
-                        image: evento.image.sizes.thumbnail.url,
-                        item:evento
+                            startTime:new Date(evento.start_date),
+                            endTime:new Date(evento.end_date),
+                            title: evento.title,
+                            allDay: evento.all_day,
+                            id: evento.id,
+                            image: evento.image.sizes.thumbnail.url,
+                            item:evento
                         })
                     });
                     this.eventSource=eventsCalendar

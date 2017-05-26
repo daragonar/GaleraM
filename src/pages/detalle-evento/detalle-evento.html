@@ -34,7 +34,7 @@
               <h3>Horario</h3>
               <p>Comienza: el {{evento.start_date | date:'d MMMM, y'}} a las {{evento.start_date | date:'HH:mm'}}</p>
               <p>Finaliza: el {{evento.end_date | date:'d MMMM, y'}} a las {{evento.end_date | date:'HH:mm'}}</p>
-              <p>Precio</p>
+              <p *ngIf="evento?.cost">Precio: {{evento.cost_details.values[0]}}{{evento.cost_details.currency_symbol}}</p>
             </div>
             <div #map id="map" style="height:200px;"></div>
           </section>
