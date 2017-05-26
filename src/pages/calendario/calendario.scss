@@ -1,16 +1,22 @@
 page-calendario {
     font-family: "antic-slab";
 
+    .table-bordered{
+        border: 0px !important;
+    }
+
     .item{
-        height: 60px;
         border-left: 4px solid #f00;
         border-right: 4px solid #000;
 
     }
 
+    .event-detail{
+        white-space: normal !important;
+    }
+
     .calendar-header{
         background-color: #666666;
-        width: 100%;
         color: white;
         display: block;
         text-transform: uppercase;
@@ -40,5 +46,9 @@ page-calendario {
 
     .monthview-selected{
         background-color: #C51E30 !important;
+    }
+
+    .date{
+        color: #C51E30 !important;
     }
 }

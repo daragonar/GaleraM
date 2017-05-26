@@ -11,7 +11,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <h2 text-center>CALENDARIO DE EVENTOS</h2>
   <div id="calendario">
     <span text-center class="calendar-header">{{viewTitle}}</span>
@@ -40,25 +40,26 @@
           <ion-thumbnail item-left>
             <img src="{{evento.image}}">
           </ion-thumbnail>
-          <span class="monthview-eventdetail-timecolumn">
+          <span class="date">
             {{evento.startTime|date:'d MMMM, y'}}
           </span>
-          {{evento.startTime}}
-          {{evento.endTime}}
-          <span *ngIf="evento.endTime != evento.startTime" class="monthview-eventdetail-timecolumn">
+          <span *ngIf="evento.endTime != evento.startTime" class="date">
             ~ {{evento.endTime|date:'d MMMM, y'}}
           </span>
-          <h2>
-            <span class="event-detail" [innerHTML]="evento.title | safe: 'html'"></span> <span class="event-detail"></span>
-          </h2>          
+          <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+          <p>{{evento.address}}</p>        
         </ion-item>
         <!-- slide left items down here -->
         <ion-item-options side='left'>
-          <button (click)='favorite(slidingitem)'>Sigue esta Categoría <ion-icon name="heart"></ion-icon></button>
+          <button (click)='followCategory(evento.category_id)' text-left>
+            {{evento.category_name}}
+            <ion-icon name="heart"></ion-icon>
+            <br>Seguir esta categoría
+          </button>
         </ion-item-options>
         <!-- slide right items down here -->
         <ion-item-options side='right'>
-          <button (click)='unread(slidingitem)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
+          <button (click)='followEvent(evento.id)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
         </ion-item-options>
       </ion-item-sliding>
       <ion-item *ngIf="selectedDate?.events.length==0">
