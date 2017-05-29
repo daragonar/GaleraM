@@ -8,7 +8,7 @@ import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { Eventos } from "../eventos/eventos";
-import { Usuario } from "../usuario/usuario";
+import { Login } from "../login/login";
 import { Calendario } from "../calendario/calendario";
 
 
@@ -21,7 +21,7 @@ export class TabsPage {
   tab2Root = AboutPage;
   tab3Root = ContactPage;
   tab4Root = Eventos;
-  tab5Root = Usuario;
+  tab5Root = Login;
   tab6Root = Calendario;
 
   constructor(

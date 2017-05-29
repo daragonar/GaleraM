@@ -13,11 +13,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'usuario.html',
 })
 export class Usuario {
-  
+  user:object;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+this.user = navParams.get('info');
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Usuario');

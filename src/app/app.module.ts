@@ -17,14 +17,17 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Eventos } from "../pages/eventos/eventos";
-import { Usuario } from "../pages/usuario/usuario";
 import { Calendario } from "../pages/calendario/calendario";
+import { Login } from "../pages/login/login";
 import { DetalleEvento } from "../pages/detalle-evento/detalle-evento";
+import { Usuario } from "../pages/usuario/usuario";
+import { Register } from "../pages/register/register";
 
 import { NgCalendarModule } from 'ionic2-calendar';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { EventProvider } from "../providers/event-provider";
+import { Userwp } from "../providers/userwp";
 
 
 @NgModule({
@@ -35,10 +38,12 @@ import { EventProvider } from "../providers/event-provider";
     HomePage,
     TabsPage,
     Eventos,
-    Usuario,
     Calendario,
-    DetalleEvento,
     SafePipe,
+    Login,
+    DetalleEvento,
+    Usuario,
+    Register,
     RemoveTags,
     ReversePipe
   ],
@@ -62,15 +67,18 @@ import { EventProvider } from "../providers/event-provider";
     HomePage,
     TabsPage,
     Eventos,
-    Usuario,
     Calendario,
-    DetalleEvento
+    Login,
+    DetalleEvento,
+    Usuario,
+    Register,
   ],
   providers: [
     StatusBar,
     { provide: LOCALE_ID, useValue: 'es-ES' },
     SplashScreen,
     EventProvider,
+    Userwp,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     SafePipe,
     RemoveTags,
@@ -79,7 +87,7 @@ import { EventProvider } from "../providers/event-provider";
     GoogleMaps,
     Device,
     InAppBrowser,
-    AppAvailability
+    AppAvailability,
   ]
 })
 export class AppModule { }
