@@ -20,29 +20,9 @@ $app->get("/pruebas", function() use($app){
     echo "Hola mundo desde Slim PHP";
 });
 
-$app->post("/register",function() use ($app)
-{
-    $json = $app->request->post('json');
-    $data = json_decode($json, true);
-    
-$user = wp_create_user( $data["user"], $data["pass"],$data["mail"] );
-     if ( is_wp_error( $user ) ) {
-        $result= array(
-            'status' => 'error',
-            'code' => 404,
-            'data' => $user->get_error_message()
-        );
-    }else{
-        $result= array(
-            'status' => 'success',
-            'code' => 200,
-            'data' =>$user
-        );
-    }
-    echo json_encode($result);
-});
+/*LOGIN/REGISTRO-----------*/
 
-$app->post("/user", function() use ($app){
+$app->post("/login", function() use ($app){
     $json = $app->request->post('json');
     $data = json_decode($json, true);
     
@@ -68,23 +48,56 @@ $app->post("/user", function() use ($app){
     echo json_encode($result);
 });
 
-$app->get("/user/:email", function($email) use ($app){
-    $user=get_user_by_email($email);
-    if(!empty($user)){
-        $result= array(
-            'status' => 'success',
-            'code' => 200,
-            'data' => $user
-        );
-    }else{
+$app->post("/register",function() use ($app)
+{
+    $json = $app->request->post('json');
+    $data = json_decode($json, true);
+    
+    $user = wp_create_user( $data["user"], $data["pass"],$data["mail"] );
+     if ( is_wp_error( $user ) ) {
         $result= array(
             'status' => 'error',
             'code' => 404,
-            'message' => 'Este usuario no existe'
+            'data' => $user->get_error_message()
+        );
+    }else{
+        $result= array(
+            'status' => 'success',
+            'code' => 200,
+            'data' =>$user
         );
     }
     echo json_encode($result);
-
 });
+
+/*USER META-----------*/
+
+$app->post("/add_user_meta", function() use ($app){
+    $json = $app->request->post('json');
+    $data = json_decode($json, true);
+    print_r($data);
+    $eventos=array();
+
+    $response = add_user_meta( $data["user"], "events_followed", $eventos, true );
+    echo $response;
+    /*if (is_wp_error ($response)){
+        $result= array(
+            'status' => 'error',
+            'code' => 404,
+            'data' => $result->get_error_message()
+        );
+    }else{
+        $result= array(
+            'status' => 'success',
+            'code' => 200,
+            'data' =>$result
+        );
+    }
+    echo json_encode($result);*/
+});
+
+
+
+
 
 $app->run();

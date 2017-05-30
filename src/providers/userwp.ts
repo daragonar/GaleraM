@@ -19,7 +19,7 @@ userLogin(user){
   let params = 'json='+json;
   let headers = new Headers ({'Content-Type':'application/x-www-form-urlencoded'});
 
-  return this.http.post(this.ApiURL+"/user", params, {headers: headers})
+  return this.http.post(this.ApiURL+"/login", params, {headers: headers})
               .map(res => res.json());
 }
 
