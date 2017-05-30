@@ -72,32 +72,59 @@ $app->post("/register",function() use ($app)
 
 /*USER META-----------*/
 
-$app->post("/add_user_meta", function() use ($app){
+/*USER META EVENTOS */
+$app->post("/add_user_events", function() use ($app){
     $json = $app->request->post('json');
     $data = json_decode($json, true);
-    print_r($data);
-    $eventos=array();
+    $json1 = '{"a":["1","2","3","4","6","5","8"]}';
+    $eventos =json_decode($json1);
 
     $response = add_user_meta( $data["user"], "events_followed", $eventos, true );
-    echo $response;
-    /*if (is_wp_error ($response)){
-        $result= array(
-            'status' => 'error',
-            'code' => 404,
-            'data' => $result->get_error_message()
-        );
-    }else{
-        $result= array(
-            'status' => 'success',
-            'code' => 200,
-            'data' =>$result
-        );
-    }
-    echo json_encode($result);*/
+    echo json_encode($response);
+});
+
+$app->get("/get_user_events/:id", function($id) use ($app){
+    //$json = $app->request->post('json');
+    //$data = json_decode($json, true);
+
+    $response = get_user_meta( $id,"events_followed" );
+    echo json_encode($response);
+});
+
+$app->get("/delete_user_events/:id", function($id) use ($app){
+    //$json = $app->request->post('json');
+    //$data = json_decode($json, true);
+
+    $response = delete_user_meta( $id, "events_followed" );
+    echo json_encode($response);
 });
 
 
+/*USER META CATEGORIAS */
+$app->post("/add_user_categories", function() use ($app){
+    $json = $app->request->post('json');
+    $data = json_decode($json, true);
+    $json1 = '{"a":["1","2","3","4","6","5","8"]}';
+    $eventos =json_decode($json1);
 
+    $response = add_user_meta( $data["user"], "categories_followed", $eventos, true );
+    echo json_encode($response);
+});
 
+$app->get("/get_user_categories/:id", function($id) use ($app){
+    //$json = $app->request->post('json');
+    //$data = json_decode($json, true);
+
+    $response = get_user_meta( $id,categories_followed );
+    echo json_encode($response);
+});
+
+$app->get("/delete_user_categories/:id", function($id) use ($app){
+    //$json = $app->request->post('json');
+    //$data = json_decode($json, true);
+
+    $response = delete_user_meta( $id, "categories_followed" );
+    echo json_encode($response);
+});
 
 $app->run();
