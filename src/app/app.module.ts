@@ -43,6 +43,7 @@ import { Userwp } from "../providers/userwp";
     DetalleEvento,
     Usuario,
     RemoveTags,
+    ReversePipe
   ],
   imports: [
     NgCalendarModule,

@@ -20,6 +20,8 @@ export class Login {
   Register: FormGroup;
   logReg: string;
   lostPassword: any;
+  showPass: boolean;
+  ojo: string = "eye";
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private userWp: Userwp) {
@@ -39,12 +41,26 @@ export class Login {
     }
       , { validator: matchingPasswords('pass', 'matchPassword') })
 
+      
       this.userWp.lostpass().subscribe(
         html => this.lostPassword =html
       )
   }
 
   ionViewDidLoad() {
+  }
+
+check(variable){
+  console.log(variable);
+  console.log(this.Register.controls.mail.errors)
+  if (variable===true){
+    this.Register.controls.matchPassword.setValue("");
+  }
+}
+
+showPassword(input: any): any {
+   input.type = input.type === 'password' ?  'text' : 'password';
+   this.ojo = this.ojo === 'eye' ? 'eye-off': 'eye';
   }
 
   logForm() {
