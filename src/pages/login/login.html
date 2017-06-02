@@ -43,7 +43,7 @@
         <ion-item>
           <ion-label floating>Password</ion-label>
           <ion-input #passInput type="password" formControlName="pass"></ion-input>
-          <ion-icon [name]="ojo"  (click)="showPassword(passInput)" item-right ></ion-icon>
+          <ion-icon [name]="ojo"  (click)="showPassword(passInput)" item-right class="show-password"></ion-icon>
         </ion-item>
         <ion-item no-lines *ngIf="Login.controls.pass.errors && (Login.controls.pass.dirty || Login.controls.pass.touched)" class="alert alert-danger">
             <div ion-text color="danger" [hidden]="!Login.controls.pass.errors.required">
