@@ -21,7 +21,6 @@ import { Calendario } from "../pages/calendario/calendario";
 import { Login } from "../pages/login/login";
 import { DetalleEvento } from "../pages/detalle-evento/detalle-evento";
 import { Usuario } from "../pages/usuario/usuario";
-import { Register } from "../pages/register/register";
 
 import { NgCalendarModule } from 'ionic2-calendar';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -43,9 +42,7 @@ import { Userwp } from "../providers/userwp";
     Login,
     DetalleEvento,
     Usuario,
-    Register,
     RemoveTags,
-    ReversePipe
   ],
   imports: [
     NgCalendarModule,
@@ -71,7 +68,6 @@ import { Userwp } from "../providers/userwp";
     Login,
     DetalleEvento,
     Usuario,
-    Register,
   ],
   providers: [
     StatusBar,

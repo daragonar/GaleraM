@@ -10,32 +10,76 @@
     <ion-title>login</ion-title>
   </ion-navbar>
 
+
+  <ion-toolbar>
+
+    <ion-segment [(ngModel)]="logReg">
+      <ion-segment-button value="login">
+        Login
+      </ion-segment-button>
+      <ion-segment-button value="registro">
+        Registro
+      </ion-segment-button>
+    </ion-segment>
+
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-  <form [formGroup]="Login" (ngSubmit)="logForm()">
-    <ion-list>
+
+  <div [ngSwitch]="logReg">
+    <ion-list *ngSwitchCase="'login'">
+      <form [formGroup]="Login" (ngSubmit)="logForm()">
+        <ion-item>
+          <ion-label floating>Usuario</ion-label>
+          <ion-input type="text" formControlName="user"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" formControlName="pass"></ion-input>
+        </ion-item>
+        <ion-item padding>
+          <ion-label> Recordar</ion-label>
+          <ion-toggle formControlName="remember"></ion-toggle>
+        </ion-item>
+          <div padding>
+            <button ion-button [disabled]="!Login.valid" color="primary" block large>Login</button>
+          </div>
+      </form>
+  <ion-item no-lines>
+          Has olvidado la contraseña. <a href="http://www.lagaleramagazine.es/wp-login.php?action=lostpassword" target="_blank">Pulsa aqui</a>
+        </ion-item>
+        <!--<ion-item [innerHTML]="lostPassword | safe: 'html'">
+        </ion-item>-->
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'registro'">
+ <form [formGroup]="Register" (ngSubmit)="registerForm()">
       <ion-item>
         <ion-label floating>Usuario</ion-label>
         <ion-input type="text" formControlName="user" ></ion-input>
       </ion-item>
+            <ion-item>
+        <ion-label floating>Correo Electrónico</ion-label>
+        <ion-input type="email" formControlName="mail" ></ion-input>
+      </ion-item>
       <ion-item>
-        <ion-label floating>password</ion-label>
+        <ion-label floating>Contraseña</ion-label>
         <ion-input type="password" formControlName="pass" ></ion-input>
       </ion-item>
       <ion-item>
-  <ion-label> Recordar</ion-label>
-  <ion-toggle formControlName="remember" ></ion-toggle>
-</ion-item>
-      <ion-item>
-        <div padding>
-          <button ion-button [disabled]="!Login.valid" color="primary" block large>Login</button>
-        </div>
+        <ion-label floating>Confirma Contraseña</ion-label>
+        <ion-input type="password" formControlName="matchPassword" ></ion-input>
       </ion-item>
-    </ion-list>
+      
+        <div padding>
+          <button ion-button [disabled]="!Register.valid" color="primary" block large>Registro</button>
+        </div>
+      
   </form>
-  <ion-item>
-    <a (click)="Register()">Registrar</a>
-  </ion-item>
+  </ion-list>
+    
+    </div>
+
 </ion-content>

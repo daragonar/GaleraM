@@ -32,4 +32,9 @@ register(user){
               .map(res => res.json());
 }
 
+lostpass(){
+  return this.http
+  .get('http://www.lagaleramagazine.es/wp-login.php?action=lostpassword')
+  .map(response => response.text())
+}
 }
