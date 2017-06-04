@@ -27,6 +27,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { EventProvider } from "../providers/event-provider";
 import { Userwp } from "../providers/userwp";
+import { UserDataProvider } from '../providers/user-data';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { Userwp } from "../providers/userwp";
     DetalleEvento,
     Usuario,
     RemoveTags,
-    ReversePipe
+    ReversePipe,
+    UserDataProvider
   ],
   imports: [
     NgCalendarModule,
@@ -85,6 +87,7 @@ import { Userwp } from "../providers/userwp";
     Device,
     InAppBrowser,
     AppAvailability,
+     UserDataProvider,
   ]
 })
 export class AppModule { }

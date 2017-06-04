@@ -4,6 +4,7 @@ import { Usuario } from "../usuario/usuario";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Userwp } from "../../providers/userwp";
 import { emailValidator, matchingPasswords } from '../../validators/customValidators';
+import { UserDataProvider } from "../../providers/user-data";
 /**
  * Generated class for the Login page.
  *
@@ -24,7 +25,7 @@ export class Login {
   ojo: string = "eye";
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private userWp: Userwp) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userD: UserDataProvider, private formBuilder: FormBuilder, private userWp: Userwp) {
     this.logReg = "login";
     this.Login = this.formBuilder.group({
       user: ['', // default value
@@ -67,6 +68,8 @@ showPassword(input: any): any {
     this.userWp.userLogin(this.Login.value).subscribe(
       result => {
         console.log(result);
+        this.userD.setUserEvData(this.Login.value);
+        this.userD.setUserData(result.data);
         if (result.code == 200) {
           this.navCtrl.setRoot(Usuario, {
             info: result.data
