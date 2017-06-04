@@ -65,8 +65,8 @@ export class Calendario {
     }
 
     cargarEventos(date1, date2) {
-        var sdate= date1.getUTCFullYear()+"-"+(date1.getUTCMonth()+1)+"-"+date1.getUTCDate()+" 00:00:00"  ;
-        var edate= date2.getUTCFullYear()+"-"+(date2.getUTCMonth()+1)+"-"+date2.getUTCDate()+" 23:59:59";
+        var sdate= date1.getUTCFullYear()+"/"+(date1.getUTCMonth()+1)+"/"+date1.getUTCDate()+" 00:00:00"  ;
+        var edate= date2.getUTCFullYear()+"/"+(date2.getUTCMonth()+1)+"/"+date2.getUTCDate()+" 23:59:59";
 
         let loader = this.loadingCtrl.create({
             content: "Obteniendo Eventos...",
@@ -78,8 +78,8 @@ export class Calendario {
                     result.events.forEach(function (evento) {
                     console.log(evento)
                         eventsCalendar.push({
-                            startTime:new Date(evento.start_date),
-                            endTime:new Date(evento.end_date),
+                            startTime:new Date(evento.start_date.replace(/-/g, '/')),
+                            endTime:new Date(evento.end_date.replace(/-/g, '/')),
                             title: evento.title,
                             allDay: evento.all_day,
                             id: evento.id,
