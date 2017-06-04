@@ -84,7 +84,7 @@ export class Calendario {
                             allDay: evento.all_day,
                             id: evento.id,
                             image: evento.image.sizes.thumbnail.url,
-                            address: evento.venue.venue+", "+evento.venue.address,
+                            address: (evento.venue.venue ? evento.venue.venue+", "+evento.venue.address : ''),
                             category_id: evento.categories[0].id,
                             category_slug: evento.categories[0].slug,
                             category_name: evento.categories[0].name,
