@@ -1,6 +1,5 @@
 {
   "name": "GaleraMock",
   "app_id": "aad24804",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }
