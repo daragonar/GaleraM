@@ -45,7 +45,6 @@ import { UserDataProvider } from '../providers/user-data';
     Usuario,
     RemoveTags,
     ReversePipe,
-    UserDataProvider
   ],
   imports: [
     NgCalendarModule,
