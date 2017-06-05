@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class Userwp {
 public ApiURL:string  = "http://www.lagaleramagazine.es/app/index.php";
+sub: any;
 
   constructor(public http: Http) {
   }
@@ -30,8 +31,24 @@ register(user){
 
   return this.http.post(this.ApiURL+"/register", params, {headers: headers})
               .map(res => res.json());
+  
 }
+getUserEvents(userId)
+{
+  let headers = new Headers ({'Content-Type':'application/x-www-form-urlencoded'});
 
+ /* return this.http.get(this.ApiURL+"/get_user_events/"+userId, {headers: headers})
+              .map(res => res.json());*/
+  this.sub = this.http.get('/myplace') .map(resp => resp.json()) .subscribe(() => { this.sub.unsubscribe(); });
+  
+}
+getUserCategories(userId)
+{
+  let headers = new Headers ({'Content-Type':'application/x-www-form-urlencoded'});
+
+  return this.http.get(this.ApiURL+"/get_user_categories/"+userId, {headers: headers})
+              .map(res => res.json()).subscribe();
+}
 lostpass(){
   return this.http
   .get('http://www.lagaleramagazine.es/wp-login.php?action=lostpassword')

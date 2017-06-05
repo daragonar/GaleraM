@@ -16,5 +16,6 @@ export class HomePage {
     console.log(this.userD.getUserData());
     console.log("Segunda salida");
     console.log(this.userD.getUserEvData());
+    console.log(this.userD.getUserCatData());
   }
 }
