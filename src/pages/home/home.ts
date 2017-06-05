@@ -12,13 +12,9 @@ export class HomePage {
 
   }
 
-ionViewWillEnter()
-{
-  console.log(this.userD.getUserData());
-console.log("Segunda salida");
-console.log(this.userD.getUserEvData());
-
-
-  
-}
+  ionViewWillEnter() {
+    console.log(this.userD.getUserData());
+    console.log("Segunda salida");
+    console.log(this.userD.getUserEvData());
+  }
 }

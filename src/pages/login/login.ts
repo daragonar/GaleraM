@@ -22,7 +22,7 @@ export class Login {
   logReg: string;
   lostPassword: any;
   showPass: boolean;
-  ojo: string = "eye";
+  ojo: string = "eye-off";
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userD: UserDataProvider, private formBuilder: FormBuilder, private userWp: Userwp) {
@@ -61,7 +61,7 @@ check(variable){
 
 showPassword(input: any): any {
    input.type = input.type === 'password' ?  'text' : 'password';
-   this.ojo = this.ojo === 'eye' ? 'eye-off': 'eye';
+   this.ojo = this.ojo === 'eye-off' ? 'eye': 'eye-off';
   }
 
   logForm() {
