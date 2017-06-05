@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class Userwp {
 public ApiURL:string  = "http://www.lagaleramagazine.es/app/index.php";
 sub: any;
-
+public userEvents:any;
   constructor(public http: Http) {
   }
 userLogin(user){
@@ -39,9 +39,9 @@ getUserEvents(userId)
 
  /* return this.http.get(this.ApiURL+"/get_user_events/"+userId, {headers: headers})
               .map(res => res.json());*/
-  this.sub = this.http.get('/myplace') .map(resp => resp.json()) .subscribe(() => { this.sub.unsubscribe(); });
-  
+  if (this.userEvents) { return Promise.resolve(this.userEvents); } return new Promise(resolve => { this.http.get(this.ApiURL+"/get_user_events/"+userId, {headers: headers}).map(response => response.json()).subscribe(result => { this.userEvents = result; resolve(this.userEvents); }, error => { alert("hubo un error"); }); });
 }
+
 getUserCategories(userId)
 {
   let headers = new Headers ({'Content-Type':'application/x-www-form-urlencoded'});

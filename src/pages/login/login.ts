@@ -70,7 +70,8 @@ showPassword(input: any): any {
   logForm() {
     this.userWp.userLogin(this.Login.value).subscribe(
       result => {
-        this.userWp.getUserEvents(result.data.ID)
+
+        this.userWp.getUserEvents(result.data.ID).then(data => { this.evFav = data; });
         console.log(this.evFav);  
         console.log(this.evFav);
         this.userD.setUserEvData(this.evFav);
