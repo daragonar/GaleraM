@@ -13,6 +13,8 @@ export class Userwp {
 public ApiURL:string  = "http://www.lagaleramagazine.es/app/index.php";
 sub: any;
 public userEvents:any;
+public userCats:any;
+
   constructor(public http: Http) {
   }
 userLogin(user){
@@ -46,8 +48,9 @@ getUserCategories(userId)
 {
   let headers = new Headers ({'Content-Type':'application/x-www-form-urlencoded'});
 
-  return this.http.get(this.ApiURL+"/get_user_categories/"+userId, {headers: headers})
-              .map(res => res.json()).subscribe();
+ /* return this.http.get(this.ApiURL+"/get_user_categories/"+userId, {headers: headers})
+              .map(res => res.json()).subscribe();*/
+  if (this.userCats) { return Promise.resolve(this.userCats); } return new Promise(resolve => { this.http.get(this.ApiURL+"/get_user_categories/"+userId, {headers: headers}).map(response => response.json()).subscribe(result => { this.userCats = result; resolve(this.userCats); }, error => { alert("hubo un error"); }); });
 }
 lostpass(){
   return this.http
