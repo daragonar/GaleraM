@@ -76,10 +76,19 @@ $app->post("/register",function() use ($app)
 $app->post("/add_user_events", function() use ($app){
     $json = $app->request->post('json');
     $data = json_decode($json, true);
-    $json1 = '{"a":["1","2","3","4","6","5","8"]}';
+    $json1 = '{"a":[]}';
     $eventos =json_decode($json1);
 
     $response = add_user_meta( $data["user"], "events_followed", $eventos, true );
+    echo json_encode($response);
+});
+
+$app->post("/update_user_events/:id", function($id) use ($app){
+    $json = $app->request->post('json');
+    $data = json_decode($json, true);
+    $eventos = $data["eventos"];
+
+    $response = update_user_meta( $id_user, "events_followed", $eventos);
     echo json_encode($response);
 });
 
@@ -104,10 +113,19 @@ $app->get("/delete_user_events/:id", function($id) use ($app){
 $app->post("/add_user_categories", function() use ($app){
     $json = $app->request->post('json');
     $data = json_decode($json, true);
-    $json1 = '{"a":["1","2","3","4","6","5","8"]}';
+    $json1 = '{"a":[]}';
     $eventos =json_decode($json1);
 
     $response = add_user_meta( $data["user"], "categories_followed", $eventos, true );
+    echo json_encode($response);
+});
+
+$app->post("/update_user_categories/:id", function($id_user) use ($app){
+    $json = $app->request->post('json');
+    $data = json_decode($json, true);
+    $categorias = $data["categorias"];
+
+    $response = update_user_meta( $id_user, "categories_followed", $categorias);
     echo json_encode($response);
 });
 

@@ -8,7 +8,10 @@ import { UserDataProvider } from "../../providers/user-data";
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public userD: UserDataProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public userD: UserDataProvider
+  ) {
 
   }
 

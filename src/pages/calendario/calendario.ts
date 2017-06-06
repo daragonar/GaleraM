@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { EventProvider } from "../../providers/event-provider";
 import { DetalleEvento } from "../detalle-evento/detalle-evento";
+import { Login } from "../login/login";
+import { Userwp } from "../../providers/userwp";
+import { UserDataProvider } from "../../providers/user-data";
 
 /**
  * Generated class for the Calendario page.
@@ -38,7 +41,9 @@ export class Calendario {
         public navCtrl: NavController,
         public navParams: NavParams,
         private eventosService: EventProvider,
-        public loadingCtrl: LoadingController
+        public loadingCtrl: LoadingController,
+        private userWp: Userwp,
+        public userD: UserDataProvider
     ){
 
     }
@@ -146,6 +151,24 @@ export class Calendario {
         this.navCtrl.push(DetalleEvento, {
             item: item
         });
+    }
+
+    followEvent(id_evento){
+        //Si no está logueado añadir esto
+        if(this.userD.getUserData()!=undefined){
+            this.userWp.setUserEvent(id_evento);
+        }else{
+            this.navCtrl.push(Login);
+        }
+    }
+
+    followCategory(id_categoria){
+        //Si no está logueado añadir esto
+        if(this.userD.getUserData()!=undefined){
+            this.userWp.setUserCategory(id_categoria);
+        }else{
+            this.navCtrl.push(Login);
+        }
     }
 
 }

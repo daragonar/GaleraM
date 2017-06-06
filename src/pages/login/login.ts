@@ -26,7 +26,13 @@ export class Login {
   public evFav: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userD: UserDataProvider, private formBuilder: FormBuilder, private userWp: Userwp) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public userD: UserDataProvider, 
+    private formBuilder: FormBuilder, 
+    private userWp: Userwp
+  ){
     this.logReg = "login";
     this.Login = this.formBuilder.group({
       user: ['', // default value
@@ -43,26 +49,26 @@ export class Login {
     }
       , { validator: matchingPasswords('pass', 'matchPassword') })
 
-      
-      this.userWp.lostpass().subscribe(
-        html => this.lostPassword =html
-      )
+
+    this.userWp.lostpass().subscribe(
+      html => this.lostPassword = html
+    )
   }
 
   ionViewDidLoad() {
   }
 
-check(variable){
-  console.log(variable);
-  console.log(this.Register.controls.mail.errors)
-  if (variable===true){
-    this.Register.controls.matchPassword.setValue("");
+  check(variable) {
+    console.log(variable);
+    console.log(this.Register.controls.mail.errors)
+    if (variable === true) {
+      this.Register.controls.matchPassword.setValue("");
+    }
   }
-}
 
-showPassword(input: any): any {
-   input.type = input.type === 'password' ?  'text' : 'password';
-   this.ojo = this.ojo === 'eye-off' ? 'eye': 'eye-off';
+  showPassword(input: any): any {
+    input.type = input.type === 'password' ? 'text' : 'password';
+    this.ojo = this.ojo === 'eye-off' ? 'eye' : 'eye-off';
   }
 
 
