@@ -83,7 +83,7 @@ $app->post("/add_user_events", function() use ($app){
     echo json_encode($response);
 });
 
-$app->post("/update_user_events/:id", function($id) use ($app){
+$app->post("/update_user_events/:id", function($id_user) use ($app){
     $json = $app->request->post('json');
     $data = json_decode($json, true);
     $eventos = $data["eventos"];
