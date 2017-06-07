@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { EventProvider } from "../../providers/event-provider";
 import { DetalleEvento } from "../detalle-evento/detalle-evento";
 import { Login } from "../login/login";
@@ -28,41 +28,42 @@ export class Calendario {
         mode: 'month',
         noEventsLabel: 'Sin eventos',
         currentDate: new Date(),
-        startingDayWeek : 1,
+        startingDayWeek: 1,
         startingDayMonth: 1,
         formatDayHeader: 'E',
     };
 
- /* markDisabled = (date:Date) => {
-    var current = new Date();
-    current.setHours(0, 0, 0);
-    return date < current;
-  };*/
+    /* markDisabled = (date:Date) => {
+       var current = new Date();
+       current.setHours(0, 0, 0);
+       return date < current;
+     };*/
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         private eventosService: EventProvider,
         public loadingCtrl: LoadingController,
         private userWp: Userwp,
-        public userD: UserDataProvider
-    ){
+        public userD: UserDataProvider,
+        public AlertMsg: AlertController
+    ) {
 
     }
 
     ionViewDidLoad() {
-       // this.loadEvents();
-       //this.presentLoading();
+        // this.loadEvents();
+        //this.presentLoading();
     }
     onViewTitleChanged(title) {
         this.viewTitle = title;
     }
-     onRangeChanged = (ev: { startTime: Date, endTime: Date }) =>{
+    onRangeChanged = (ev: { startTime: Date, endTime: Date }) => {
         console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
         this.cargarEventos(ev.startTime, ev.endTime);
     }
     today() {
         var date = new Date();
-        date.setHours(0,0,0)
+        date.setHours(0, 0, 0)
         this.calendar.currentDate = date;
     }
 
@@ -71,34 +72,34 @@ export class Calendario {
     }
 
     cargarEventos(date1, date2) {
-        var sdate= date1.getUTCFullYear()+"/"+(date1.getUTCMonth()+1)+"/"+date1.getUTCDate()+" 00:00:00"  ;
-        var edate= date2.getUTCFullYear()+"/"+(date2.getUTCMonth()+1)+"/"+date2.getUTCDate()+" 23:59:59";
+        var sdate = date1.getUTCFullYear() + "/" + (date1.getUTCMonth() + 1) + "/" + date1.getUTCDate() + " 00:00:00";
+        var edate = date2.getUTCFullYear() + "/" + (date2.getUTCMonth() + 1) + "/" + date2.getUTCDate() + " 23:59:59";
 
         let loader = this.loadingCtrl.create({
             content: "Obteniendo Eventos...",
         });
         loader.present().then(() => {
-            this.eventosService.getEventsByRangeDate(sdate,edate).subscribe(
+            this.eventosService.getEventsByRangeDate(sdate, edate).subscribe(
                 result => {
                     var eventsCalendar = [];
                     result.events.forEach(function (evento) {
-                    console.log(evento)
+                        console.log(evento)
                         eventsCalendar.push({
-                            startTime:new Date(evento.start_date.replace(/-/g, '/')),
-                            endTime:new Date(evento.end_date.replace(/-/g, '/')),
+                            startTime: new Date(evento.start_date.replace(/-/g, '/')),
+                            endTime: new Date(evento.end_date.replace(/-/g, '/')),
                             title: evento.title,
                             allDay: evento.all_day,
                             id: evento.id,
                             image: evento.image.sizes.thumbnail.url,
-                            address: (evento.venue.venue ? evento.venue.venue+", "+evento.venue.address : ''),
+                            address: (evento.venue.venue ? evento.venue.venue + ", " + evento.venue.address : ''),
                             category_id: evento.categories[0].id,
                             category_slug: evento.categories[0].slug,
-                            category_item_style: "item_"+evento.categories[0].slug,
+                            category_item_style: "item_" + evento.categories[0].slug,
                             category_name: evento.categories[0].name,
-                            item:evento
+                            item: evento
                         })
                     });
-                    this.eventSource=eventsCalendar
+                    this.eventSource = eventsCalendar;
                     loader.dismiss().then(() => {
                         console.log("Loading dismissed");
                     });
@@ -155,21 +156,59 @@ export class Calendario {
         });
     }
 
-    followEvent(id_evento){
+    followEvent(id_evento) {
         //Si no está logueado añadir esto
-        if(this.userD.getUserData()!=undefined){
+        if (this.userD.getUserData() != undefined) {
             this.userWp.setUserEvent(id_evento);
-        }else{
-            this.navCtrl.push(Login);
+        } else {
+            // Import the AlertController from ionic package 
+            // Consume it in the constructor as 'alertCtrl' 
+            let alert = this.AlertMsg.create({
+                title: 'La Galera Magazine',
+                message: 'Si quieres guardar tus favoritos no dudes en registrarte o loguearte si ya tienes una cuenta',
+                buttons: [
+                    {
+                        text: 'Cancelar', role: 'cancel',
+                        handler: () => {
+                            console.log('Cancel clicked');
+                        }
+                    }, {
+                        text: 'Login',
+                        handler: () => {
+                            this.navCtrl.push(Login);
+                        }
+                    }
+                ]
+            });
+            alert.present();
         }
     }
 
-    followCategory(id_categoria){
+    followCategory(id_categoria) {
         //Si no está logueado añadir esto
-        if(this.userD.getUserData()!=undefined){
+        if (this.userD.getUserData() != undefined) {
             this.userWp.setUserCategory(id_categoria);
-        }else{
-            this.navCtrl.push(Login);
+        } else {
+            // Import the AlertController from ionic package 
+            // Consume it in the constructor as 'alertCtrl' 
+            let alert = this.AlertMsg.create({
+                title: 'La Galera Magazine',
+                message: 'Si quieres guardar tus favoritos no dudes en registrarte o loguearte si ya tienes una cuenta',
+                buttons: [
+                    {
+                        text: 'Cancelar', role: 'cancel',
+                        handler: () => {
+                            console.log('Cancel clicked');
+                        }
+                    }, {
+                        text: 'Login',
+                        handler: () => {
+                            this.navCtrl.push(Login);
+                        }
+                    }
+                ]
+            });
+            alert.present();
         }
     }
 
