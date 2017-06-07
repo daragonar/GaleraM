@@ -5,26 +5,60 @@ page-calendario {
         border: 0px !important;
     }
 
-  /*  .item-block{
-        border-left: 4px solid #f00;
-        border-right: 4px solid #000;
+   .item-block{
+        border-right: 4px solid #A1A1A1;
     }
-    */
-    .item_accion-social{
+
+    ion-item-options[side=right] button{
+        background-color: #A1A1A1;
+    }
+
+    button{
+        color: white;
+    }
+
+
+
+    ion-item.item_accion-social{
         border-left: 4px solid #9c4242;
-        border-right: 4px solid #000;
+        //border-right: 4px solid #000;
     }
-    .item_cine, .item_musica, .item_espectaculos, .item_arteyliteratura, .item_exposiciones, .item_ocio{
+    ion-item.item_cine, ion-item.item_musica, ion-item.item_espectaculos, ion-item.item_arteyliteratura, ion-item.item_exposiciones, ion-item.item_ocio{
         border-left: 4px solid #2e606b;
-        border-right: 4px solid #000;
+        //border-right: 4px solid #000;
     }
-    .item_charlas-y-conferencias, .item_cursos-y-talleres{
+    ion-item.item_charlas-y-conferencias, ion-item.item_cursos-y-talleres{
         border-left: 4px solid #929b8a  ;
-        border-right: 4px solid #000;
+        //border-right: 4px solid #000;
     }
-    .item_entrevistas{
+    ion-item.item_entrevistas{
         border-left: 4px solid #b99095;
-        border-right: 4px solid #000;
+        //border-right: 4px solid #000;
+    }
+
+    button.item_accion-social{
+        background-color: #9c4242;
+        //border-right: 4px solid #000;
+    }
+    button.item_cine, button.item_musica, button.item_espectaculos, button.item_arteyliteratura, button.item_exposiciones, button.item_ocio{
+        background-color: #2e606b;
+        //border-right: 4px solid #000;
+    }
+    button.item_charlas-y-conferencias, button.item_cursos-y-talleres{
+        background-color: #929b8a  ;
+        //border-right: 4px solid #000;
+    }
+    button.item_entrevistas{
+        background-color: #b99095;
+        //border-right: 4px solid #000;
+    }
+
+    .event_followed .item-block{
+        border-right: 4px solid #000 !important;
+    }
+
+    .event_followed ion-item-options[side=right] button{
+        background-color: #000 !important;
     }
 
     .event-detail{

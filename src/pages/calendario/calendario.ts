@@ -184,6 +184,16 @@ export class Calendario {
         }
     }
 
+    isFollowedEvent(id_evento){
+        if (this.userD.getUserData() != undefined) {
+            if(this.userD.getUserEvData().indexOf(id_evento) != -1){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
     followCategory(id_categoria) {
         //Si no está logueado añadir esto
         if (this.userD.getUserData() != undefined) {
@@ -209,6 +219,16 @@ export class Calendario {
                 ]
             });
             alert.present();
+        }
+    }
+
+    isFollowedCategory(id_categoria){
+        if (this.userD.getUserData() != undefined) {
+            if(this.userD.getUserCatData().indexOf(id_categoria) != -1){
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 

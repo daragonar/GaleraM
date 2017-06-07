@@ -60,11 +60,16 @@ export class Userwp {
 
   setUserEvent(eventId) {
     let eventos = this.userD.getUserEvData();
-    console.log("Eventos antes: "+eventos);
-    eventos.push(eventId);
-    console.log("Eventos despues: "+eventos);
+    if(eventos.indexOf(eventId) == -1){
+      //Seguir el evento
+      eventos.push(eventId);
+    }else{
+      //Dejar de seguir el evento
+      eventos.splice(eventos.indexOf(eventId), 1);
+    }
+    console.log("Eventos favoritos: "+eventos);
     let userId = this.userD.getUserData()["ID"];
-    let json = JSON.stringify(eventId);
+    let json = JSON.stringify(eventos);
     let params = 'json=' + json;
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
@@ -101,11 +106,16 @@ export class Userwp {
 
   setUserCategory(categoryId) {
     let categorias = this.userD.getUserCatData();
-    console.log("Categorias antes: "+categorias);
-    categorias.push(categoryId);
-    console.log("Categorias despues: "+categorias);
+    if(categorias.indexOf(categoryId) == -1){
+      //Seguir la categoria
+      categorias.push(categoryId);
+    }else{
+      //Dejar de seguir la categoria
+      categorias.splice(categorias.indexOf(categoryId), 1);
+    }
+    console.log("Categorias favoritas: "+categorias);
     let userId = this.userD.getUserData()["ID"];
-    let json = JSON.stringify(categoryId);
+    let json = JSON.stringify(categorias);
     let params = 'json=' + json;
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
 

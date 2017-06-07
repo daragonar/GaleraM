@@ -76,8 +76,6 @@ export class Login {
     this.ojo = this.ojo === 'eye-off' ? 'eye' : 'eye-off';
   }
 
-
-
   logForm() {
     this.userWp.userLogin(this.Login.value).subscribe(
       result => {
@@ -92,6 +90,7 @@ export class Login {
               this.userD.setUserEvData(userEvFav);
             }
           });
+
           this.userWp.getUserCategories(result.data.ID).then(data => {
             if (data[0]) {
               this.userD.setUserCatData(data[0]);
@@ -101,11 +100,14 @@ export class Login {
               this.userD.setUserCatData(userCatFav);
             }
           });
+
           this.navCtrl.setRoot(Usuario, {
             info: result.data
           });
-        } else
-        { this.error = result.data }
+
+        } else { 
+          this.error = result.data;
+        }
       }
     )
   }
@@ -114,10 +116,11 @@ export class Login {
     this.userWp.register(this.Register.value).subscribe(
       result => {
         if (result.code == 200) {
-          //autoLogin
+          this.Login=this.Register;
+          this.logForm();
         } else {
           console.log(result);
-          this.error = result.data
+          this.error = result.data;
         }
       }
     )

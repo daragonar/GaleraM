@@ -21,7 +21,7 @@ export class Usuario {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public userD: UserDataProvider) {
-this.user = navParams.get('info');
+    this.user = navParams.get('info');
 }
 
   ionViewDidLoad() {
