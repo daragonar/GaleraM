@@ -24,15 +24,20 @@ export class Login {
   showPass: boolean;
   ojo: string = "eye-off";
   public evFav: any;
-
+  error: string;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public userD: UserDataProvider, 
-    private formBuilder: FormBuilder, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public userD: UserDataProvider,
+    private formBuilder: FormBuilder,
     private userWp: Userwp
-  ){
+  ) {
+    if (this.userD.getUserData() != undefined) {
+      this.navCtrl.setRoot(Usuario, {
+        info: this.userD.getUserData()
+      });
+    }
     this.logReg = "login";
     this.Login = this.formBuilder.group({
       user: ['', // default value
@@ -50,9 +55,9 @@ export class Login {
       , { validator: matchingPasswords('pass', 'matchPassword') })
 
 
-    this.userWp.lostpass().subscribe(
+   /* this.userWp.lostpass().subscribe(
       html => this.lostPassword = html
-    )
+    )*/
   }
 
   ionViewDidLoad() {
@@ -76,14 +81,31 @@ export class Login {
   logForm() {
     this.userWp.userLogin(this.Login.value).subscribe(
       result => {
-        this.userWp.getUserEvents(result.data.ID).then(data => {this.userD.setUserEvData(data[0].a);});
-        this.userWp.getUserCategories(result.data.ID).then(data => {this.userD.setUserCatData(data[0].a);});
         this.userD.setUserData(result.data);
         if (result.code == 200) {
+          this.userWp.getUserEvents(result.data.ID).then(data => {
+            if (data[0]) {
+              this.userD.setUserEvData(data[0]);
+            }
+            else {
+              let userEvFav = [];
+              this.userD.setUserEvData(userEvFav);
+            }
+          });
+          this.userWp.getUserCategories(result.data.ID).then(data => {
+            if (data[0]) {
+              this.userD.setUserCatData(data[0]);
+            }
+            else {
+              let userCatFav = [];
+              this.userD.setUserCatData(userCatFav);
+            }
+          });
           this.navCtrl.setRoot(Usuario, {
             info: result.data
           });
-        }
+        } else
+        { this.error = result.data }
       }
     )
   }
@@ -91,9 +113,13 @@ export class Login {
   registerForm() {
     this.userWp.register(this.Register.value).subscribe(
       result => {
-        console.log(result);
+        if (result.code == 200) {
+          //autoLogin
+        } else {
+          console.log(result);
+          this.error = result.data
+        }
       }
     )
   }
-
 }

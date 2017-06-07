@@ -120,9 +120,9 @@ export class Userwp {
       );
   }
 
-  lostpass() {
+  /*lostpass() {
     return this.http
       .get('http://www.lagaleramagazine.es/wp-login.php?action=lostpassword')
       .map(response => response.text())
-  }
+  }*/
 }

@@ -54,6 +54,11 @@
           <ion-label> Recordar</ion-label>
           <ion-toggle formControlName="remember"></ion-toggle>
         </ion-item>
+        <ion-item no-lines *ngIf="error" class="alert alert-danger">
+            <div ion-text text-wrap color="danger" [innerHTML]="error | safe: 'html'">
+              
+            </div>
+          </ion-item>
         <div padding>
           <button ion-button [disabled]="!Login.valid" color="primary" block large>Login</button>
         </div>
@@ -101,7 +106,11 @@
               Las contraseñas deben coincidir
             </div>
           </ion-item>
-
+        <ion-item no-lines *ngIf="error" class="alert alert-danger">
+            <div ion-text text-wrap color="danger" [innerHTML]="error | safe: 'html'">
+              
+            </div>
+          </ion-item>
         <div padding>
           <button ion-button [disabled]="!Register.valid" color="primary" block large>Registro</button>
         </div>

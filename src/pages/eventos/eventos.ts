@@ -63,7 +63,7 @@ export class Eventos {
         this.nextUrl = result.next_rest_url;
         this.hideLoading();
       }
-    )
+      )
   }
 
   openMenu = function () {
