@@ -26,17 +26,18 @@ export class Calendario {
     isToday: boolean;
     calendar = {
         mode: 'month',
+        noEventsLabel: 'Sin eventos',
         currentDate: new Date(),
         startingDayWeek : 1,
         startingDayMonth: 1,
         formatDayHeader: 'E',
     };
 
-  markDisabled = (date:Date) => {
+ /* markDisabled = (date:Date) => {
     var current = new Date();
     current.setHours(0, 0, 0);
     return date < current;
-  };
+  };*/
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -92,6 +93,7 @@ export class Calendario {
                             address: (evento.venue.venue ? evento.venue.venue+", "+evento.venue.address : ''),
                             category_id: evento.categories[0].id,
                             category_slug: evento.categories[0].slug,
+                            category_item_style: "item_"+evento.categories[0].slug,
                             category_name: evento.categories[0].name,
                             item:evento
                         })

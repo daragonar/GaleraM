@@ -20,23 +20,24 @@
               [formatDayHeader]="calendar.formatDayHeader"
               [currentDate]="calendar.currentDate" 
               [markDisabled]="markDisabled"
+              [noEventsLabel]= "calendar.noEventsLabel"
               [startingDayWeek] = "calendar.startingDayWeek"
               [startingDayMonth]="calendar.startingDayMonth"              
               [monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate"
               (onTitleChanged)="onViewTitleChanged($event)"
               (onRangeChanged)="onRangeChanged($event)"
               queryMode="remote"
-              
               >
     </calendar>
   </div>
   <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
     <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
-        <ion-item text-center>
-            <button ion-button [disabled]="isToday" (click)="today()">Today</button>
-        </ion-item>
+  <ion-list-header>
+    <button ion-button [disabled]="isToday" (click)="today()">Hoy</button>
+  </ion-list-header>
+        
       <ion-item-sliding #slidingitem *ngFor="let evento of selectedDate?.events ">
-        <ion-item (click)="eventSelected(evento,evento.item)">
+        <ion-item (click)="eventSelected(evento,evento.item)" [ngClass]="evento.category_item_style">
           <ion-thumbnail item-left>
             <img src="{{evento.image}}">
           </ion-thumbnail>

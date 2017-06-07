@@ -5,10 +5,26 @@ page-calendario {
         border: 0px !important;
     }
 
-    .item{
+  /*  .item-block{
         border-left: 4px solid #f00;
         border-right: 4px solid #000;
-
+    }
+    */
+    .item_accion-social{
+        border-left: 4px solid #9c4242;
+        border-right: 4px solid #000;
+    }
+    .item_cine, .item_musica, .item_espectaculos, .item_arteyliteratura, .item_exposiciones, .item_ocio{
+        border-left: 4px solid #2e606b;
+        border-right: 4px solid #000;
+    }
+    .item_charlas-y-conferencias, .item_cursos-y-talleres{
+        border-left: 4px solid #929b8a  ;
+        border-right: 4px solid #000;
+    }
+    .entrevistas{
+        border-left: 4px solid #b99095;
+        border-right: 4px solid #000;
     }
 
     .event-detail{
