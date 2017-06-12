@@ -20,16 +20,16 @@
   </ion-navbar>
   <div id="categories" [class.hide]="!showMenu">
     <ion-row>
-      <ion-col col-3 align-self-center><button (click)="categoryTapped('cine')">Cine</button></ion-col>
-      <ion-col col-3 align-self-center><button (click)="categoryTapped('musica')">Música</button></ion-col>
-      <ion-col col-3 align-self-center><button (click)="categoryTapped('espectáculos')">Espectáculos</button></ion-col>
-      <ion-col col-3 align-self-center><button (click)="categoryTapped('arteyliteratura')">Arte y Literatura</button></ion-col>
-    </ion-row>
-    <ion-row>
+      <ion-col col-4 align-self-center><button (click)="categoryTapped('cine')">Cine</button></ion-col>
+      <ion-col col-4 align-self-center><button (click)="categoryTapped('musica')">Música</button></ion-col>
+      <ion-col col-4 align-self-center><button (click)="categoryTapped('espectáculos')">Espectáculos</button></ion-col>
+      <ion-col col-5 align-self-center><button (click)="categoryTapped('arteyliteratura')">Arte y Literatura</button></ion-col>
+      <ion-col col-4 align-self-center><button (click)="categoryTapped('exposiciones')">Exposiciones</button></ion-col>
       <ion-col col-3 align-self-center><button (click)="categoryTapped('ocio')">Ocio</button></ion-col>
-      <ion-col col-3 align-self-center><button (click)="categoryTapped('accionsocial')">Acción social</button></ion-col>
-      <ion-col col-3 align-self-center><button (click)="categoryTapped('educación')">Educación</button></ion-col>
-      <ion-col col-3 align-self-center><button (click)="categoryTapped('universidad')">Vida universitaria</button></ion-col>
+      <ion-col col-5 align-self-center><button (click)="categoryTapped('accionsocial')">Acción social</button></ion-col>
+      <ion-col col-7 align-self-center><button (click)="categoryTapped('universidad')">Vida universitaria</button></ion-col>
+      <ion-col col-6 align-self-center><button (click)="categoryTapped('cursos-y-talleres')">Cursos y Talleres</button></ion-col>
+      <ion-col col-6 align-self-center><button (click)="categoryTapped('charlas-y-conferencias')">Charlas y conferencias</button></ion-col>
     </ion-row>
   </div>
   <ion-searchbar

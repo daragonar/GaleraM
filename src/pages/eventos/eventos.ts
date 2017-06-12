@@ -56,7 +56,9 @@ export class Eventos {
 
   getEventos = function () {
     this.EventosLista = [];
-    this.eventosService.getEvents().subscribe(
+    var today = new Date();
+    var date = today.getUTCFullYear() + "-" + (today.getUTCMonth() + 1) + "-" + today.getUTCDate();
+    this.eventosService.getEventsByStartDate(date).subscribe(
       result => {
         this.EventosLista = result.events;
         this.check = result.next_rest_url;

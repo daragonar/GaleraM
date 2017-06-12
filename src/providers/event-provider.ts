@@ -15,7 +15,7 @@ public ApiURL:string  = "https://www.lagaleramagazine.es/wp-json";
     //console.log('Hello EventProvider Provider');
   }
 
-  getEvents( perPage=50){
+  getEvents( date, perPage=50){
     return this.http.get(this.ApiURL+"/tribe/events/v1/events").map(res => res.json());
   }
   getEvent(id){
