@@ -37,8 +37,7 @@
   </ion-list-header>
         
       <ion-item-sliding #slidingitem *ngFor="let evento of selectedDate?.events "
-          [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': null"
-          [ngClass]="isFollowedCategory(evento.category_id) ? 'category_followed': null">
+          [ngClass]="{event_followed: isFollowedEvent(evento.id), category_followed: isFollowedCategory(evento.category_id)}">
           <ion-item (click)="eventSelected(evento,evento.item)" [ngClass]="evento.category_item_style">
             <ion-thumbnail item-left>
               <img src="{{evento.image}}">
@@ -57,12 +56,15 @@
             <button (click)='followCategory(evento.category_id)' text-left [ngClass]="evento.category_item_style">
               {{evento.category_name}}
               <ion-icon name="heart"></ion-icon>
-              <br>Seguir esta categoría
+              <span [innerHTML]="isFollowedCategory(evento.category_id) ? 'Sigues esta categoría': 'Seguir esta categoría'"></span>
             </button>
           </ion-item-options>
           <!-- slide right items down here -->
           <ion-item-options side='right'>
-            <button (click)='followEvent(evento.id)'>Seguir este evento <ion-icon name="star"></ion-icon></button>
+            <button (click)='followEvent(evento.id)'>
+              <ion-icon name="star" col-md-4></ion-icon>
+              <span col-md-8 [innerHTML]="isFollowedEvent(evento.id) ? 'Dejar de seguir este evento': 'Seguir este evento'"></span>
+            </button>
           </ion-item-options>
       </ion-item-sliding>
       <ion-item *ngIf="selectedDate?.events.length==0">

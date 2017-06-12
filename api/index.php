@@ -29,7 +29,7 @@ $app->post("/login", function() use ($app){
     $creds = array(
         'user_login'    => $data["user"],
         'user_password' => $data["pass"],
-        'remember'      => $data["remember"]
+        'remember'      => false
     );
     $user = wp_signon( $creds, false );
      if ( is_wp_error( $user ) ) {

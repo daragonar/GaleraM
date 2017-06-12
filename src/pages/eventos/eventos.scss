@@ -1,54 +1,64 @@
 page-eventos {
+    font-family: "antic-slab";
 
-}
-#slideEventos{
-    height: 240px;
-    color: #fff;
-    width:100%;
-}
-.news ion-col{
-    height: 120px
-}
+    #slideEventos{
+        height: 240px;
+        color: #fff;
+        width:100%;
+    }
+    .news ion-col{
+        height: 120px
+    }
 
-ion-navbar .toolbar-background{
-  background-color: black;
-}
+    ion-navbar .toolbar-background{
+    background-color: black;
+    }
 
-ion-navbar .button-inner{
-    color:white;
-}
-page-eventos .titulo{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    padding: 5px 0;
-    width: 100%;
-    text-align: center;
-    color: #fff ;
-    background-color: rgba(0, 0, 0, 0.3);
-}
+    ion-navbar .button-inner{
+        color:white;
+    }
 
-#categories{
-    position: absolute;
-    display: block;
-    width: 100%;
-    background-color: rgba(153, 153, 153, 0.61);
-    font-size: 120%;
-}
+    .news .col{
+        border:3px solid white;
+    }
 
-#categories.hide{
-    display: none;
-}
+    .titulo{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 0;
+        padding: 5px 0;
+        width: 100%;
+        text-align: center;
+        color: #fff ;
+        background-color: rgba(0, 0, 0, 0.7);
+        height: 45px;
+        display: grid;
+        align-items: center;
+        align-content: center !important;
+    }
 
-#categories .col{
-    padding: 3px;
-}
+    #categories.hide{
+        display: none;
+    }
 
-#categories .col button{
-    background-color: #3c3c3c;
-    color: white;
-    height:40px; 
-    width: 100%;
-    font-size: 11pt;
+    #categories{
+        position: absolute;
+        display: block;
+        width: 100%;
+        background-color: rgba(153, 153, 153, 0.61);
+        font-size: 120%;
+    }
+
+    #categories .col{
+        padding: 3px;
+    }
+
+    #categories .col button{
+        background-color: #3c3c3c;
+        color: white;
+        height:40px; 
+        width: 100%;
+        font-size: 11pt;
+    }
 }

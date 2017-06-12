@@ -11,13 +11,23 @@ page-calendario {
 
     ion-item-options[side=right] button{
         background-color: #A1A1A1;
+        font-size: 18px;
+    }
+
+    ion-item-options[side=right] span{
+        display: inline-block !important;
+        vertical-align: middle;
+        width: 100px;
+    }
+
+    ion-item-options[side=left] span{
+        display: block !important;
+        width: 150px;
     }
 
     button{
         color: white;
     }
-
-
 
     ion-item.item_accion-social{
         border-left: 4px solid #9c4242;
@@ -59,6 +69,10 @@ page-calendario {
 
     .event_followed ion-item-options[side=right] button{
         background-color: #000 !important;
+    }
+
+    .event_followed ion-item-options[side=right] ion-icon, .category_followed ion-item-options[side=left] ion-icon{
+        color:#FFC139;
     }
 
     .event-detail{
