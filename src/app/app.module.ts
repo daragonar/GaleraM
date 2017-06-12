@@ -28,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { EventProvider } from "../providers/event-provider";
 import { Userwp } from "../providers/userwp";
 import { UserDataProvider } from '../providers/user-data';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { UserDataProvider } from '../providers/user-data';
   ],
   imports: [
     NgCalendarModule,
-    BrowserModule,
+    BrowserModule,    
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp,{ 
           tabsPlacement: 'bottom',
           monthNames: ['enero', 'febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre' ],
