@@ -156,10 +156,10 @@ export class Calendario {
         });
     }
 
-    followEvent(id_evento) {
+    followEvent(id, title, start_date, end_date, category) {
         //Si no está logueado añadir esto
         if (this.userD.getUserData() != undefined) {
-            this.userWp.setUserEvent(id_evento);
+            this.userWp.setUserEvent(id, title, start_date, end_date, category);
         } else {
             // Import the AlertController from ionic package 
             // Consume it in the constructor as 'alertCtrl' 

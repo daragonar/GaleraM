@@ -58,27 +58,39 @@ export class Userwp {
     });
   }
 
-  setUserEvent(eventId) {
+  setUserEvent(id, title, start_date, end_date, category) {
     let eventos = this.userD.getUserEvData();
-    if(eventos.indexOf(eventId) == -1){
-      //Seguir el evento
-      eventos.push(eventId);
+    console.log(eventos);
+    console.log("eso: "+id in eventos);
+    if(id in eventos == false){
+      var evento = {
+        'id': id,
+        'title': title,
+        'start_date': start_date,
+        'end_date': end_date,
+        'category': category
+      };
+      eventos.push(evento);
     }else{
       //Dejar de seguir el evento
-      eventos.splice(eventos.indexOf(eventId), 1);
+      eventos.splice(eventos.indexOf(id), 1);
     }
     console.log("Eventos favoritos: "+eventos);
     let userId = this.userD.getUserData()["ID"];
     let json = JSON.stringify(eventos);
     let params = 'json=' + json;
+    console.log(params);
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
     return this.http.post(this.ApiURL + "/update_user_events/"+userId, params, { headers: headers })
       .map(res => res.json())
       .subscribe(
         result => {
+          console.log(result);
           if (!result){
             console.log("Error al seguir el evento, la api ha devuelto false");
+          }else{
+            console.log(result);
           }
         }
       );

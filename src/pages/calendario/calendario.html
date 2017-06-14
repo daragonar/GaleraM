@@ -61,7 +61,7 @@
           </ion-item-options>
           <!-- slide right items down here -->
           <ion-item-options side='right'>
-            <button (click)='followEvent(evento.id)'>
+            <button (click)='followEvent(evento.id, evento.title, evento.startTime, evento.endTime, evento.category_id)'>
               <ion-icon name="star" col-md-4></ion-icon>
               <span col-md-8 [innerHTML]="isFollowedEvent(evento.id) ? 'Dejar de seguir este evento': 'Seguir este evento'"></span>
             </button>
