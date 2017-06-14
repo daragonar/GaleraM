@@ -1,9 +1,43 @@
 page-usuario {
 
-}
-page-usuario .item-md.item-block .item-inner{
+.item-md.item-block .item-inner{
     border:none;
 }
 .notificaciones{
     border-left: 2px solid #ccc;
+}
+ button.item_accion-social{
+        background-color: #9c4242;
+        //border-right: 4px solid #000;
+    }
+    button.item_cine, button.item_musica, button.item_espectaculos, button.item_arte_y_literatura, button.item_exposiciones, button.item_ocio{
+        background-color: #2e606b;
+        //border-right: 4px solid #000;
+    }
+    button.item_charlas_y_conferencias, button.item_cursos_y_talleres{
+        background-color: #929b8a  ;
+        //border-right: 4px solid #000;
+    }
+    button.item_entrevistas{
+        background-color: #b99095;
+        //border-right: 4px solid #000;
+    }
+
+    .cat_accionsocial{
+        color: #9c4242;
+        //border-right: 4px solid #000;
+    }
+    .cat_cine, .cat_musica, .cat_espectaculos, .cat_arte_y_literatura, .cat_exposiciones, .cat_ocio{
+        color: #2e606b;
+        //border-right: 4px solid #000;
+    }
+    .cat_charlas_y_conferencias, .cat_cursos_y_talleres{
+        color: #929b8a  ;
+        //border-right: 4px solid #000;
+    }
+    .cat_entrevistas{
+        color: #b99095;
+        //border-right: 4px solid #000;
+    }
+
 }

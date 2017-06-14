@@ -7,14 +7,14 @@
 <ion-header text-center>
   <ion-navbar>
     <ion-title>
-      <img src="assets/img/logofooter2.png" height="80px"></ion-title>
-  
-  <ion-buttons right>
-      <button ion-button icon-only (click)="cerrarSesion()">
+      <img src='assets/img/logofooter2.png' height='80px'></ion-title>
+
+    <ion-buttons right>
+      <button ion-button icon-only (click)='cerrarSesion()'>
           <ion-icon name='exit'></ion-icon>
         </button>
     </ion-buttons>
-    </ion-navbar>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
@@ -25,38 +25,77 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col >
+      <ion-col>
         <ion-item>
           <ion-avatar item-left>
-            <img src="https://randomuser.me/api/portraits/lego/5.jpg">
+            <img src='https://randomuser.me/api/portraits/lego/5.jpg'>
           </ion-avatar>
           <h2>Favoritos</h2>
           <p>Eventos : 0</p>
-          <p>Categorias : 0</p>
+          <p>Categorias : {{listCategory.length}}</p>
           <p>
-<ion-icon name="heart"></ion-icon>
-<ion-icon name="heart"></ion-icon>
-<ion-icon name="heart"></ion-icon>
-<ion-icon name="heart"></ion-icon>
-<ion-icon name="heart"></ion-icon>
-<ion-icon name="heart"></ion-icon>
-<ion-icon name="heart"></ion-icon>
-<ion-icon name="heart"></ion-icon>
-
+            <ion-icon [ngClass]='cat_cine' name='heart'></ion-icon>
+            <ion-icon [ngClass]='cat_musica' name='heart'></ion-icon>
+            <ion-icon [ngClass]='cat_espectaculos' name='heart'></ion-icon>
+            <ion-icon [ngClass]='cat_arte_y_literatura' name='heart'></ion-icon>
+            <ion-icon [ngClass]='cat_exposiciones' name='heart'></ion-icon>
+            <ion-icon [ngClass]='cat_ocio' name='heart'></ion-icon>
+            <ion-icon [ngClass]='cat_accion_social' name='heart'></ion-icon>
+            <ion-icon [ngClass]='cat_vida_universitaria' name='heart'></ion-icon>
+            <ion-icon [ngClass]='cat_cursos_y_talleres' name='heart'></ion-icon>
+            <ion-icon [ngClass]='cat_charlas_y_conferencias' name='heart'></ion-icon>
           </p>
         </ion-item>
       </ion-col>
 
-      <ion-col >
-<ion-item class="notificaciones">
+      <ion-col>
+        <ion-item class='notificaciones'>
           <h2>Notificaciones</h2>
           <p>Eventos : 0</p>
           <p>Categorias : 0</p>
-          
+
         </ion-item>
-
-
-
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-list-header>
+            Categorias
+          </ion-list-header>
+          <ion-item-group>
+            <ion-item>
+              <button [ngClass]='item_cine' ion-button>Cine</button>
+            </ion-item>
+            <ion-item>
+              <button [ngClass]='item_musica' ion-button>Música</button>
+            </ion-item>
+            <ion-item>
+              <button [ngClass]='item_espectaculos' ion-button>Espectáculos</button>
+            </ion-item>
+            <ion-item>
+              <button [ngClass]='item_arte_y_literatura' ion-button>Arte y Literatura</button>
+            </ion-item>
+            <ion-item>
+              <button [ngClass]='item_exposiciones' ion-button>Exposiciones</button>
+            </ion-item>
+            <ion-item>
+              <button [ngClass]='item_ocio' ion-button>Ocio</button>
+            </ion-item>
+            <ion-item>
+              <button [ngClass]='item_accion_social' ion-button>Acción social</button>
+            </ion-item>
+            <ion-item>
+              <button [ngClass]='item_vida_universitaria' ion-button>Vida universitaria</button>
+            </ion-item>
+            <ion-item>
+              <button [ngClass]='item_cursos_y_talleres' ion-button>Cursos y Talleres</button>
+            </ion-item>
+            <ion-item>
+              <button [ngClass]='item_charlas_y_conferencias' ion-button>Charlas y conferencias</button>
+            </ion-item>
+          </ion-item-group>
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>

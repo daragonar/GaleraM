@@ -15,13 +15,15 @@ import { UserDataProvider } from "../../providers/user-data";
 })
 export class Usuario {
   user:object;
-
+  listCategory;
+  listEvent;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public userD: UserDataProvider) {
     this.user = navParams.get('info');
+    this.listCategory=this.userD.getUserCatData();
 }
 
   ionViewDidLoad() {
