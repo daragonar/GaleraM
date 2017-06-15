@@ -43,7 +43,7 @@
         <ion-item>
           <ion-label floating>Password</ion-label>
           <ion-input #passInput type="password" formControlName="pass"></ion-input>
-          <ion-icon [name]="ojo"  (click)="showPassword(passInput)" item-right class="show-password"></ion-icon>
+          <ion-icon [name]="ojo" tappable (click)="showPassword(passInput)" item-right class="show-password"></ion-icon>
         </ion-item>
         <ion-item no-lines *ngIf="Login.controls.pass.errors && (Login.controls.pass.dirty || Login.controls.pass.touched)" class="alert alert-danger">
             <div ion-text color="danger" [hidden]="!Login.controls.pass.errors.required">
@@ -63,7 +63,7 @@
           <button ion-button [disabled]="!Login.valid" color="primary" block large>Login</button>
         </div>
       </form>
-      <ion-item no-lines>
+      <ion-item text-wrap no-lines>
         Has olvidado la contraseña. <a href="http://www.lagaleramagazine.es/wp-login.php?action=lostpassword" target="_blank">Pulsa aqui</a>
       </ion-item>
       <!--<ion-item [innerHTML]="lostPassword | safe: 'html'">

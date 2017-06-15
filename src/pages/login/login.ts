@@ -1,4 +1,3 @@
-import { FormControl } from '@angular/forms/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Usuario } from "../usuario/usuario";
@@ -6,7 +5,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Userwp } from "../../providers/userwp";
 import { emailValidator, matchingPasswords } from '../../validators/customValidators';
 import { UserDataProvider } from "../../providers/user-data";
-import { Storage } from '@ionic/storage';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 
 /**
  * Generated class for the Login page.
@@ -36,21 +36,14 @@ export class Login {
     public userD: UserDataProvider,
     private formBuilder: FormBuilder,
     private userWp: Userwp,
-    public storage: Storage
+    public storage: NativeStorage
   ) {
-    this.storeData=null;
+    this.storeData = null;
     if (this.userD.getUserData() != undefined) {
       this.navCtrl.setRoot(Usuario, {
         info: this.userD.getUserData()
       });
     }
-    this.storage.get('myForm').then((list) => {
-      if (list != null) {
-      this.storeData = list;  
-      }
-      
-   });
-
     this.logReg = "login";
     this.Login = this.formBuilder.group({
       user: ['', // default value
@@ -67,19 +60,32 @@ export class Login {
     }
       , { validator: matchingPasswords('pass', 'matchPassword') })
 
+ this.storage.getItem('myForm')
+      .then(
+      data => {
+        console.log(data);
+        if (data != null) {
+          this.storeData = data;
+      this.Login.controls['user'].setValue(this.storeData.user);
+      this.Login.controls['pass'].setValue(this.storeData.pass);
+      this.Login.controls['remember'].setValue(this.storeData.remember);        
+        }
+      },
+      error => console.error(error)
+      );
 
     /* this.userWp.lostpass().subscribe(
        html => this.lostPassword = html
      )*/
   }
-
-  ionViewWillEnter(){   
-if (this.storeData != null) {
-  this.Login.controls['user'].setValue(this.storeData.user);
-  this.Login.controls['pass'].setValue(this.storeData.pass);
-  this.Login.controls['remember'].setValue(this.storeData.remember);
-}
   
+  ionViewWillEnter() {
+    if (this.storeData != null) {
+      this.Login.controls['user'].setValue(this.storeData.user);
+      this.Login.controls['pass'].setValue(this.storeData.pass);
+      this.Login.controls['remember'].setValue(this.storeData.remember);
+    }
+
   }
 
   check(variable) {
@@ -88,12 +94,16 @@ if (this.storeData != null) {
     }
   }
   store(val) {
-        this.storage.set('myForm', val);
+    this.storage.setItem('myForm', val)
+      .then(
+      () => console.log('Stored item!'),
+      error => console.error('Error storing item', error)
+      );
   };
 
 
   deleteStore() {
-    this.storage.remove('myForm') 
+    this.storage.remove('myForm')
   };
   showPassword(input: any): any {
     input.type = input.type === 'password' ? 'text' : 'password';
@@ -101,6 +111,7 @@ if (this.storeData != null) {
   }
 
   logForm() {
+     this.store(this.Login.value)
     this.userWp.userLogin(this.Login.value).subscribe(
       result => {
         this.userD.setUserData(result.data);
@@ -108,8 +119,7 @@ if (this.storeData != null) {
           if (this.Login.value.remember == true) {
             this.store(this.Login.value)
             console.log('esta en true');
-          }else
-          {
+          } else {
             this.deleteStore()
           }
           this.userWp.getUserEvents(result.data.ID).then(data => {

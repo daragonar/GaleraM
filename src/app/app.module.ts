@@ -5,7 +5,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { AppAvailability} from '@ionic-native/app-availability';
+import { AppAvailability } from '@ionic-native/app-availability';
 import { Device } from '@ionic-native/device';
 import { MyApp } from './app.component';
 import { SafePipe } from '../pipes/safe';
@@ -28,7 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { EventProvider } from "../providers/event-provider";
 import { Userwp } from "../providers/userwp";
 import { UserDataProvider } from '../providers/user-data';
-import { IonicStorageModule } from '@ionic/storage';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 @NgModule({
@@ -49,14 +49,13 @@ import { IonicStorageModule } from '@ionic/storage';
   ],
   imports: [
     NgCalendarModule,
-    BrowserModule,    
-    IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp,{ 
-          tabsPlacement: 'bottom',
-          monthNames: ['enero', 'febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre' ],
-          monthShortNames: ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],
-          dayNames: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado' ],
-          dayShortNames: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+    BrowserModule,
+    IonicModule.forRoot(MyApp, {
+      tabsPlacement: 'bottom',
+      monthNames: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+      monthShortNames: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+      dayNames: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+      dayShortNames: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
     }),
     HttpModule,
   ],
@@ -88,7 +87,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Device,
     InAppBrowser,
     AppAvailability,
-     UserDataProvider,
+    UserDataProvider,
+    NativeStorage
   ]
 })
 export class AppModule { }
