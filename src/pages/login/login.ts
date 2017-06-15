@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Usuario } from "../usuario/usuario";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Userwp } from "../../providers/userwp";
@@ -36,7 +36,8 @@ export class Login {
     public userD: UserDataProvider,
     private formBuilder: FormBuilder,
     private userWp: Userwp,
-    public storage: NativeStorage
+    public storage: NativeStorage,
+    public loadingCtrl:LoadingController,
   ) {
     this.storeData = null;
     if (this.userD.getUserData() != undefined) {
@@ -60,15 +61,15 @@ export class Login {
     }
       , { validator: matchingPasswords('pass', 'matchPassword') })
 
- this.storage.getItem('myForm')
+    this.storage.getItem('myForm')
       .then(
       data => {
         console.log(data);
         if (data != null) {
           this.storeData = data;
-      this.Login.controls['user'].setValue(this.storeData.user);
-      this.Login.controls['pass'].setValue(this.storeData.pass);
-      this.Login.controls['remember'].setValue(this.storeData.remember);        
+          this.Login.controls['user'].setValue(this.storeData.user);
+          this.Login.controls['pass'].setValue(this.storeData.pass);
+          this.Login.controls['remember'].setValue(this.storeData.remember);
         }
       },
       error => console.error(error)
@@ -78,7 +79,7 @@ export class Login {
        html => this.lostPassword = html
      )*/
   }
-  
+
   ionViewWillEnter() {
     if (this.storeData != null) {
       this.Login.controls['user'].setValue(this.storeData.user);
@@ -111,7 +112,13 @@ export class Login {
   }
 
   logForm() {
-     this.store(this.Login.value)
+    let loading = this.loadingCtrl.create({
+    content: 'Iniciando sesión...'
+    });
+
+  loading.present();
+
+    this.store(this.Login.value)
     this.userWp.userLogin(this.Login.value).subscribe(
       result => {
         this.userD.setUserData(result.data);
@@ -142,9 +149,13 @@ export class Login {
             }
           });
 
-          this.navCtrl.setRoot(Usuario, {
-            info: result.data
-          });
+          setTimeout(() => {
+            this.navCtrl.setRoot(Usuario, {
+              info: result.data
+            });
+            loading.dismiss();
+          }, 1000);
+
 
         } else {
           this.error = result.data;

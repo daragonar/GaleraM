@@ -23,8 +23,8 @@ export class Usuario {
     public navParams: NavParams,
     public userD: UserDataProvider) {
     this.user = navParams.get('info');
-    console.log(this.cargarListas());
-    
+    this.listCategory= this.userD.getUserCatData();
+    this.listEvent= this.userD.getUserEvData();
 }
 
  ionViewWillEnter() {
@@ -32,15 +32,6 @@ export class Usuario {
     console.log("Segunda salida");
     console.log(this.userD.getUserEvData());
     console.log(this.userD.getUserCatData());
-  }
-
-  cargarListas(){
-    if (this.listCategory) {
-      return Promise.resolve(this.listCategory);
-    }
-     return new Promise(resolve => {
-       this.listCategory = this.userD.getUserCatData()
-    })
   }
   
   cerrarSesion(){
