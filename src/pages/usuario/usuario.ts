@@ -11,7 +11,7 @@ import { UserDataProvider } from "../../providers/user-data";
 @IonicPage()
 @Component({
   selector: 'page-usuario',
-  templateUrl: 'usuario.html',
+  templateUrl: 'usuario.html'
 })
 export class Usuario {
   user:object;
@@ -23,11 +23,24 @@ export class Usuario {
     public navParams: NavParams,
     public userD: UserDataProvider) {
     this.user = navParams.get('info');
-    this.listCategory=this.userD.getUserCatData();
+    console.log(this.cargarListas());
+    
 }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Usuario');
+ ionViewWillEnter() {
+    console.log(this.userD.getUserData());
+    console.log("Segunda salida");
+    console.log(this.userD.getUserEvData());
+    console.log(this.userD.getUserCatData());
+  }
+
+  cargarListas(){
+    if (this.listCategory) {
+      return Promise.resolve(this.listCategory);
+    }
+     return new Promise(resolve => {
+       this.listCategory = this.userD.getUserCatData()
+    })
   }
   
   cerrarSesion(){
@@ -36,7 +49,6 @@ export class Usuario {
     this.userD.setUserCatData(undefined);
     this.navCtrl.setRoot(Login);
     this.navCtrl.parent.select(0);
-
   }
 
 
