@@ -1,3 +1,4 @@
+import { Userwp } from './../../providers/userwp';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { UserDataProvider } from "../../providers/user-data";
@@ -7,18 +8,17 @@ import { UserDataProvider } from "../../providers/user-data";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  inicio="";
 
   constructor(
     public navCtrl: NavController,
-    public userD: UserDataProvider
+    public userD: UserDataProvider,
+    public userwp:Userwp,
   ) {
-
+    this.userwp.cargaInicio().subscribe(data => this.inicio = data.content.rendered
+      ) 
   }
 
   ionViewWillEnter() {
-    console.log(this.userD.getUserData());
-    console.log("Segunda salida");
-    console.log(this.userD.getUserEvData());
-    console.log(this.userD.getUserCatData());
   }
 }

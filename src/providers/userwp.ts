@@ -146,5 +146,13 @@ export class Userwp {
     return this.http
       .get('http://www.lagaleramagazine.es/wp-login.php?action=lostpassword')
       .map(response => response.text())
-  }*/
+  }
+  http://lagaleramagazine.es/wp-json/wp/v2/pages/24288
+  http://www.lagaleramagazine.es/?page_id=24288
+  */
+  cargaInicio(){
+    return this.http
+      .get('http://lagaleramagazine.es/wp-json/wp/v2/pages/24288')
+      .map(response => response.json())
+  }
 }
