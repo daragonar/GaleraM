@@ -60,8 +60,6 @@ export class Userwp {
 
   setUserEvent(id, title, start_date, end_date, category) {
     let eventos = this.userD.getUserEvData();
-    console.log(eventos);
-    console.log("eso: "+id in eventos);
     if(id in eventos == false){
       var evento = {
         'id': id,
@@ -75,7 +73,8 @@ export class Userwp {
       //Dejar de seguir el evento
       eventos.splice(eventos.indexOf(id), 1);
     }
-    console.log("Eventos favoritos: "+eventos);
+    console.log(eventos);
+    //console.log("Eventos favoritos: "+eventos);
     let userId = this.userD.getUserData()["ID"];
     let json = JSON.stringify(eventos);
     let params = 'json=' + json;

@@ -38,7 +38,7 @@
         
       <ion-item-sliding #slidingitem *ngFor="let evento of selectedDate?.events "
           [ngClass]="{event_followed: isFollowedEvent(evento.id), category_followed: isFollowedCategory(evento.category_id)}">
-          <ion-item (click)="eventSelected(evento,evento.item)" [ngClass]="evento.category_item_style">
+          <ion-item tappable (click)="eventSelected(evento,evento.item)" [ngClass]="evento.category_item_style">
             <ion-thumbnail item-left>
               <img src="{{evento.image}}">
             </ion-thumbnail>

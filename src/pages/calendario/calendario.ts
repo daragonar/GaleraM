@@ -185,8 +185,16 @@ export class Calendario {
     }
 
     isFollowedEvent(id_evento){
-        if (this.userD.getUserData() != undefined) {
-            if(this.userD.getUserEvData().indexOf(id_evento) != -1){
+        if (this.userD.getUserData().length>0) {
+            var eventos = this.userD.getUserEvData();
+            console.log(eventos);
+            var sw=0;
+            eventos.array.forEach(element => {
+                if(id_evento==element['id']){
+                    sw=1;
+                }
+            });
+            if(sw==1){
                 return true;
             }else{
                 return false;
