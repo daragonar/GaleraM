@@ -143,4 +143,14 @@ $app->get("/delete_user_categories/:id", function($id) use ($app){
     echo json_encode($response);
 });
 
+$app->get("/calendar_events", function() use ($app){
+    //$json = $app->request->post('json');
+    //$data = json_decode($json, true);
+
+    $response = tribe_get_events( array(
+ 'posts_per_page' => 250) );
+ 
+    echo json_encode($response);
+});
+
 $app->run();

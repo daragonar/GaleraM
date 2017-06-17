@@ -60,7 +60,13 @@ export class Userwp {
 
   setUserEvent(id, title, start_date, end_date, category) {
     let eventos = this.userD.getUserEvData();
-    if(id in eventos == false){
+    var sw=0;
+    eventos.forEach(element => {
+        if(id==element['id']){
+           eventos.splice(eventos.indexOf(id), 1);
+        }
+    });
+    if(sw==0){
       var evento = {
         'id': id,
         'title': title,
@@ -69,25 +75,21 @@ export class Userwp {
         'category': category
       };
       eventos.push(evento);
-    }else{
-      //Dejar de seguir el evento
-      eventos.splice(eventos.indexOf(id), 1);
     }
     console.log(eventos);
-    //console.log("Eventos favoritos: "+eventos);
     let userId = this.userD.getUserData()["ID"];
-    let json = JSON.stringify(eventos);
-    let params = 'json=' + json;
-    console.log(params);
+    //let json = JSON.stringify(eventos);
+    let params = 'json=' + eventos;
+
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
     return this.http.post(this.ApiURL + "/update_user_events/"+userId, params, { headers: headers })
       .map(res => res.json())
       .subscribe(
         result => {
-          console.log(result);
           if (!result){
-            console.log("Error al seguir el evento, la api ha devuelto false");
+            console.log(result);
+            //console.log("Error al seguir el evento, la api ha devuelto false");
           }else{
             console.log(result);
           }

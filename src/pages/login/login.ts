@@ -132,10 +132,12 @@ export class Login {
           this.userWp.getUserEvents(result.data.ID).then(data => {
             if (data[0]) {
               this.userD.setUserEvData(data[0]);
+              console.log(data[0]);
             }
             else {
               let userEvFav = [];
               this.userD.setUserEvData(userEvFav);
+              console.log("por aqui no!");
             }
           });
 

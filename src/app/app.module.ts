@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { SafePipe } from '../pipes/safe';
 import { RemoveTags } from '../pipes/remove-tags';
 import { ReversePipe } from "../pipes/reverse";
+import { TruncatePipe } from "../pipes/truncate"
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -46,6 +47,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     Usuario,
     RemoveTags,
     ReversePipe,
+    TruncatePipe
   ],
   imports: [
     NgCalendarModule,
@@ -82,6 +84,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     SafePipe,
     RemoveTags,
     ReversePipe,
+    TruncatePipe,
     NativeGeocoder,
     GoogleMaps,
     Device,

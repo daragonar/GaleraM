@@ -31,10 +31,11 @@ getEventsByEndDate(date, page=1, perPage=50){
     return this.http.get(this.ApiURL+"/tribe/events/v1/events?end_date="+date+"&page="+page).map(res => res.json());
   }
 
-getEventsByRangeDate(sdate, edate , page=1, perPage=50){
+getEventsByRangeDate(sdate, edate , page=1, perPage=500){
     //return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+date+"&page="+page).map(res => res.json());
     return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+sdate+"&end_date="+edate+"&per_page="+perPage+"&page="+page).map(res => res.json());
-  }
+}
+
 getEventsByCategory(category){
  return this.http.get(this.ApiURL+"/tribe/events/v1/events/?categories="+category).map(res => res.json());
 }

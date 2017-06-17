@@ -83,14 +83,14 @@ export class Calendario {
                 result => {
                     var eventsCalendar = [];
                     result.events.forEach(function (evento) {
-                        console.log(evento)
+                        console.log(evento);
                         eventsCalendar.push({
                             startTime: new Date(evento.start_date.replace(/-/g, '/')),
                             endTime: new Date(evento.end_date.replace(/-/g, '/')),
                             title: evento.title,
                             allDay: evento.all_day,
                             id: evento.id,
-                            image: evento.image.sizes.thumbnail.url,
+                            image: (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'),
                             address: (evento.venue.venue ? evento.venue.venue + ", " + evento.venue.address : ''),
                             category_id: evento.categories[0].id,
                             category_slug: evento.categories[0].slug,
@@ -185,11 +185,11 @@ export class Calendario {
     }
 
     isFollowedEvent(id_evento){
-        if (this.userD.getUserData().length>0) {
+        /*if (this.userD.getUserEvData().length>0) {
             var eventos = this.userD.getUserEvData();
-            console.log(eventos);
+            //console.log(eventos);
             var sw=0;
-            eventos.array.forEach(element => {
+            eventos.forEach(element => {
                 if(id_evento==element['id']){
                     sw=1;
                 }
@@ -199,7 +199,7 @@ export class Calendario {
             }else{
                 return false;
             }
-        }
+        }*/
     }
 
     followCategory(id_categoria) {
