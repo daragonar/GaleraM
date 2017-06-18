@@ -39,9 +39,6 @@ export class Usuario {
     this.userD.setUserEvData(undefined);
     this.userD.setUserCatData(undefined);
     this.navCtrl.setRoot(Login);
-    this.navCtrl.parent.select(0);
-  }
-
-
-    
+    this.navCtrl.parent.select(1);
+  }    
 }
