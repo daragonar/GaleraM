@@ -65,8 +65,7 @@ export class Userwp {
     eventos.forEach(element =>{
         if(id==element.id){
           sw=1;
-          console.log("entra aqui con id="+id);
-           eventos.splice(eventos[i], 1);
+           eventos.splice(eventos.indexOf(element), 1);
         }
         i++;
     });
