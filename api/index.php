@@ -85,7 +85,8 @@ $app->post("/add_user_events", function() use ($app){
 
 $app->post("/update_user_events/:id", function($id_user) use ($app){
     $json = $app->request->post('json');
-    $eventos = json_decode($json, true);
+    //$eventos = json_decode($json, true);
+    $eventos = json_decode($json);
 
     $response = update_user_meta( $id_user, "events_followed", $eventos);
     echo json_encode($response);

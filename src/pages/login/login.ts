@@ -161,6 +161,10 @@ export class Login {
 
         } else {
           this.error = result.data;
+
+          setTimeout(() => {
+            loading.dismiss();
+          }, 1000);
         }
       }
     )
