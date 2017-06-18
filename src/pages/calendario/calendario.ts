@@ -185,12 +185,12 @@ export class Calendario {
     }
 
     isFollowedEvent(id_evento){
-        /*if (this.userD.getUserEvData().length>0) {
+        if (this.userD.getUserEvData().length>0) {
             var eventos = this.userD.getUserEvData();
             //console.log(eventos);
             var sw=0;
             eventos.forEach(element => {
-                if(id_evento==element['id']){
+                if(id_evento==element.id){
                     sw=1;
                 }
             });
@@ -199,7 +199,7 @@ export class Calendario {
             }else{
                 return false;
             }
-        }*/
+        }
     }
 
     followCategory(id_categoria) {

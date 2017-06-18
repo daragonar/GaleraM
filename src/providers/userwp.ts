@@ -59,13 +59,18 @@ export class Userwp {
   }
 
   setUserEvent(id, title, start_date, end_date, category) {
-    let eventos = this.userD.getUserEvData();
+    var eventos = this.userD.getUserEvData();
     var sw=0;
-    eventos.forEach(element => {
-        if(id==element['id']){
-           eventos.splice(eventos.indexOf(id), 1);
+    var i=0;
+    eventos.forEach(element =>{
+        if(id==element.id){
+          sw=1;
+          console.log("entra aqui con id="+id);
+           eventos.splice(eventos[i], 1);
         }
+        i++;
     });
+
     if(sw==0){
       var evento = {
         'id': id,
@@ -76,7 +81,6 @@ export class Userwp {
       };
       eventos.push(evento);
     }
-    console.log(eventos);
     let userId = this.userD.getUserData()["ID"];
     let json = JSON.stringify(eventos);
     let params = 'json=' + json;
@@ -88,8 +92,7 @@ export class Userwp {
       .subscribe(
         result => {
           if (!result){
-            console.log(result);
-            //console.log("Error al seguir el evento, la api ha devuelto false");
+            console.log("Error al seguir el evento, la api ha devuelto false/null");
           }else{
             console.log(result);
           }
