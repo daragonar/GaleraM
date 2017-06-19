@@ -1,5 +1,5 @@
 page-detalle-evento {
-    h1, h2, h3, p{
+    h1, h2, h3, p, button{
         font-family: "antic-slab";
     }
 
@@ -35,5 +35,50 @@ page-detalle-evento {
 
     .bggray div{
         margin-bottom: 20px;
+    }
+
+    .header_detail{
+        margin-top: 30px;
+        margin-bottom: 15px;
+        display:block;
+    }
+
+    .category_name{
+        margin-bottom:10px !important;
+    }
+
+    .follow_event{
+        background: none;
+        float: right;
+        font-size: 22pt;
+        vertical-align: top;
+        margin-top: -13px;
+    }
+
+    .follow_event .event_followed, .bggray .event_followed{
+        color: #FFC139;
+    }
+
+    .category_name.accionsocial{
+        background-color: #9c4242;
+    }
+    .category_name.cine, .category_name.musica, .category_name.espectaculos, .category_name.arteyliteratura, .category_name.exposiciones, .category_name.ocio{
+        background-color: #2e606b;
+    }
+    .category_name.charlas-y-conferencias, .category_name.cursos-y-talleres{
+        background-color: #929b8a  ;
+    }
+    .category_name.universidad{
+        background-color: #c5653f;
+    }
+
+    .category_followed.cine, .category_followed.musica, .category_followed.espectaculos, .category_followed.arteyliteratura, .category_followed.exposiciones, .category_followed.ocio{
+        color: #2e606b;
+    }
+    .category_followed.charlas-y-conferencias, .category_followed.cursos-y-talleres{
+        color: #929b8a  ;
+    }
+    .category_followed.universidad{
+        color: #c5653f;
     }
 }

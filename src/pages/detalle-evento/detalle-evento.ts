@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from '@ionic-native/google-maps';
 import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { EventProvider } from "../../providers/event-provider";
+import { Login } from "../login/login";
 import { SocialSharing } from "@ionic-native/social-sharing";
+import { Userwp } from "../../providers/userwp";
+import { UserDataProvider } from "../../providers/user-data";
 
 
 /**
@@ -27,8 +30,11 @@ export class DetalleEvento {
     public navParams: NavParams,
     private eventosService: EventProvider,
     public loadingCtrl: LoadingController,
+    private userWp: Userwp,
+    public userD: UserDataProvider,
     private googleMaps: GoogleMaps,
     private converGeocoder: NativeGeocoder,
+    public AlertMsg: AlertController,
     private socialSharing: SocialSharing) {
     this.loader = this.loadingCtrl.create({
       content: "Cargando evento...",
@@ -57,6 +63,90 @@ export class DetalleEvento {
 
   hideLoading() {
     this.loader.dismiss();
+  }
+
+  followEvent(id, title, start_date, end_date, category) {
+      //Si no está logueado añadir esto
+      if (this.userD.getUserData() != undefined) {
+          this.userWp.setUserEvent(id, title, start_date, end_date, category);
+      } else {
+          // Import the AlertController from ionic package 
+          // Consume it in the constructor as 'alertCtrl' 
+          let alert = this.AlertMsg.create({
+              title: 'La Galera Magazine',
+              message: 'Si quieres guardar tus favoritos no dudes en registrarte o loguearte si ya tienes una cuenta',
+              buttons: [
+                  {
+                      text: 'Cancelar', role: 'cancel',
+                      handler: () => {
+                          console.log('Cancel clicked');
+                      }
+                  }, {
+                      text: 'Login',
+                      handler: () => {
+                          this.navCtrl.push(Login);
+                      }
+                  }
+              ]
+          });
+          alert.present();
+      }
+  }
+
+  isFollowedEvent(id_evento){
+      if (this.userD.getUserEvData()!=undefined) {
+          var eventos = this.userD.getUserEvData();
+          //console.log(eventos);
+          var sw=0;
+          eventos.forEach(element => {
+              if(id_evento==element.id){
+                  sw=1;
+              }
+          });
+          if(sw==1){
+              return true;
+          }else{
+              return false;
+          }
+      }
+  }
+
+followCategory(id_categoria) {
+      //Si no está logueado añadir esto
+      if (this.userD.getUserData() != undefined) {
+          this.userWp.setUserCategory(id_categoria);
+      } else {
+          // Import the AlertController from ionic package 
+          // Consume it in the constructor as 'alertCtrl' 
+          let alert = this.AlertMsg.create({
+              title: 'La Galera Magazine',
+              message: 'Si quieres guardar tus favoritos no dudes en registrarte o loguearte si ya tienes una cuenta',
+              buttons: [
+                  {
+                      text: 'Cancelar', role: 'cancel',
+                      handler: () => {
+                          console.log('Cancel clicked');
+                      }
+                  }, {
+                      text: 'Login',
+                      handler: () => {
+                          this.navCtrl.push(Login);
+                      }
+                  }
+              ]
+          });
+          alert.present();
+      }
+  }
+
+  isFollowedCategory(id_categoria){
+      if (this.userD.getUserData() != undefined) {
+          if(this.userD.getUserCatData().indexOf(id_categoria) != -1){
+              return true;
+          }else{
+              return false;
+          }
+      }
   }
 
   loadMap() {

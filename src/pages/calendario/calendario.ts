@@ -185,7 +185,7 @@ export class Calendario {
     }
 
     isFollowedEvent(id_evento){
-        if (this.userD.getUserEvData().length>0) {
+        if (this.userD.getUserEvData()!=undefined) {
             var eventos = this.userD.getUserEvData();
             //console.log(eventos);
             var sw=0;

@@ -29,7 +29,7 @@ page-calendario {
         color: white;
     }
 
-    ion-item.item_accion-social{
+    ion-item.item_accionsocial{
         border-left: 4px solid #9c4242;
         //border-right: 4px solid #000;
     }
@@ -41,12 +41,13 @@ page-calendario {
         border-left: 4px solid #929b8a  ;
         //border-right: 4px solid #000;
     }
-    ion-item.item_entrevistas{
-        border-left: 4px solid #b99095;
-        //border-right: 4px solid #000;
+
+    ion-item.item_universidad{
+        border-left: #c5653f;
     }
 
-    button.item_accion-social{
+
+    button.item_accionsocial{
         background-color: #9c4242;
         //border-right: 4px solid #000;
     }
@@ -58,9 +59,8 @@ page-calendario {
         background-color: #929b8a  ;
         //border-right: 4px solid #000;
     }
-    button.item_entrevistas{
-        background-color: #b99095;
-        //border-right: 4px solid #000;
+    button.item_universidad{
+        background-color: #c5653f;
     }
 
     .event_followed .item-block{
