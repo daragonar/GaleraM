@@ -12,6 +12,8 @@ import { SafePipe } from '../pipes/safe';
 import { RemoveTags } from '../pipes/remove-tags';
 import { ReversePipe } from "../pipes/reverse";
 import { TruncatePipe } from "../pipes/truncate"
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -91,7 +93,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     InAppBrowser,
     AppAvailability,
     UserDataProvider,
-    NativeStorage
+    NativeStorage,
+    SocialSharing
   ]
 })
 export class AppModule { }

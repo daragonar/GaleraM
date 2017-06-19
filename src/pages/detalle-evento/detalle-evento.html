@@ -13,6 +13,9 @@
 
 
 <ion-content padding>
+  <ion-fab edge right top>
+    <button ion-fab color="danger"(click)="compartir()"><ion-icon name="share" ></ion-icon></button>
+  </ion-fab>
   <p class="date">{{evento.start_date | date:'d MMMM, y' }} ~ {{evento.end_date | date:'d MMMM, y' }}</p>
   <h1 class="title" [innerHTML]="evento.title |safe: 'html'"></h1>
   <img src="{{evento.image.url}}">
