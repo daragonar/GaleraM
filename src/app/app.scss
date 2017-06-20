@@ -29,6 +29,8 @@ ion-title img{
   text-align: center;
 }
 
+    
+
 .tabs-ios .tab-button-icon{
   height: auto!important;
 }
@@ -101,7 +103,9 @@ ion-title img{
     z-index: 999;
     padding: 10px;
 }
-
+.openTabs{
+    z-index: 999;
+}
 .toolbar .button-inner{
   color:white !important;
 }

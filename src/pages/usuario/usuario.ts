@@ -15,6 +15,9 @@ import { UserDataProvider } from "../../providers/user-data";
 })
 export class Usuario {
   user:object;
+  flechaNot: string = "arrow-down";
+  openNot:boolean=false;
+  eventNot: number=0;
   listCategory;
   listEvent;
 
@@ -41,4 +44,9 @@ export class Usuario {
     this.navCtrl.setRoot(Login);
     this.navCtrl.parent.select(1);
   }    
+
+  openNoti(){
+        this.flechaNot = this.flechaNot === 'arrow-down' ? 'arrow-up' : 'arrow-down';
+        this.openNot = this.openNot === false ? true : false;  
+}
 }

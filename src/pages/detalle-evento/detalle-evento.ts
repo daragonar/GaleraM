@@ -46,11 +46,9 @@ export class DetalleEvento {
   compartir() {
     this.socialSharing.share(this.evento.title, "Comparte el evento de La Galera Magazine", this.evento.image.url, this.evento.url).
       then(() => {
-        alert("Sharing success");
-        // Success!
       }).catch(() => {
         // Error!
-        alert("Share failed");
+        alert("Ha fallado al compartir");
       });
   }
   ngAfterViewInit() {

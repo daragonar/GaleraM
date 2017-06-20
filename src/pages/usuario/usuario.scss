@@ -1,11 +1,5 @@
 page-usuario {
 
-.item-md.item-block .item-inner{
-    border:none;
-}
-.notificaciones{
-    border-left: 2px solid #ccc;
-}
  button.item_accion-social{
         background-color: #9c4242;
         //border-right: 4px solid #000;
@@ -39,5 +33,14 @@ page-usuario {
         color: #b99095;
         //border-right: 4px solid #000;
     }
-
+    .userImage{
+        position: absolute;
+        left: 30%;
+        top: 0
+    }
+    .favoritos{
+        position: absolute;
+        left: 45%;
+        top: 0
+    }
 }
