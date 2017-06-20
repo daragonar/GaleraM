@@ -1,25 +1,28 @@
 page-usuario {
+    font-family: "antic-slab";
 
- button.item_accion-social{
-        background-color: #9c4242;
-        //border-right: 4px solid #000;
-        color: #fff;
+    .category_name.accionsocial{background-color: color($colors, accionsocial);}
+    .category_name.cine{background-color: color($colors, cine);}
+    .category_name.musica{background-color: color($colors, musica);}
+    .category_name.espectaculos{background-color: color($colors,espectaculos);}
+    .category_name.arteyliteratura{background-color: color($colors,arteyliteratura);}
+    .category_name.exposiciones{background-color: color($colors,exposiciones);}
+    .category_name.ocio{background-color: color($colors, ocio);}
+    .category_name.charlas-y-conferencias{background-color: color($colors, charlas-y-conferencias);}
+    .category_name.cursos-y-talleres{background-color: color($colors, cursos-y-talleres);}
+    .category_name.universidad{background-color: color($colors, universidad);}
 
+    .category_name{
+        opacity:0.5;
+        color:white;
     }
-    button.item_cine, button.item_musica, button.item_espectaculos, button.item_arte_y_literatura, button.item_exposiciones, button.item_ocio{
-        background-color: #2e606b;
-        color: #fff;
-        //border-right: 4px solid #000;
+
+    .favcat ion-icon{
+        opacity:0.5;
     }
-    button.item_charlas_y_conferencias, button.item_cursos_y_talleres{
-        background-color: #929b8a  ;
-        color: #fff;
-        //border-right: 4px solid #000;
-    }
-    button.item_entrevistas{
-        color: #fff;
-        background-color: #b99095;
-        //border-right: 4px solid #000;
+
+    .category_name.category_followed,.favcat ion-icon.category_followed{
+        opacity:1 !important;
     }
 
     .cat_accionsocial{

@@ -84,20 +84,21 @@ export class Calendario {
                     var eventsCalendar = [];
                     result.events.forEach(function (evento) {
                         console.log(evento);
-                        eventsCalendar.push({
-                            startTime: new Date(evento.start_date.replace(/-/g, '/')),
-                            endTime: new Date(evento.end_date.replace(/-/g, '/')),
-                            title: evento.title,
-                            allDay: evento.all_day,
-                            id: evento.id,
-                            image: (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'),
-                            address: (evento.venue.venue ? evento.venue.venue + ", " + evento.venue.address : ''),
-                            category_id: evento.categories[0].id,
-                            category_slug: evento.categories[0].slug,
-                            category_item_style: "item_" + evento.categories[0].slug,
-                            category_name: evento.categories[0].name,
-                            item: evento
-                        })
+                        if (evento.categories[0]){
+                            eventsCalendar.push({
+                                startTime: new Date(evento.start_date.replace(/-/g, '/')),
+                                endTime: new Date(evento.end_date.replace(/-/g, '/')),
+                                title: evento.title,
+                                allDay: evento.all_day,
+                                id: evento.id,
+                                image: (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'),
+                                address: (evento.venue.venue ? evento.venue.venue + ", " + evento.venue.address : ''),
+                                category_id: evento.categories[0].id,
+                                category_slug: evento.categories[0].slug,
+                                category_name: evento.categories[0].name,
+                                item: evento
+                            })
+                        }
                     });
                     this.eventSource = eventsCalendar;
                     loader.dismiss().then(() => {
@@ -156,10 +157,10 @@ export class Calendario {
         });
     }
 
-    followEvent(id, title, start_date, end_date, category) {
+    followEvent(id, title, start_date, end_date, category, image) {
         //Si no está logueado añadir esto
         if (this.userD.getUserData() != undefined) {
-            this.userWp.setUserEvent(id, title, start_date, end_date, category);
+            this.userWp.setUserEvent(id, title, start_date, end_date, category, image);
         } else {
             // Import the AlertController from ionic package 
             // Consume it in the constructor as 'alertCtrl' 

@@ -38,11 +38,11 @@
               <p><em>{{evento?.venue.city}}, {{evento?.venue.province}} {{evento?.venue.zip}} {{evento?.venue.country}}</em></p>
             </div>
             <div col-6 col-sm>
-              <button ion-button block small [ngClass]="evento.categories[0].slug" class='category_name'>{{evento.categories[0].name}}</button>
+              <button ion-button block small class='category_name' color = {{evento.categories[0].slug}}>{{evento.categories[0].name}}</button>
 
-              <button ion-button block outline color="dark" small (click)="followCategory(evento.categories[0].id)" [ngClass]="isFollowedCategory(evento.categories[0].id) ? 'category_followed '+ evento.categories[0].slug: evento.categories[0].slug"><span [innerHTML]="isFollowedCategory(evento.categories[0].id) ? 'CATEGORÍA SEGUIDA': 'SEGUIR CATEGORÍA'"></span>  <ion-icon [name]="isFollowedCategory(evento.categories[0].id) ? 'heart': 'heart-outline'"></ion-icon></button>
+              <button ion-button block outline color="dark" small (click)="followCategory(evento.categories[0].id)" color = {{evento.categories[0].slug}} [ngClass]="isFollowedCategory(evento.categories[0].id) ? 'category_followed '+ evento.categories[0].slug: evento.categories[0].slug"><span [innerHTML]="isFollowedCategory(evento.categories[0].id) ? 'CATEGORÍA SEGUIDA': 'SEGUIR CATEGORÍA'"></span>  <ion-icon [name]="isFollowedCategory(evento.categories[0].id) ? 'heart': 'heart-outline'"></ion-icon></button>
 
-              <button ion-button block outline color="dark"small (click)="followEvent(evento.id, evento.title, evento.start_date, evento.end_date, evento.categories[0].id)" [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': ''"><span [innerHTML]="isFollowedEvent(evento.id) ? 'EVENTO SEGUIDO': 'SEGUIR EVENTO'"></span>  <ion-icon [name]="isFollowedEvent(evento.id) ? 'star': 'star-outline'"></ion-icon></button>
+              <button ion-button block outline color="dark" small (click)="followEvent(evento.id, evento.title, evento.start_date, evento.end_date, evento.categories[0].id, (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'))" [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': ''"><span [innerHTML]="isFollowedEvent(evento.id) ? 'EVENTO SEGUIDO': 'SEGUIR EVENTO'"></span>  <ion-icon [name]="isFollowedEvent(evento.id) ? 'star': 'star-outline'"></ion-icon></button>
             </div>
             </ion-row>
             <div>

@@ -14,6 +14,7 @@ export class Userwp {
   public ApiURL: string = "http://www.lagaleramagazine.es/app/index.php";
   public userEvents: any;
   public userCats: any;
+  public userImage: any;
 
   constructor(
     public http: Http,
@@ -58,7 +59,7 @@ export class Userwp {
     });
   }
 
-  setUserEvent(id, title, start_date, end_date, category) {
+  setUserEvent(id, title, start_date, end_date, category, image) {
     var eventos = this.userD.getUserEvData();
     var sw=0;
     var i=0;
@@ -76,7 +77,8 @@ export class Userwp {
         'title': encodeURIComponent(title),
         'start_date': start_date,
         'end_date': end_date,
-        'category': category
+        'category': category,
+        'image': image
       };
       eventos.push(evento);
     }
@@ -148,8 +150,8 @@ export class Userwp {
 
  getUserImage(userId) {
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    if (this.userCats) {
-      return Promise.resolve(this.userCats);
+    if (this.userImage) {
+      return Promise.resolve(this.userImage);
     }
     return new Promise(resolve => {
       this.http
@@ -157,8 +159,8 @@ export class Userwp {
         .map(response => response.json())
         .subscribe(
           result => {
-            this.userCats = result;
-            resolve(this.userCats);
+            this.userImage = result;
+            resolve(this.userImage);
           }, error => {
             alert("hubo un error");
           }

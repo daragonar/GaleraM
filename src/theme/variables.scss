@@ -24,12 +24,22 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  rojoGal:    #C51E30
+  primary:                        #488aff,
+  secondary:                      #32db64,
+  danger:                         #f53d3d,
+  light:                          #f4f4f4,
+  dark:                           #222,
+  rojoGal:                        #C51E30,
+  accionsocial:                   #9c4242,
+  cine:                           #2e606b,
+  musica:                         #2e606b,
+  espectaculos:                   #2e606b,
+  arteyliteratura:                #2e606b,
+  exposiciones:                   #2e606b,
+  ocio:                           #2e606b,
+  charlas-y-conferencias:         #929b8a,
+  cursos-y-talleres:              #929b8a,
+  universidad:                    #c5653f
 );
 
 

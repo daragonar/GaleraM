@@ -43,10 +43,6 @@ page-detalle-evento {
         display:block;
     }
 
-    .category_name{
-        margin-bottom:10px !important;
-    }
-
     .follow_event{
         background: none;
         float: right;
@@ -59,26 +55,14 @@ page-detalle-evento {
         color: #FFC139;
     }
 
-    .category_name.accionsocial{
-        background-color: #9c4242;
-    }
-    .category_name.cine, .category_name.musica, .category_name.espectaculos, .category_name.arteyliteratura, .category_name.exposiciones, .category_name.ocio{
-        background-color: #2e606b;
-    }
-    .category_name.charlas-y-conferencias, .category_name.cursos-y-talleres{
-        background-color: #929b8a  ;
-    }
-    .category_name.universidad{
-        background-color: #c5653f;
-    }
-
-    .category_followed.cine, .category_followed.musica, .category_followed.espectaculos, .category_followed.arteyliteratura, .category_followed.exposiciones, .category_followed.ocio{
-        color: #2e606b;
-    }
-    .category_followed.charlas-y-conferencias, .category_followed.cursos-y-talleres{
-        color: #929b8a  ;
-    }
-    .category_followed.universidad{
-        color: #c5653f;
-    }
+    .category_name.accionsocial{background-color: color($colors, accionsocial);}
+    .category_name.cine{background-color: color($colors, cine);}
+    .category_name.musica{background-color: color($colors, musica);}
+    .category_name.espectaculos{background-color: color($colors,espectaculos);}
+    .category_name.arteyliteratura{background-color: color($colors,arteyliteratura);}
+    .category_name.exposiciones{background-color: color($colors,exposiciones);}
+    .category_name.ocio{background-color: color($colors, ocio);}
+    .category_name.charlas-y-conferencias{background-color: color($colors, charlas-y-conferencias);}
+    .category_name.cursos-y-talleres{background-color: color($colors, cursos-y-talleres);}
+    .category_name.universidad{background-color: color($colors, universidad);}
 }

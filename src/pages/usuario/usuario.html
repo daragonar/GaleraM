@@ -49,20 +49,17 @@
             <p>Categorias : {{listCategory?.length}}</p>
           </ion-item>
           <ion-item text-center no-padding no-margin>
-            <p>
-              <ion-icon [ngClass]="'cat_cine'" name="heart"></ion-icon>
-              <ion-icon [ngClass]="'cat_musica'" name="heart"></ion-icon>
-              <!--<ion-icon [ngClass]="'cat_espectaculos'" name="heart"></ion-icon>
-            <ion-icon [ngClass]="'cat_arte_y_literatura'" name="heart"></ion-icon>
-            <ion-icon [ngClass]="'cat_exposiciones'" name="heart"></ion-icon>-->
-              <ion-icon name="heart" style="color:#ccc"></ion-icon>
-              <ion-icon name="heart" style="color:#ccc"></ion-icon>
-              <ion-icon name="heart" style="color:#ccc"></ion-icon>
-              <ion-icon [ngClass]="'cat_ocio'" name="heart"></ion-icon>
-              <ion-icon [ngClass]="'cat_accion_social'" name="heart"></ion-icon>
-              <ion-icon [ngClass]="'cat_vida_universitaria'" name="heart"></ion-icon>
-              <ion-icon [ngClass]="'cat_cursos_y_talleres'" name="heart"></ion-icon>
-              <ion-icon [ngClass]="'cat_charlas_y_conferencias'" name="heart"></ion-icon>
+            <p class='favcat'>
+              <ion-icon name="heart" color="cine" [ngClass]="isFollowedCategory(287) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color="musica" [ngClass]="isFollowedCategory(280) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='espectaculos' [ngClass]="isFollowedCategory(281) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='arteyliteratura' [ngClass]="isFollowedCategory(294) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='exposiciones' [ngClass]="isFollowedCategory(3507) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='ocio' [ngClass]="isFollowedCategory(279) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='accionsocial' [ngClass]="isFollowedCategory(298) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='universidad' [ngClass]="isFollowedCategory(435) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='cursos-y-talleres' [ngClass]="isFollowedCategory(4465) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='charlas-y-conferencias' [ngClass]="isFollowedCategory(4464) ? 'category_followed' : ''"></ion-icon>
             </p>
           </ion-item>
         </ion-list>
@@ -76,7 +73,7 @@
             Categorias
           </ion-list-header>
           <ion-item-group>
-            <button [ngClass]="'item_cine'" full icon-right ion-item margin-vertical (press)="openNoti()" (click)="openCat('cine')" >CINE <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name cine' full icon-right ion-item margin-vertical (press)="followCategory(287)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(287) ? 'category_followed' : ''" >CINE <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='cine'">
               <ion-card-header>
 
@@ -86,7 +83,7 @@
               </ion-card-content>
             </ion-card>
 
-            <button [ngClass]="'item_musica'" full icon-right ion-item margin-vertical>M&Uacute;SICA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name musica' full icon-right ion-item margin-vertical (press)="followCategory(280)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(280) ? 'category_followed' : ''" >MÚSICA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='musica'">
               <ion-card-header>
 
@@ -95,7 +92,7 @@
 
               </ion-card-content>
             </ion-card>
-            <button [ngClass]="'item_espectaculos'" full icon-right ion-item margin-vertical>ESPECT&Aacute;CULOS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name espectaculos' full icon-right ion-item margin-vertical (press)="followCategory(281)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(281) ? 'category_followed' : ''" >ESPECT&Aacute;CULOS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='espectaculos'">
               <ion-card-header>
 
@@ -104,7 +101,7 @@
 
               </ion-card-content>
             </ion-card>
-            <button [ngClass]="'item_arte_y_literatura'" full icon-right ion-item margin-vertical>ARTE Y LITERATURA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name arteyliteratura' full icon-right ion-item margin-vertical (press)="followCategory(294)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(294) ? 'category_followed' : ''">ARTE Y LITERATURA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='arteyliteratura'">
               <ion-card-header>
 
@@ -113,7 +110,7 @@
 
               </ion-card-content>
             </ion-card>
-            <button [ngClass]="'item_exposiciones'" full icon-right ion-item margin-vertical>EXPOSICIONES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name exposiciones' full icon-right ion-item margin-vertical (press)="followCategory(3507)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(3507) ? 'category_followed' : ''">EXPOSICIONES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='exposiciones'">
               <ion-card-header>
 
@@ -122,7 +119,7 @@
 
               </ion-card-content>
             </ion-card>
-            <button [ngClass]="'item_ocio'" full icon-right ion-item margin-vertical>OCIO <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name ocio' full icon-right ion-item margin-vertical (press)="followCategory(279)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(279) ? 'category_followed' : ''">OCIO <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='ocio'">
               <ion-card-header>
 
@@ -131,7 +128,7 @@
 
               </ion-card-content>
             </ion-card>
-            <button [ngClass]="'item_accion_social'" full icon-right ion-item margin-vertical>ACCI&Oacute;N SOCIAL <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name accionsocial' full icon-right ion-item margin-vertical (press)="followCategory(298)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(298) ? 'category_followed' : ''">ACCI&Oacute;N SOCIAL <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='accionsocial'">
               <ion-card-header>
 
@@ -140,7 +137,7 @@
 
               </ion-card-content>
             </ion-card>
-            <button [ngClass]="'item_vida_universitaria'" full icon-right ion-item margin-vertical>VIDA UNIVERSITARIA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name universidad' full icon-right ion-item margin-vertical (press)="followCategory(435)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(435) ? 'category_followed' : ''">VIDA UNIVERSITARIA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='universidad'">
               <ion-card-header>
 
@@ -148,7 +145,7 @@
               <ion-card-content>
 
               </ion-card-content>
-            </ion-card><button [ngClass]="'item_cursos_y_talleres'" full icon-right ion-item margin-vertical>CURSOS Y TALLERES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            </ion-card><button class='category_name cursos-y-talleres' full icon-right ion-item margin-vertical (press)="followCategory(4465)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(4465) ? 'category_followed' : ''">CURSOS Y TALLERES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='cursos-y-talleres'">
               <ion-card-header>
 
@@ -157,7 +154,7 @@
 
               </ion-card-content>
             </ion-card>
-            <button [ngClass]="'item_charlas_y_conferencias'" full icon-right ion-item margin-vertical>CHARLAS Y CONFERENCIAS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name charlas-y-conferencias' full icon-right ion-item margin-vertical (press)="followCategory(4464)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(4464) ? 'category_followed' : ''">CHARLAS Y CONFERENCIAS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='charlas-y-conferencias'">
               <ion-card-header>
 

@@ -63,10 +63,10 @@ export class DetalleEvento {
     this.loader.dismiss();
   }
 
-  followEvent(id, title, start_date, end_date, category) {
+  followEvent(id, title, start_date, end_date, category, image) {
       //Si no está logueado añadir esto
       if (this.userD.getUserData() != undefined) {
-          this.userWp.setUserEvent(id, title, start_date, end_date, category);
+          this.userWp.setUserEvent(id, title, start_date, end_date, category, image);
       } else {
           // Import the AlertController from ionic package 
           // Consume it in the constructor as 'alertCtrl' 
@@ -109,7 +109,7 @@ export class DetalleEvento {
       }
   }
 
-followCategory(id_categoria) {
+    followCategory(id_categoria) {
       //Si no está logueado añadir esto
       if (this.userD.getUserData() != undefined) {
           this.userWp.setUserCategory(id_categoria);
