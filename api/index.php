@@ -144,13 +144,20 @@ $app->get("/delete_user_categories/:id", function($id) use ($app){
     echo json_encode($response);
 });
 
-$app->get("/calendar_events", function() use ($app){
+/*USER META image */
+$app->post("/update_user_image/:id", function($id_user) use ($app){
+    $json = $app->request->post('json');
+    $imagen = json_decode($json, true);
+
+    $response = update_user_meta( $id_user, "imageApp", $imagen);
+    echo json_encode($response);
+});
+
+$app->get("/get_user_image/:id", function($id) use ($app){
     //$json = $app->request->post('json');
     //$data = json_decode($json, true);
 
-    $response = tribe_get_events( array(
- 'posts_per_page' => 250) );
- 
+    $response = get_user_meta( $id,"imageApp" );
     echo json_encode($response);
 });
 

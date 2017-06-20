@@ -36,14 +36,17 @@
     </ion-row>
     <ion-row>
       <ion-col text-wrap>
-        <ion-list  no-padding no-margin>
-          <ion-item>
+        <ion-list no-padding no-margin>
+          <ion-item no-lines>
             <ion-avatar item-left>
-              <img src="https://randomuser.me/api/portraits/lego/5.jpg">
-            </ion-avatar>            
-              <h2>Favoritos</h2>
-              <p>Eventos : {{listEvent?.length}}</p>
-              <p>Categorias : {{listCategory?.length}}</p>
+            <ion-icon small name="ios-brush" tappable (click)="editImagen()" float-right class="openTabs"></ion-icon>
+              <ion-badge item-end></ion-badge>
+              <img [src]="base64Image" *ngIf="base64Image" /> 
+              <img src="https://randomuser.me/api/portraits/lego/5.jpg" *ngIf="!base64Image" />
+            </ion-avatar>
+            <h2>Favoritos</h2>
+            <p>Eventos : {{listEvent?.length}}</p>
+            <p>Categorias : {{listCategory?.length}}</p>
           </ion-item>
           <ion-item text-center no-padding no-margin>
             <p>
@@ -73,18 +76,116 @@
             Categorias
           </ion-list-header>
           <ion-item-group>
-            <button [ngClass]="'item_cine'" text-center ion-item margin-vertical>Cine</button>
-            <button [ngClass]="'item_musica'" text-center ion-item margin-vertical>Música</button>
-            <button [ngClass]="'item_espectaculos'" text-center ion-item margin-vertical>Espectáculos</button>
-            <button [ngClass]="'item_arte_y_literatura'" text-center ion-item margin-vertical>Arte y Literatura</button>
-            <button [ngClass]="'item_exposiciones'" text-center ion-item margin-vertical>Exposiciones</button>
-            <button [ngClass]="'item_ocio'" text-center ion-item margin-vertical>Ocio</button>
-            <button [ngClass]="'item_accion_social'" disabled text-center ion-item margin-vertical>Acción social</button>
-            <button [ngClass]="'item_vida_universitaria'" disabled text-center ion-item margin-vertical>Vida universitaria</button>
-            <button [ngClass]="'item_cursos_y_talleres'" disabled text-center ion-item margin-vertical>Cursos y Talleres</button>
-            <button [ngClass]="'item_charlas_y_conferencias'" text-center ion-item margin-vertical>Charlas y conferencias</button>
+            <button [ngClass]="'item_cine'" full icon-right ion-item margin-vertical (press)="openNoti()" (click)="openCat('cine')" >CINE <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='cine'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card>
+
+            <button [ngClass]="'item_musica'" full icon-right ion-item margin-vertical>M&Uacute;SICA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='musica'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card>
+            <button [ngClass]="'item_espectaculos'" full icon-right ion-item margin-vertical>ESPECT&Aacute;CULOS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='espectaculos'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card>
+            <button [ngClass]="'item_arte_y_literatura'" full icon-right ion-item margin-vertical>ARTE Y LITERATURA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='arteyliteratura'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card>
+            <button [ngClass]="'item_exposiciones'" full icon-right ion-item margin-vertical>EXPOSICIONES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='exposiciones'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card>
+            <button [ngClass]="'item_ocio'" full icon-right ion-item margin-vertical>OCIO <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='ocio'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card>
+            <button [ngClass]="'item_accion_social'" full icon-right ion-item margin-vertical>ACCI&Oacute;N SOCIAL <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='accionsocial'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card>
+            <button [ngClass]="'item_vida_universitaria'" full icon-right ion-item margin-vertical>VIDA UNIVERSITARIA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='universidad'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card><button [ngClass]="'item_cursos_y_talleres'" full icon-right ion-item margin-vertical>CURSOS Y TALLERES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='cursos-y-talleres'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card>
+            <button [ngClass]="'item_charlas_y_conferencias'" full icon-right ion-item margin-vertical>CHARLAS Y CONFERENCIAS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <ion-card *ngIf="categoria=='charlas-y-conferencias'">
+              <ion-card-header>
+
+              </ion-card-header>
+              <ion-card-content>
+
+              </ion-card-content>
+            </ion-card>
           </ion-item-group>
         </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+<ion-list>
+  <ion-list-header>
+    EVENTOS QUE SIGUES
+  </ion-list-header>
+  <ion-item-group>
+    <ion-item no-lines *ngIf="listEvent.lenght==0">
+        Actualmente no sigues ning&uacute;n evento
+    </ion-item>
+    <ion-item no-lines *ngFor="let evento of listEvent" tappable (click)="eventSelected(evento)" > 
+      <p></p>
+      <p [innerHTML]="evento.title"></p>
+    </ion-item>
+  </ion-item-group>
+</ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>

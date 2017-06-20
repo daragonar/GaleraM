@@ -145,6 +145,43 @@ export class Userwp {
       );
   }
 
+
+ getUserImage(userId) {
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    if (this.userCats) {
+      return Promise.resolve(this.userCats);
+    }
+    return new Promise(resolve => {
+      this.http
+        .get(this.ApiURL + "/get_user_image/" + userId, { headers: headers })
+        .map(response => response.json())
+        .subscribe(
+          result => {
+            this.userCats = result;
+            resolve(this.userCats);
+          }, error => {
+            alert("hubo un error");
+          }
+        );
+    });
+  }
+
+  setUserImage(image64) {
+    let userId = this.userD.getUserData()["ID"];
+    let json = JSON.stringify(image64);
+    let params = 'json=' + json;
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+
+    return this.http.post(this.ApiURL + "/update_user_image/"+userId, params, { headers: headers })
+      .map(res => res.json())      
+      .subscribe(
+        result => {
+          if (!result){
+            console.log("Error al actualizar la imagen, la api ha devuelto false");
+          }
+        }
+      );
+  }
   /*lostpass() {
     return this.http
       .get('http://www.lagaleramagazine.es/wp-login.php?action=lostpassword')

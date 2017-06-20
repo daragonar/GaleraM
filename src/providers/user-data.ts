@@ -12,6 +12,7 @@ export class UserDataProvider {
 private user:any;
 private favEv:any;
 private favCat:any;
+private image:any;
   constructor() {
   }
 
@@ -32,5 +33,11 @@ setUserCatData(data){
 }
 getUserCatData(){
   return this.favCat
+}
+setUserImage(data){
+  this.image=data;
+}
+getUserImage(){
+  return this.image
 }
 }

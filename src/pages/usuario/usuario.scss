@@ -3,16 +3,21 @@ page-usuario {
  button.item_accion-social{
         background-color: #9c4242;
         //border-right: 4px solid #000;
+        color: #fff;
+
     }
     button.item_cine, button.item_musica, button.item_espectaculos, button.item_arte_y_literatura, button.item_exposiciones, button.item_ocio{
         background-color: #2e606b;
+        color: #fff;
         //border-right: 4px solid #000;
     }
     button.item_charlas_y_conferencias, button.item_cursos_y_talleres{
         background-color: #929b8a  ;
+        color: #fff;
         //border-right: 4px solid #000;
     }
     button.item_entrevistas{
+        color: #fff;
         background-color: #b99095;
         //border-right: 4px solid #000;
     }

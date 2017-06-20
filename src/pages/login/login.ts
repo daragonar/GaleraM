@@ -140,7 +140,13 @@ export class Login {
               console.log("por aqui no!");
             }
           });
-
+          this.userWp.getUserImage(result.data.ID).then(data => {
+            console.log(data)
+            if (data[0]) {
+              this.userD.setUserImage(data[0]);
+            }
+            
+          });
           this.userWp.getUserCategories(result.data.ID).then(data => {
             if (data[0]) {
               this.userD.setUserCatData(data[0]);
