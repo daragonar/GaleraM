@@ -267,10 +267,19 @@
     <ion-item no-lines *ngIf="listEvent.lenght==0">
         Actualmente no sigues ning&uacute;n evento
     </ion-item>
-    <ion-item no-lines *ngFor="let evento of listEvent" tappable (click)="eventSelected(evento)" > 
-      <p></p>
-      <p [innerHTML]="evento.title"></p>
-    </ion-item>
+    <ion-item *ngFor="let evento of listEvent" tappable (click)="eventTapped($event, evento)">
+        <ion-thumbnail item-left>
+          <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+        </ion-thumbnail>
+        <span class="date">
+          {{evento.start_date|date:'d MMMM, y'}}
+        </span>
+        <span *ngIf="evento.end_date != evento.start_date" class="date">
+          ~ {{evento.end_date|date:'d MMMM, y'}}
+        </span>
+        <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+        <p>{{evento.address}}</p>        
+      </ion-item>
   </ion-item-group>
 </ion-list>
       </ion-col>

@@ -87,13 +87,15 @@ export class Usuario {
 
     openCat(category) {
         this.EventosLista = [];
-        this.categoria = category;
-        this.eventosService.getEventsByCategory(this.categoria).subscribe(
-            result => {
-                console.log(result.events);
-                this.EventosLista = result.events;
-            }
-        )
+        this.categoria = this.categoria === undefined ? category : undefined;
+        if(this.categoria!=undefined){
+            this.eventosService.getEventsByCategory(this.categoria).subscribe(
+                result => {
+                    console.log(result.events);
+                    this.EventosLista = result.events;
+                }
+            )
+        }
     }
 
     eventTapped(event, item) {
