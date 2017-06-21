@@ -18,7 +18,7 @@
   </ion-fab>
   <div class="header_detail">
       <span class="date">{{evento.start_date | date:'d MMMM, y' }} ~ {{evento.end_date | date:'d MMMM, y' }}</span>
-      <button class="follow_event" (click)="followEvent(evento.id, evento.title, evento.start_date, evento.end_date, evento.categories[0].id)"><ion-icon [name]="isFollowedEvent(evento.id) ? 'star': 'star-outline'" [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': ''"></ion-icon></button>
+      <button class="follow_event" (click)="followEvent(evento.id, evento.title, evento.start_date, evento.end_date, evento.categories[0].id, (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'))"><ion-icon [name]="isFollowedEvent(evento.id) ? 'star': 'star-outline'" [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': ''"></ion-icon></button>
   </div>
   <h1 class="title" [innerHTML]="evento.title |safe: 'html'"></h1>
   <img src="{{evento.image.url}}">

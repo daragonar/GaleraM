@@ -269,7 +269,7 @@
     </ion-item>
     <ion-item *ngFor="let evento of listEvent" tappable (click)="eventTapped($event, evento)">
         <ion-thumbnail item-left>
-          <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+          <img [src]="evento.image ? evento.image : 'assets/img/thumb.png'">
         </ion-thumbnail>
         <span class="date">
           {{evento.start_date|date:'d MMMM, y'}}
