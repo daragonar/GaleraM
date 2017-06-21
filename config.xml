@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionicframework.galeramock927293" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>GaleraMock</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <name>La Galera Magazine</name>
+    <description>Sigue los eventos de Badajoz con la aplicación de La Galera Magazine</description>
+    <author email="hola@albertomerino.com" href="https://albertomerino.com/">Alberto Merino and David Jurado</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
