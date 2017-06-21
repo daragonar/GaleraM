@@ -50,16 +50,16 @@
           </ion-item>
           <ion-item text-center no-padding no-margin>
             <p class='favcat'>
-              <ion-icon name="heart" color="cine" [ngClass]="isFollowedCategory(287) ? 'category_followed' : ''"></ion-icon>
-              <ion-icon name="heart" color="musica" [ngClass]="isFollowedCategory(280) ? 'category_followed' : ''"></ion-icon>
-              <ion-icon name="heart" color='espectaculos' [ngClass]="isFollowedCategory(281) ? 'category_followed' : ''"></ion-icon>
-              <ion-icon name="heart" color='arteyliteratura' [ngClass]="isFollowedCategory(294) ? 'category_followed' : ''"></ion-icon>
-              <ion-icon name="heart" color='exposiciones' [ngClass]="isFollowedCategory(3507) ? 'category_followed' : ''"></ion-icon>
-              <ion-icon name="heart" color='ocio' [ngClass]="isFollowedCategory(279) ? 'category_followed' : ''"></ion-icon>
-              <ion-icon name="heart" color='accionsocial' [ngClass]="isFollowedCategory(298) ? 'category_followed' : ''"></ion-icon>
-              <ion-icon name="heart" color='universidad' [ngClass]="isFollowedCategory(435) ? 'category_followed' : ''"></ion-icon>
-              <ion-icon name="heart" color='cursos-y-talleres' [ngClass]="isFollowedCategory(4465) ? 'category_followed' : ''"></ion-icon>
-              <ion-icon name="heart" color='charlas-y-conferencias' [ngClass]="isFollowedCategory(4464) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color="cine" (click)="followCategory(287)" [ngClass]="isFollowedCategory(287) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color="musica" (click)="followCategory(280)" [ngClass]="isFollowedCategory(280) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='espectaculos' (click)="followCategory(281)" [ngClass]="isFollowedCategory(281) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='arteyliteratura' (click)="followCategory(294)" [ngClass]="isFollowedCategory(294) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='exposiciones' (click)="followCategory(3507)" [ngClass]="isFollowedCategory(3507) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='ocio' (click)="followCategory(279)" [ngClass]="isFollowedCategory(279) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='accionsocial' (click)="followCategory(298)" [ngClass]="isFollowedCategory(298) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='universidad' (click)="followCategory(435)" [ngClass]="isFollowedCategory(435) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='cursos-y-talleres' (click)="followCategory(4465)" [ngClass]="isFollowedCategory(4465) ? 'category_followed' : ''"></ion-icon>
+              <ion-icon name="heart" color='charlas-y-conferencias' (click)="followCategory(4464)" [ngClass]="isFollowedCategory(4464) ? 'category_followed' : ''"></ion-icon>
             </p>
           </ion-item>
         </ion-list>
@@ -70,97 +70,187 @@
       <ion-col>
         <ion-list>
           <ion-list-header>
-            Categorias
+            <h2 text-center>CATEGORÍAS</h2>
           </ion-list-header>
           <ion-item-group>
             <button class='category_name cine' full icon-right ion-item margin-vertical (press)="followCategory(287)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(287) ? 'category_followed' : ''" >CINE <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='cine'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
             </ion-card>
 
-            <button class='category_name musica' full icon-right ion-item margin-vertical (press)="followCategory(280)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(280) ? 'category_followed' : ''" >MÚSICA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name musica' full icon-right ion-item margin-vertical (press)="followCategory(280)" (click)="openCat('musica')" [ngClass]="isFollowedCategory(280) ? 'category_followed' : ''" >MÚSICA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='musica'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
             </ion-card>
-            <button class='category_name espectaculos' full icon-right ion-item margin-vertical (press)="followCategory(281)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(281) ? 'category_followed' : ''" >ESPECT&Aacute;CULOS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name espectaculos' full icon-right ion-item margin-vertical (press)="followCategory(281)" (click)="openCat('espectaculos')" [ngClass]="isFollowedCategory(281) ? 'category_followed' : ''" >ESPECT&Aacute;CULOS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='espectaculos'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
             </ion-card>
-            <button class='category_name arteyliteratura' full icon-right ion-item margin-vertical (press)="followCategory(294)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(294) ? 'category_followed' : ''">ARTE Y LITERATURA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name arteyliteratura' full icon-right ion-item margin-vertical (press)="followCategory(294)" (click)="openCat('arteyliteratura')" [ngClass]="isFollowedCategory(294) ? 'category_followed' : ''">ARTE Y LITERATURA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='arteyliteratura'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
             </ion-card>
-            <button class='category_name exposiciones' full icon-right ion-item margin-vertical (press)="followCategory(3507)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(3507) ? 'category_followed' : ''">EXPOSICIONES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name exposiciones' full icon-right ion-item margin-vertical (press)="followCategory(3507)" (click)="openCat('exposiciones')" [ngClass]="isFollowedCategory(3507) ? 'category_followed' : ''">EXPOSICIONES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='exposiciones'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
             </ion-card>
-            <button class='category_name ocio' full icon-right ion-item margin-vertical (press)="followCategory(279)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(279) ? 'category_followed' : ''">OCIO <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name ocio' full icon-right ion-item margin-vertical (press)="followCategory(279)" (click)="openCat('ocio')" [ngClass]="isFollowedCategory(279) ? 'category_followed' : ''">OCIO <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='ocio'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
             </ion-card>
-            <button class='category_name accionsocial' full icon-right ion-item margin-vertical (press)="followCategory(298)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(298) ? 'category_followed' : ''">ACCI&Oacute;N SOCIAL <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name accionsocial' full icon-right ion-item margin-vertical (press)="followCategory(298)" (click)="openCat('accionsocial')" [ngClass]="isFollowedCategory(298) ? 'category_followed' : ''">ACCI&Oacute;N SOCIAL <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='accionsocial'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
             </ion-card>
-            <button class='category_name universidad' full icon-right ion-item margin-vertical (press)="followCategory(435)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(435) ? 'category_followed' : ''">VIDA UNIVERSITARIA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name universidad' full icon-right ion-item margin-vertical (press)="followCategory(435)" (click)="openCat('universidad')" [ngClass]="isFollowedCategory(435) ? 'category_followed' : ''">VIDA UNIVERSITARIA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='universidad'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
-            </ion-card><button class='category_name cursos-y-talleres' full icon-right ion-item margin-vertical (press)="followCategory(4465)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(4465) ? 'category_followed' : ''">CURSOS Y TALLERES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            </ion-card><button class='category_name cursos-y-talleres' full icon-right ion-item margin-vertical (press)="followCategory(4465)" (click)="openCat('cursos-y-talleres')" [ngClass]="isFollowedCategory(4465) ? 'category_followed' : ''">CURSOS Y TALLERES <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='cursos-y-talleres'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
             </ion-card>
-            <button class='category_name charlas-y-conferencias' full icon-right ion-item margin-vertical (press)="followCategory(4464)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(4464) ? 'category_followed' : ''">CHARLAS Y CONFERENCIAS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name charlas-y-conferencias' full icon-right ion-item margin-vertical (press)="followCategory(4464)" (click)="openCat('charlas-y-conferencias')" [ngClass]="isFollowedCategory(4464) ? 'category_followed' : ''">CHARLAS Y CONFERENCIAS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='charlas-y-conferencias'">
-              <ion-card-header>
-
-              </ion-card-header>
               <ion-card-content>
-
+                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                  <ion-thumbnail item-left>
+                    <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
+                  </ion-thumbnail>
+                  <span class="date">
+                    {{evento.start_date|date:'d MMMM, y'}}
+                  </span>
+                  <span *ngIf="evento.end_date != evento.start_date" class="date">
+                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                  </span>
+                  <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
+                  <p>{{evento.address}}</p>        
+                </ion-item>
               </ion-card-content>
             </ion-card>
           </ion-item-group>

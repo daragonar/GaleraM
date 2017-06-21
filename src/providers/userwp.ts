@@ -50,7 +50,7 @@ export class Userwp {
         .map(response => response.json())
         .subscribe(
           result => {
-            this.userEvents = result;
+            this.userEvents = result[0];
             resolve(this.userEvents);
           }, error => {
             alert("hubo un error");
@@ -112,7 +112,7 @@ export class Userwp {
         .map(response => response.json())
         .subscribe(
           result => {
-            this.userCats = result;
+            this.userCats = result[0];
             resolve(this.userCats);
           }, error => {
             alert("hubo un error");
@@ -159,7 +159,7 @@ export class Userwp {
         .map(response => response.json())
         .subscribe(
           result => {
-            this.userImage = result;
+            this.userImage = result[0];
             resolve(this.userImage);
           }, error => {
             alert("hubo un error");

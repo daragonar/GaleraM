@@ -51,4 +51,9 @@ page-usuario {
         left: 45%;
         top: 0
     }
+
+    ion-card, ion-card-content{
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 }

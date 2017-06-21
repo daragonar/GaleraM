@@ -125,35 +125,37 @@ export class Login {
         if (result.code == 200) {
           if (this.Login.value.remember == true) {
             this.store(this.Login.value)
-            console.log('esta en true');
           } else {
             this.deleteStore()
           }
           this.userWp.getUserEvents(result.data.ID).then(data => {
-            if (data[0]) {
-              this.userD.setUserEvData(data[0]);
-              console.log(data[0]);
+            if (data) {
+              this.userD.setUserEvData(data);
+              console.log(data);
             }
             else {
               let userEvFav = [];
               this.userD.setUserEvData(userEvFav);
-              console.log("por aqui no!");
+              console.log("No hay eventos!");
             }
           });
           this.userWp.getUserImage(result.data.ID).then(data => {
-            console.log(data)
-            if (data[0]) {
-              this.userD.setUserImage(data[0]);
+            if (data) {
+              this.userD.setUserImage(data);
+            }else{
+              console.log("No hay avatar!");
             }
-            
           });
+
           this.userWp.getUserCategories(result.data.ID).then(data => {
-            if (data[0]) {
-              this.userD.setUserCatData(data[0]);
+            if (data) {
+              this.userD.setUserCatData(data);
+              console.log(data);
             }
             else {
               let userCatFav = [];
               this.userD.setUserCatData(userCatFav);
+              console.log("No hay categorías!");
             }
           });
 

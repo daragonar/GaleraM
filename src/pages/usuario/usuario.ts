@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Login } from "../login/login";
+import { DetalleEvento } from "../detalle-evento/detalle-evento";
 import { Userwp } from "../../providers/userwp";
+import { EventProvider } from "../../providers/event-provider";
 import { UserDataProvider } from "../../providers/user-data";
 /**
  * Generated class for the Usuario page.
@@ -15,6 +17,7 @@ import { UserDataProvider } from "../../providers/user-data";
     templateUrl: 'usuario.html'
 })
 export class Usuario {
+    public EventosLista: Array<string>;
     user: object;
     flechaNot: string = "ios-arrow-down";
     openNot: boolean = false;
@@ -28,6 +31,7 @@ export class Usuario {
         private userWp: Userwp,
         public navCtrl: NavController,
         public navParams: NavParams,
+        private eventosService: EventProvider,
         public userD: UserDataProvider,
         public AlertMsg: AlertController) {
         this.user = navParams.get('info');
@@ -81,9 +85,22 @@ export class Usuario {
         this.openNot = this.openNot === false ? true : false;
     }
 
-    openCat(cat) {
-        console.log(this.categoria)
-        this.categoria = this.categoria === undefined ? cat : undefined;;
+    openCat(category) {
+        this.EventosLista = [];
+        this.categoria = category;
+        this.eventosService.getEventsByCategory(this.categoria).subscribe(
+            result => {
+                console.log(result.events);
+                this.EventosLista = result.events;
+            }
+        )
+    }
+
+    eventTapped(event, item) {
+        // That's right, we're pushing to ourselves!
+        this.navCtrl.push(DetalleEvento, {
+        item: item
+        });
     }
 
     followCategory(id_categoria) {
