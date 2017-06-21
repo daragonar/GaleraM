@@ -10,9 +10,17 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class EventProvider {
-public ApiURL:string  = "https://www.lagaleramagazine.es/wp-json";
+  public today:any = new Date();
+  public ApiURL:string  = "https://www.lagaleramagazine.es/wp-json";
   constructor(public http: Http) {
     //console.log('Hello EventProvider Provider');
+    this.today = new Date();
+    var dd:any = this.today.getDate();
+    var mm:any = this.today.getMonth()+1; //January is 0!
+    var yyyy = this.today.getFullYear();
+    if(dd<10) {dd = '0'+dd} 
+    if(mm<10) {mm = '0'+mm} 
+    this.today = yyyy + '-' + mm + '-' + dd;
   }
 
   getEvents( date, perPage=50){
@@ -36,8 +44,8 @@ getEventsByRangeDate(sdate, edate , page=1, perPage=500){
     return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+sdate+"&end_date="+edate+"&per_page="+perPage+"&page="+page).map(res => res.json());
 }
 
-getEventsByCategory(category){
- return this.http.get(this.ApiURL+"/tribe/events/v1/events/?categories="+category).map(res => res.json());
+getEventsByCategory(category, sdate=this.today){
+  return this.http.get(this.ApiURL+"/tribe/events/v1/events/?categories="+category+"&start_date="+sdate).map(res => res.json());
 }
 getEventsSearch(search){
     return this.http.get(this.ApiURL+"/tribe/events/v1/events/?search="+search).map(res => res.json());
