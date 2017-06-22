@@ -74,7 +74,7 @@ export class Userwp {
     if(sw==0){
       var evento = {
         'id': id,
-        'title': encodeURIComponent(title),
+        'title': title,
         'start_date': start_date,
         'end_date': end_date,
         'category': category,
@@ -83,7 +83,7 @@ export class Userwp {
       eventos.push(evento);
     }
     let userId = this.userD.getUserData()["ID"];
-    let json = JSON.stringify(eventos);
+    let json = encodeURIComponent(JSON.stringify(eventos));
     let params = 'json=' + json;
 
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });

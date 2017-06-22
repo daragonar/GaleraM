@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController,  LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Login } from "../login/login";
 import { DetalleEvento } from "../detalle-evento/detalle-evento";
@@ -32,6 +32,7 @@ export class Usuario {
     constructor(
         private userWp: Userwp,
         public navCtrl: NavController,
+        public loadingCtrl: LoadingController,
         public navParams: NavParams,
         private eventosService: EventProvider,
         public userD: UserDataProvider,
@@ -74,17 +75,20 @@ export class Usuario {
             buttons: [
                 {
                     text: 'Cancelar', role: 'cancel',
+                    icon: 'close',
                     handler: () => {
                         console.log('Cancel clicked');
                     }
                 }, {
-                    text: 'Camara',
+                    text: 'Desde la cámara',
+                    icon: 'camera',
                     handler: () => {
                         this.getPicture(this.camera.PictureSourceType.CAMERA);
                     }
                 },
                 {
-                    text: 'Galeria',
+                    text: 'Desde la galería',
+                    icon: 'image',
                     handler: () => {
                         this.getPicture(this.camera.PictureSourceType.PHOTOLIBRARY);
                     }
@@ -121,19 +125,36 @@ export class Usuario {
     openCat(category) {
         this.EventosLista = [];
         this.categoria = this.categoria === undefined ? category : undefined;
+
         if (this.categoria != undefined) {
-            this.eventosService.getEventsByCategory(this.categoria).subscribe(
-                result => {
-                    this.EventosLista = result.events;
-                }
-            )
+            let loader = this.loadingCtrl.create({
+                content: "Obteniendo Eventos...",
+            });
+            loader.present().then(() => {
+                this.eventosService.getEventsByCategory(this.categoria).subscribe(
+                    result => {
+                        this.EventosLista = result.events;
+                        loader.dismiss();
+                    }
+                )
+            });
         }
     }
 
     eventTapped(event, item) {
         // That's right, we're pushing to ourselves!
-        this.navCtrl.push(DetalleEvento, {
-            item: item
+        let loader = this.loadingCtrl.create({
+            content: "Cargando evento...",
+        });
+        loader.present().then(() => {
+            this.eventosService.getEvent(item.id).subscribe(
+                result => {
+                    this.navCtrl.push(DetalleEvento, {
+                        item: result
+                    });
+                    loader.dismiss();
+                }
+            );
         });
     }
 
