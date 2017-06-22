@@ -17,7 +17,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       //statusBar.styleDefault();
       statusBar.styleDefault();
-      statusBar.backgroundColorByHexString('#ffffff');
+      statusBar.backgroundColorByHexString('#000');
 
       splashScreen.hide();
     });
