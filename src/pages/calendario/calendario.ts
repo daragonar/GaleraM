@@ -20,7 +20,7 @@ import { UserDataProvider } from "../../providers/user-data";
 
 })
 export class Calendario {
-    eventSource;
+    eventSource:any=[];
     loader;
     viewTitle;
     isToday: boolean;
@@ -61,33 +61,39 @@ export class Calendario {
     cargarEventos(date1, date2) {
         var sdate = date1.getUTCFullYear() + "/" + (date1.getUTCMonth() + 1) + "/" + date1.getUTCDate() + " 00:00:00";
         var edate = date2.getUTCFullYear() + "/" + (date2.getUTCMonth() + 1) + "/" + date2.getUTCDate() + " 23:59:59";
-
         let loader = this.loadingCtrl.create({
             content: "Obteniendo Eventos...",
         });
         loader.present().then(() => {
             this.eventosService.getEventsByRangeDate(sdate, edate).subscribe(
                 result => {
-                    var eventsCalendar = [];
-                    result.events.forEach(function (evento) {
-                        console.log(evento);
-                        if (evento.categories[0]){
-                            eventsCalendar.push({
-                                startTime: new Date(evento.start_date.replace(/-/g, '/')),
-                                endTime: new Date(evento.end_date.replace(/-/g, '/')),
-                                title: evento.title,
-                                allDay: evento.all_day,
-                                id: evento.id,
-                                image: (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'),
-                                address: (evento.venue.venue ? evento.venue.venue + ", " + evento.venue.address : ''),
-                                category_id: evento.categories[0].id,
-                                category_slug: evento.categories[0].slug,
-                                category_name: evento.categories[0].name,
-                                item: evento
-                            })
-                        }
-                    });
-                    this.eventSource = eventsCalendar;
+                    var totPag = result.total_pages;
+                    for (var pag = 1; pag <= totPag; pag++) {
+                        this.eventosService.getEventsByRangeDateSum(sdate, edate, pag).subscribe(resultSum => {
+                            var eventsCalendar = [];
+                            resultSum.events.forEach(function (evento) {
+                                console.log(evento);
+                                eventsCalendar.push({
+                                    startTime: new Date(evento.start_date.replace(/-/g, '/')),
+                                    endTime: new Date(evento.end_date.replace(/-/g, '/')),
+                                    title: evento.title,
+                                    allDay: evento.all_day,
+                                    id: evento.id,
+                                    image: (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'),
+                                    address: (evento.venue.venue ? evento.venue.venue + ", " + evento.venue.address : ''),
+                                    category_id: evento.categories[0].id,
+                                    category_slug: evento.categories[0].slug,
+                                    category_item_style: "item_" + evento.categories[0].slug,
+                                    category_name: evento.categories[0].name,
+                                    item: evento
+                                })
+                            });
+                            this.eventSource = this.eventSource.concat(eventsCalendar);
+                    loader.dismiss().then(() => {
+                        console.log("Loading dismissed");
+                    });    
+                    })
+                    }
                     loader.dismiss().then(() => {
                         console.log("Loading dismissed");
                     });
