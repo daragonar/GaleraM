@@ -20,7 +20,7 @@ import { UserDataProvider } from "../../providers/user-data";
 
 })
 export class Calendario {
-    eventSource:any=[];
+    eventSource: any = [];
     loader;
     viewTitle;
     isToday: boolean;
@@ -72,7 +72,7 @@ export class Calendario {
                         this.eventosService.getEventsByRangeDateSum(sdate, edate, pag).subscribe(resultSum => {
                             var eventsCalendar = [];
                             resultSum.events.forEach(function (evento) {
-                                console.log(evento);
+
                                 eventsCalendar.push({
                                     startTime: new Date(evento.start_date.replace(/-/g, '/')),
                                     endTime: new Date(evento.end_date.replace(/-/g, '/')),
@@ -89,14 +89,18 @@ export class Calendario {
                                 })
                             });
                             this.eventSource = this.eventSource.concat(eventsCalendar);
-                    loader.dismiss().then(() => {
-                        console.log("Loading dismissed");
-                    });    
-                    })
+                            if (this.eventSource.length == resultSum.total)
+                            {
+                                loader.dismiss().then(() => {
+                                    console.log("Loading dismissed");
+                                });
+                            }
+                        },error=>{
+                                alert("Ha habido un error en la carga de eventos")
+                                loader.dismiss().then(() => {
+                                    console.log("Loading dismissed");
+                                });})
                     }
-                    loader.dismiss().then(() => {
-                        console.log("Loading dismissed");
-                    });
                 }
             )
         });
@@ -136,19 +140,19 @@ export class Calendario {
         }
     }
 
-    isFollowedEvent(id_evento){
-        if (this.userD.getUserEvData()!=undefined) {
+    isFollowedEvent(id_evento) {
+        if (this.userD.getUserEvData() != undefined) {
             var eventos = this.userD.getUserEvData();
             //console.log(eventos);
-            var sw=0;
+            var sw = 0;
             eventos.forEach(element => {
-                if(id_evento==element.id){
-                    sw=1;
+                if (id_evento == element.id) {
+                    sw = 1;
                 }
             });
-            if(sw==1){
+            if (sw == 1) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
@@ -182,11 +186,11 @@ export class Calendario {
         }
     }
 
-    isFollowedCategory(id_categoria){
+    isFollowedCategory(id_categoria) {
         if (this.userD.getUserData() != undefined) {
-            if(this.userD.getUserCatData().indexOf(id_categoria) != -1){
+            if (this.userD.getUserCatData().indexOf(id_categoria) != -1) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
