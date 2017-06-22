@@ -7,6 +7,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppAvailability } from '@ionic-native/app-availability';
 import { Device } from '@ionic-native/device';
+import { Camera } from '@ionic-native/camera';
 import { MyApp } from './app.component';
 import { SafePipe } from '../pipes/safe';
 import { RemoveTags } from '../pipes/remove-tags';
@@ -90,6 +91,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     NativeGeocoder,
     GoogleMaps,
     Device,
+    Camera,
     InAppBrowser,
     AppAvailability,
     UserDataProvider,

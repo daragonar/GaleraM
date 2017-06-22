@@ -81,6 +81,9 @@ export class Login {
   }
 
   ionViewWillEnter() {
+    console.log("muesta datos del logout");
+    console.log(this.userD.getUserData());
+    console.log(this.userD.getUserImage());
     if (this.storeData != null) {
       this.Login.controls['user'].setValue(this.storeData.user);
       this.Login.controls['pass'].setValue(this.storeData.pass);
@@ -112,13 +115,12 @@ export class Login {
   }
 
   logForm() {
+    
     let loading = this.loadingCtrl.create({
     content: 'Iniciando sesión...'
     });
 
   loading.present();
-
-    this.store(this.Login.value)
     this.userWp.userLogin(this.Login.value).subscribe(
       result => {
         this.userD.setUserData(result.data);
@@ -129,9 +131,9 @@ export class Login {
             this.deleteStore()
           }
           this.userWp.getUserEvents(result.data.ID).then(data => {
+            console.log("entra en getUserEvents");
             if (data) {
               this.userD.setUserEvData(data);
-              console.log(data);
             }
             else {
               let userEvFav = [];
@@ -148,6 +150,7 @@ export class Login {
           });
 
           this.userWp.getUserCategories(result.data.ID).then(data => {
+            console.log("entra en getUserCategories");
             if (data) {
               this.userD.setUserCatData(data);
               console.log(data);
@@ -172,7 +175,7 @@ export class Login {
 
           setTimeout(() => {
             loading.dismiss();
-          }, 1000);
+          }, 500);
         }
       }
     )

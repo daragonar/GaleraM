@@ -41,9 +41,9 @@ export class Userwp {
 
   getUserEvents(userId) {
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    if (this.userEvents) {
+   /* if (this.userEvents) {
       return Promise.resolve(this.userEvents);
-    }
+    }*/
     return new Promise(resolve => {
       this.http
         .get(this.ApiURL + "/get_user_events/" + userId, { headers: headers })
@@ -103,9 +103,9 @@ export class Userwp {
 
   getUserCategories(userId) {
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    if (this.userCats) {
+    /*if (this.userCats) {
       return Promise.resolve(this.userCats);
-    }
+    }*/
     return new Promise(resolve => {
       this.http
         .get(this.ApiURL + "/get_user_categories/" + userId, { headers: headers })
@@ -150,9 +150,9 @@ export class Userwp {
 
  getUserImage(userId) {
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    if (this.userImage) {
+    /*if (this.userImage) {
       return Promise.resolve(this.userImage);
-    }
+    }*/
     return new Promise(resolve => {
       this.http
         .get(this.ApiURL + "/get_user_image/" + userId, { headers: headers })
@@ -172,12 +172,14 @@ export class Userwp {
     let userId = this.userD.getUserData()["ID"];
     let json = JSON.stringify(image64);
     let params = 'json=' + json;
+    //let params = 'json=' + image64;
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
     return this.http.post(this.ApiURL + "/update_user_image/"+userId, params, { headers: headers })
       .map(res => res.json())      
       .subscribe(
         result => {
+          console.log(result)
           if (!result){
             console.log("Error al actualizar la imagen, la api ha devuelto false");
           }
