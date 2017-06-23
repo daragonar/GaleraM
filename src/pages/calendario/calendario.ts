@@ -59,6 +59,7 @@ export class Calendario {
     }
 
     cargarEventos(date1, date2) {
+        this.eventSource=[];
         var sdate = date1.getUTCFullYear() + "/" + (date1.getUTCMonth() + 1) + "/" + date1.getUTCDate() + " 00:00:00";
         var edate = date2.getUTCFullYear() + "/" + (date2.getUTCMonth() + 1) + "/" + date2.getUTCDate() + " 23:59:59";
         let loader = this.loadingCtrl.create({
