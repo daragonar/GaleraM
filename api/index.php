@@ -146,10 +146,21 @@ $app->get("/delete_user_categories/:id", function($id) use ($app){
 
 /*USER META image */
 $app->post("/update_user_image/:id", function($id_user) use ($app){
-    $json = $app->request->post('json');
+    if(isset($_FILES['file'])){
+        $target_path = './images/';
+        $target_path = $target_path . basename($_FILES['file']['name']);
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
+            $response= "Upload and move success";
+        } else {
+            $response= $_FILES['file']['name'];
+        }
+    }else{
+        $response="No ha llegado la imagen, pero el id es: ".$id_user;
+    }
+    /*$json = $app->request->post('json');
     $imagen = json_decode($json, true);
 
-    $response = update_user_meta( $id_user, "imageApp", $imagen);
+    $response = update_user_meta( $id_user, "imageApp", $imagen);*/
     echo json_encode($response);
 });
 

@@ -33,6 +33,7 @@ import { EventProvider } from "../providers/event-provider";
 import { Userwp } from "../providers/userwp";
 import { UserDataProvider } from '../providers/user-data';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 
 
 @NgModule({
@@ -96,7 +97,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     AppAvailability,
     UserDataProvider,
     NativeStorage,
-    SocialSharing
+    SocialSharing,
+    Transfer,
   ]
 })
 export class AppModule { }

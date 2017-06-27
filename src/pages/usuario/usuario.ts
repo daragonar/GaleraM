@@ -26,7 +26,6 @@ export class Usuario {
     categoria: any = null;
     listCategory: any = [];
     listEvent: any = [];
-    base64Image;
     image;
 
     constructor(
@@ -40,17 +39,12 @@ export class Usuario {
         public AlertMsg: AlertController,
         private camera: Camera) {
         /*this.user = navParams.get('info');
-        this.base64Image = this.userD.getUserImage()
         this.listCategory = this.userD.getUserCatData();
         this.listEvent = this.userD.getUserEvData();*/
     }
 
     ionViewWillEnter() {
-        let imageTest=this.userD.getUserImage();
         this.user = this.navParams.get('info');
-        if (imageTest!=undefined) {
-            this.base64Image = "data:image/jpeg;base64," + this.userD.getUserImage();
-        }
         this.listCategory = this.userD.getUserCatData();
         this.listEvent = this.userD.getUserEvData();
     }
@@ -63,7 +57,6 @@ export class Usuario {
         this.user = [];
         this.listEvent = [];
         this.listCategory = [];
-        this.base64Image = null;
         this.navCtrl.setRoot(Login);
         this.navCtrl.parent.select(1);
     }
@@ -100,21 +93,21 @@ export class Usuario {
 
     getPicture(sourceType) {
         let options: CameraOptions = {
-            quality: 30,
-            sourceType: sourceType,
-            saveToPhotoAlbum: false,
+            quality: 75,
             correctOrientation: true,
+            targetHeight:300,
+            targetWidth:300,
+            cameraDirection: 1,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
             destinationType: this.camera.DestinationType.DATA_URL
         }
-        this.camera.getPicture(options)
-            .then(imageData => {
-                this.image = `data:image/jpeg;base64,${imageData}`;
-                this.userWp.setUserImage(imageData);
-                this.base64Image = "data:image/jpeg;base64," + imageData;
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        this.camera.getPicture(options).then(imageData => {
+            let image = "data:image/jpeg;base64," + imageData;
+            this.userWp.setUserImage(image);
+        }, (error) => {
+            console.error(error);
+        });
     }
 
     openNoti() {

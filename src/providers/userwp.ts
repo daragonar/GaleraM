@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 import 'rxjs/add/operator/map';
 import { UserDataProvider } from "./user-data";
 
@@ -17,6 +18,7 @@ export class Userwp {
   public userImage: any;
 
   constructor(
+    private transfer: Transfer,
     public http: Http,
     public userD: UserDataProvider
   ) {
@@ -168,32 +170,25 @@ export class Userwp {
     });
   }
 
-  setUserImage(image64) {
+  setUserImage(imageData) {
     let userId = this.userD.getUserData()["ID"];
-    let json = JSON.stringify(image64);
-    let params = 'json=' + json;
-    //let params = 'json=' + image64;
-    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const fileTransfer: TransferObject = this.transfer.create();
 
-    return this.http.post(this.ApiURL + "/update_user_image/"+userId, params, { headers: headers })
-      .map(res => res.json())      
-      .subscribe(
-        result => {
-          console.log(result)
-          if (!result){
-            console.log("Error al actualizar la imagen, la api ha devuelto false");
-          }
-        }
-      );
+    let options: FileUploadOptions = {
+      fileKey: 'file',
+      fileName: userId+'.jpg',
+      mimeType: 'image/jpg',
+      chunkedMode: false,
+      headers: {Connection: "close"},
+    }
+
+    fileTransfer.upload(imageData, this.ApiURL + "/update_user_image/"+userId, options).then((data) => {
+      console.log(data);
+    }, (err) => {
+      console.log("ERROR: "+err);
+    });
   }
-  /*lostpass() {
-    return this.http
-      .get('http://www.lagaleramagazine.es/wp-login.php?action=lostpassword')
-      .map(response => response.text())
-  }
-  http://lagaleramagazine.es/wp-json/wp/v2/pages/24288
-  http://www.lagaleramagazine.es/?page_id=24288
-  */
+
   cargaInicio(){
     return this.http
       .get('http://lagaleramagazine.es/wp-json/wp/v2/pages/24288')
