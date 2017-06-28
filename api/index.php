@@ -193,8 +193,11 @@ $app->post("/update_user_image/:id", function($id_user) use ($app){
 $app->get("/get_user_image/:id", function($id) use ($app){
     //$json = $app->request->post('json');
     //$data = json_decode($json, true);
-
-    $response = get_user_meta( $id,"imageApp" );
+    if(file_exists('./images/'.$id.'.jpg')){
+        $response = 'http://lagaleramagazine.es/app/images/'.$id.'.jpg?d='.time();
+    }else{
+        $response = false;
+    }
     echo json_encode($response);
 });
 

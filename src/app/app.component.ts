@@ -50,13 +50,6 @@ export class MyApp {
                             console.log("No hay eventos!");
                         }
                       });
-                      this.userWp.getUserImage(result.data.ID).then(data => {
-                          if (data) {
-                              this.userD.setUserImage(data);
-                          }else{
-                              console.log("No hay avatar!");
-                          }
-                      });
 
                       this.userWp.getUserCategories(result.data.ID).then(data => {
                           console.log("entra en getUserCategories");

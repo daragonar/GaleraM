@@ -76,14 +76,14 @@ export class Usuario {
                     text: 'Desde la cámara',
                     icon: 'camera',
                     handler: () => {
-                        this.getPicture(this.camera.PictureSourceType.CAMERA);
+                        return this.setAvatar(this.camera.PictureSourceType.CAMERA);
                     }
                 },
                 {
                     text: 'Desde la galería',
                     icon: 'image',
                     handler: () => {
-                        this.getPicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+                        return this.setAvatar(this.camera.PictureSourceType.PHOTOLIBRARY);
                     }
                 }
             ]
@@ -91,7 +91,7 @@ export class Usuario {
         alert.present();
     }
 
-    getPicture(sourceType) {
+    setAvatar(sourceType) {
         let options: CameraOptions = {
             sourceType: sourceType,
             correctOrientation: true,
@@ -101,11 +101,20 @@ export class Usuario {
             destinationType: this.camera.DestinationType.DATA_URL
         }
         this.camera.getPicture(options).then(imageData => {
-            let image = "data:image/jpeg;base64," + imageData;
-            this.userWp.setUserImage(image);
+            imageData = "data:image/jpeg;base64," + imageData;
+            this.image=this.userWp.setUserImage(imageData);
         }, (error) => {
             console.error(error);
         });
+    }
+
+    getAvatar(){
+        return this.userWp.getUserImage().subscribe(
+            result => {
+                this.image=result;
+                console.log(this.image);
+            }
+        );
     }
 
     openNoti() {

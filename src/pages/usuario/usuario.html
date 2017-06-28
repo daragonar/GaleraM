@@ -41,8 +41,7 @@
             <ion-avatar item-left>
             <ion-icon small name="ios-brush" tappable (click)="editImagen()" float-right class="openTabs"></ion-icon>
               <ion-badge item-end></ion-badge>
-              <img [src]="base64Image" *ngIf="base64Image!=null" /> 
-              <img src="https://randomuser.me/api/portraits/lego/5.jpg" *ngIf="base64Image==null" />
+              <img [src]="(getAvatar()?image:'https://randomuser.me/api/portraits/lego/5.jpg')" />
             </ion-avatar>
             <h2>Favoritos</h2>
             <p>Eventos : {{listEvent?.length}}</p>

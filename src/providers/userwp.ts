@@ -150,24 +150,10 @@ export class Userwp {
   }
 
 
- getUserImage(userId) {
+ getUserImage() {
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    /*if (this.userImage) {
-      return Promise.resolve(this.userImage);
-    }*/
-    return new Promise(resolve => {
-      this.http
-        .get(this.ApiURL + "/get_user_image/" + userId, { headers: headers })
-        .map(response => response.json())
-        .subscribe(
-          result => {
-            this.userImage = result[0];
-            resolve(this.userImage);
-          }, error => {
-            alert("hubo un error");
-          }
-        );
-    });
+    let userId = this.userD.getUserData()["ID"];
+    return this.http.get(this.ApiURL + "/get_user_image/" + userId, { headers: headers }).map(response => response.json());
   }
 
   setUserImage(imageData) {
@@ -183,7 +169,7 @@ export class Userwp {
     }
 
     fileTransfer.upload(imageData, this.ApiURL + "/update_user_image/"+userId, options).then((data) => {
-      console.log(data);
+      return (data);
     }, (err) => {
       console.log("ERROR: "+err);
     });
