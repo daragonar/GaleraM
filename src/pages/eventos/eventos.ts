@@ -79,6 +79,12 @@ export class Eventos {
     this.showMenu = false;
   }
 
+  today() {
+      var date = new Date();
+      date.setHours(0, 0, 0);
+      return date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate()
+  }
+
   searchItems = function () {
     this.searchBox=false;
      this.keyboard.close();
@@ -91,18 +97,17 @@ export class Eventos {
       this.hideSlide=true;
       this.eventosService.getEventsSearch(this.searchval).subscribe(
         result => {
-          if(!result.data.status){
           result.events.forEach(evento => {
             this.EventosLista.push(evento);
           });
           this.nextUrl = result.next_rest_url;
           this.check = result.next_rest_url;
-          }else{
-            alert("No hay eventos con estos terminos de busqueda")
-          }
-           loader.dismiss();
+        },
+        error =>{
+          alert("No hay eventos con estos términos de búsqueda")
         }
       )
+      loader.dismiss();
     }else{
       this.hideSlide=false;
     }
