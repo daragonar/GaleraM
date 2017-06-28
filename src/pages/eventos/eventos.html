@@ -39,7 +39,7 @@
     debounce =250
     placeholder ="Buscar evento..."
     [(ngModel)]="searchval"
-    (ionInput)="searchItems()"
+    (search)="searchItems()"
     (ionCancel)="getEventos()"
     (ionClear)="getEventos()">
   </ion-searchbar>

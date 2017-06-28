@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Keyboard } from 'ionic-angular';
 import { EventProvider } from "../../providers/event-provider";
 import { DetalleEvento } from "../detalle-evento/detalle-evento";
 
@@ -31,7 +31,8 @@ export class Eventos {
     public navCtrl: NavController,
     public navParams: NavParams,
     private eventosService: EventProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public keyboard: Keyboard) {
     this.loader = this.loadingCtrl.create({
       content: "Obteniendo Eventos...",
     });
@@ -79,6 +80,8 @@ export class Eventos {
   }
 
   searchItems = function () {
+    this.searchBox=false;
+     this.keyboard.close();
     this.EventosLista = [];
     if (this.searchval != "") {
       this.hideSlide=true;
