@@ -83,20 +83,30 @@ export class Eventos {
     this.searchBox=false;
      this.keyboard.close();
     this.EventosLista = [];
+     let loader = this.loadingCtrl.create({
+            content: "Buscando eventos...",
+        });
+        loader.present().then(() => {
     if (this.searchval != "") {
       this.hideSlide=true;
       this.eventosService.getEventsSearch(this.searchval).subscribe(
         result => {
+          if(!result.data.status){
           result.events.forEach(evento => {
             this.EventosLista.push(evento);
           });
           this.nextUrl = result.next_rest_url;
           this.check = result.next_rest_url;
+          }else{
+            alert("No hay eventos con estos terminos de busqueda")
+          }
+           loader.dismiss();
         }
       )
     }else{
       this.hideSlide=false;
     }
+    });
   }
 
   eventTapped(event, item) {

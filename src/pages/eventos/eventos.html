@@ -6,10 +6,10 @@
 -->
 <ion-header text-center>
   <ion-navbar>
-    <ion-title><img src="assets/img/logofooter2.png"></ion-title>
+    <ion-title (click)="getEventos()"><img src="assets/img/logofooter2.png"></ion-title>
     <ion-buttons left>
       <button ion-button icon-only (click)="openMenu()">
-          <ion-icon name='menu'></ion-icon>
+          <ion-icon name='menu' ></ion-icon>
         </button>
     </ion-buttons>
     <ion-buttons right>
@@ -34,8 +34,7 @@
   </div>
   <ion-searchbar
     *ngIf="searchBox"
-    showCancelButton="True"
-    cancelButtonText="X"
+    showCancelButton="false"
     debounce =250
     placeholder ="Buscar evento..."
     [(ngModel)]="searchval"

@@ -37,6 +37,8 @@
     "cordova-plugin-compat": "^1.1.0",
     "cordova-plugin-console": "^1.0.5",
     "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-file": "^4.3.3",
+    "cordova-plugin-file-transfer": "^1.6.3",
     "cordova-plugin-nativestorage": "^2.2.2",
     "cordova-plugin-splashscreen": "^4.0.3",
     "cordova-plugin-statusbar": "^2.2.1",
@@ -80,7 +82,8 @@
       "ionic-plugin-keyboard": {},
       "cordova-plugin-nativestorage": {},
       "cordova-plugin-x-socialsharing": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-plugin-file-transfer": {}
     },
     "platforms": [
       "ios"
