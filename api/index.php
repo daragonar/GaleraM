@@ -149,10 +149,36 @@ $app->post("/update_user_image/:id", function($id_user) use ($app){
     if(isset($_FILES['file'])){
         $target_path = './images/';
         $target_path = $target_path . basename($_FILES['file']['name']);
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
-            $response= "Upload and move success";
-        } else {
-            $response= $_FILES['file']['name'];
+        $source_img = @imagecreatefromjpeg($_FILES["file"]["tmp_name"]);
+        if($source_img){
+            $new_w = $new_h = 300;
+        
+            $orig_w = imagesx($source_img);
+            $orig_h = imagesy($source_img);
+                
+            $w_ratio = ($new_w / $orig_w);
+            $h_ratio = ($new_h / $orig_h);
+                
+            if ($orig_w > $orig_h ) {//landscape
+                $crop_w = round($orig_w * $h_ratio);
+                $crop_h = $new_h;
+            } elseif ($orig_w < $orig_h ) {//portrait
+                $crop_h = round($orig_h * $w_ratio);
+                $crop_w = $new_w;
+            } else {//square
+                $crop_w = $new_w;
+                $crop_h = $new_h;
+            }
+            $dest_img = imagecreatetruecolor($new_w,$new_h);
+            imagecopyresampled($dest_img, $source_img, 0 , 0 , 0, 0, $crop_w, $crop_h, $orig_w, $orig_h);
+
+            if(imagejpeg($dest_img, $target_path)) {
+                imagedestroy($dest_img);
+                imagedestroy($source_img);
+                $response= "Upload and move success";
+            } else {
+                $response="No se ha podido subir";
+            }
         }
     }else{
         $response="No ha llegado la imagen, pero el id es: ".$id_user;

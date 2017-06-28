@@ -93,11 +93,9 @@ export class Usuario {
 
     getPicture(sourceType) {
         let options: CameraOptions = {
-            quality: 75,
+            sourceType: sourceType,
             correctOrientation: true,
-            targetHeight:300,
-            targetWidth:300,
-            cameraDirection: 1,
+            cameraDirection: 0,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE,
             destinationType: this.camera.DestinationType.DATA_URL
