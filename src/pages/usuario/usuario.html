@@ -75,7 +75,7 @@
             <button class='category_name cine' full icon-right ion-item detail-none margin-vertical (press)="followCategory(287)" (click)="openCat('cine')" [ngClass]="isFollowedCategory(287) ? 'category_followed' : ''" >CINE <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='cine'">
               <ion-card-content>
-                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                <button detail-none ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
                   <ion-thumbnail item-left>
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
@@ -87,14 +87,14 @@
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
-                </ion-item>
+                </button>
               </ion-card-content>
             </ion-card>
 
             <button class='category_name musica' full icon-right ion-item detail-none margin-vertical (press)="followCategory(280)" (click)="openCat('musica')" [ngClass]="isFollowedCategory(280) ? 'category_followed' : ''" >MÚSICA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='musica'">
               <ion-card-content>
-                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                <button detail-none ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
                   <ion-thumbnail item-left>
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
@@ -106,13 +106,13 @@
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
-                </ion-item>
+                </button>
               </ion-card-content>
             </ion-card>
             <button class='category_name espectaculos' full icon-right ion-item detail-none margin-vertical (press)="followCategory(281)" (click)="openCat('espectaculos')" [ngClass]="isFollowedCategory(281) ? 'category_followed' : ''" >ESPECT&Aacute;CULOS <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='espectaculos'">
               <ion-card-content>
-                <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
+                <button detail-none ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
                   <ion-thumbnail item-left>
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
@@ -124,7 +124,7 @@
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
-                </ion-item>
+                </button>
               </ion-card-content>
             </ion-card>
             <button class='category_name arteyliteratura' full icon-right ion-item detail-none margin-vertical (press)="followCategory(294)" (click)="openCat('arteyliteratura')" [ngClass]="isFollowedCategory(294) ? 'category_followed' : ''">ARTE Y LITERATURA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
@@ -266,7 +266,7 @@
     <ion-item no-lines *ngIf="listEvent.lenght==0">
         Actualmente no sigues ning&uacute;n evento
     </ion-item>
-    <ion-item *ngFor="let evento of listEvent" tappable (click)="eventTapped($event, evento)">
+    <button detail-none ion-item *ngFor="let evento of listEvent" tappable (click)="eventTapped($event, evento)">
         <ion-thumbnail item-left>
           <img [src]="evento.image ? evento.image : 'assets/img/thumb.png'">
         </ion-thumbnail>
@@ -278,7 +278,7 @@
         </span>
         <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
         <p>{{evento.address}}</p>        
-      </ion-item>
+      </button>
   </ion-item-group>
 </ion-list>
       </ion-col>

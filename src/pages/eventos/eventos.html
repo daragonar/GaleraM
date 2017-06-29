@@ -60,9 +60,11 @@
   </ion-slides>
   <ion-grid>
     <ion-row class="news">
-      <ion-col col-6 *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)" [style.background-image]= "evento.image ? ('url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
+      <ion-col col-6 *ngFor="let evento of EventosLista"  [style.background-image]= "evento.image ? ('url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
         style="background:center center/cover">
+        <a tappable (click)="eventTapped($event, evento)">
         <p class="titulo" [innerHTML]="evento.title | truncate : 20 : '.'" ></p>
+      </a>
       </ion-col>
     </ion-row>
   </ion-grid>

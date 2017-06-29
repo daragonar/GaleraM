@@ -57,6 +57,7 @@ import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/trans
     NgCalendarModule,
     BrowserModule,
     IonicModule.forRoot(MyApp, {
+       backButtonText: '',
       tabsPlacement: 'bottom',
       monthNames: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
       monthShortNames: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],

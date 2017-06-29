@@ -12,7 +12,12 @@ page-detalle-evento {
         font-weight: normal !important;
         margin-top: 0px !important;
     }
+    
+    .title{margin-left: -56px;}
 
+    .title-ios{
+        margin-left:0px
+    }
     .description{
         text-align: justify;
         hyphens: auto;
@@ -20,7 +25,7 @@ page-detalle-evento {
         -ms-hyphens: auto;
         -webkit-hyphens: auto;
         font-size: 120%;
-    }
+    }       
 
     .bggray{
         background-color: #f2f2f2;
