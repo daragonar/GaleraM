@@ -73,7 +73,7 @@ export class Calendario {
                         this.eventosService.getEventsByRangeDateSum(sdate, edate, pag).subscribe(resultSum => {
                             var eventsCalendar = [];
                             resultSum.events.forEach(function (evento) {
-
+                                    //console.log(evento);
                                 eventsCalendar.push({
                                     startTime: new Date(evento.start_date.replace(/-/g, '/')),
                                     endTime: new Date(evento.end_date.replace(/-/g, '/')),

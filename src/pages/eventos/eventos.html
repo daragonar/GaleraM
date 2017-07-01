@@ -45,26 +45,19 @@
 </ion-header>
 <ion-content>
   <ion-slides #islider id="slideEventos" *ngIf="!hideSlide">
-    <ion-slide style="background: url('http://www.lagaleramagazine.es/wp-content/uploads/2017/04/invisiblesenunmundovisible00.jpg')center center/cover;">
-      <h3>Slide1</h3>
-      <p>Detail</p>
+    <ion-slide tappable (click)="eventTapped($event, Sevents)" *ngFor="let Sevents of sliderEventos" [style.background-image]= "Sevents.image ? ('url(' + Sevents.image.sizes.medium_large.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
+        style="background:center center/cover">
+      <h3 [innerHTML]=" Recomend + Sevents.title "></h3>
     </ion-slide>
-    <ion-slide style="background: url(http://www.lagaleramagazine.es/wp-content/uploads/2017/04/enlazados.jpg) center center/cover;">
-      <h3>Slide2</h3>
-      <p>Detail</p>
-    </ion-slide>
-    <ion-slide style="background: url(http://www.lagaleramagazine.es/wp-content/uploads/2017/04/la-rosa-tatuada-portada.jpg) center center/cover;">
-      <h3>Slide3</h3>
-      <p>Detail</p>
-    </ion-slide>
+   
   </ion-slides>
   <ion-grid>
     <ion-row class="news">
-      <ion-col col-6 *ngFor="let evento of EventosLista"  [style.background-image]= "evento.image ? ('url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
+      <ion-col tappable (click)="eventTapped($event, evento)" col-6 *ngFor="let evento of EventosLista"  [style.background-image]= "evento.image ? ('url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
         style="background:center center/cover">
-        <a (click)="eventTapped($event, evento)">
+         
         <p class="titulo" [innerHTML]="evento.title | truncate : 20 : '.'" ></p>
-      </a>
+      
       </ion-col>
     </ion-row>
   </ion-grid>

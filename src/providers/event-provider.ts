@@ -22,9 +22,12 @@ export class EventProvider {
     if (mm < 10) { mm = '0' + mm }
     this.today = yyyy + '-' + mm + '-' + dd;
   }
-
   getEvents(date, perPage = 50) {
     return this.http.get(this.ApiURL + "/tribe/events/v1/events").map(res => res.json());
+  }
+
+  getEventsSlider() {
+    return this.http.get(this.ApiURL + "/tribe/events/v1/events?featured=true").map(res => res.json());
   }
   getEvent(id) {
     return this.http.get(this.ApiURL + "/tribe/events/v1/events/" + id).map(res => res.json());

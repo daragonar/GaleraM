@@ -20,12 +20,13 @@ export class Eventos {
   public EventosLista: Array<string>;
   private loader: any;
   public searchBox: any;
+  public sliderEventos: any;
   public nextUrl: string;
   public searchval: string;
   public hideSlide: boolean;
   public categoria: number;
   public check:string;
-
+  public Recomend:string="<span><strong>Recomendamos :<br></strong></span>"
 
   constructor(
     public navCtrl: NavController,
@@ -37,6 +38,7 @@ export class Eventos {
       content: "Obteniendo Eventos...",
     });
     this.EventosLista = [];
+    this.sliderEventos = [];
     this.searchBox = false;
     this.hideSlide = false;
     this.categoria=null;
@@ -45,6 +47,7 @@ export class Eventos {
   ionViewDidLoad() {
     this.presentLoading();
     this.getEventos();
+    this.getEventosSlider();
   }
 
   presentLoading() {
@@ -53,6 +56,11 @@ export class Eventos {
 
   hideLoading() {
     this.loader.dismiss();
+  }
+  getEventosSlider(){
+    this.eventosService.getEventsSlider().subscribe(result=>{
+      this.sliderEventos=result.events;
+    })
   }
 
   getEventos = function () {
