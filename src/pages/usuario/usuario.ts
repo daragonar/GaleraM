@@ -112,7 +112,7 @@ export class Usuario {
         return this.userWp.getUserImage().subscribe(
             result => {
                 this.image=result;
-                console.log(this.image);
+                //console.log(this.image);
             }
         );
     }
