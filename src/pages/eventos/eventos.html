@@ -44,8 +44,12 @@
   </ion-searchbar>
 </ion-header>
 <ion-content>
-  <ion-slides #islider id="slideEventos" *ngIf="!hideSlide">
-    <ion-slide tappable (click)="eventTapped($event, Sevents)" *ngFor="let Sevents of sliderEventos" [style.background-image]= "Sevents.image ? ('url(' + Sevents.image.sizes.medium_large.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
+  
+  <ion-slides #islider id="slideEventos" *ngIf="!hideSlide" [effect]= "'slide|fade|cube|coverflow|flip'"
+            [pager]= "'true'" [autoplay]= "'000'"
+            [loop]= "'true'" [initialSlide]= "'0'"
+            [speed]= "'300'" [direction] = "'horizontal'">
+    <ion-slide tappable *ngFor="let Sevents of sliderEventos"  (click)="eventTapped($event, Sevents)" [style.background-image]= "Sevents.image ? ('url(' + Sevents.image.sizes.medium_large.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
         style="background:center center/cover">
       <h3 [innerHTML]=" Recomend + Sevents.title "></h3>
     </ion-slide>
@@ -53,7 +57,7 @@
   </ion-slides>
   <ion-grid>
     <ion-row class="news">
-      <ion-col tappable (click)="eventTapped($event, evento)" col-6 *ngFor="let evento of EventosLista"  [style.background-image]= "evento.image ? ('url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
+      <ion-col tappable *ngFor="let evento of EventosLista" (click)="eventTapped($event, evento)" col-6 [style.background-image]= "evento.image ? ('url(' + evento.image.sizes.thumbnail.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
         style="background:center center/cover">
          
         <p class="titulo" [innerHTML]="evento.title | truncate : 20 : '.'" ></p>

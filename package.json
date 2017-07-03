@@ -90,8 +90,8 @@
             "cordova-plugin-file-transfer": {},
             "cordova-plugin-appavailability": {},
             "cordova-plugin-googlemaps": {
-                "API_KEY_FOR_ANDROID": "AIzaSyCkDf7QXK1uLPdq5vooLu4HGRiA6qofZYs",
-                "API_KEY_FOR_IOS": "AIzaSyCkDf7QXK1uLPdq5vooLu4HGRiA6qofZYs"
+                "API_KEY_FOR_ANDROID": "AIzaSyDAomlgyeU8lj-xrPWPjr7l-RcwWiJNIBU",
+                "API_KEY_FOR_IOS": "AIzaSyDAomlgyeU8lj-xrPWPjr7l-RcwWiJNIBU"
             },
             "cordova-plugin-inappbrowser": {},
             "cordova-plugin-nativegeocoder": {}

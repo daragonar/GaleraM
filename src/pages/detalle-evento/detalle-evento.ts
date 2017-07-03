@@ -51,10 +51,14 @@ export class DetalleEvento {
         alert("Ha fallado al compartir");
       });
   }
-  ngAfterViewInit() {
+/*  ngAfterViewInit() {
     this.loadMap();
   }
-
+ 
+  ionViewDidLoad(){
+      this.loadMap();
+  }
+   */
   presentLoading() {
     this.loader.present();
   }
