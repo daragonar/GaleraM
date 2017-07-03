@@ -8,7 +8,6 @@ import { SocialSharing } from "@ionic-native/social-sharing";
 import { Userwp } from "../../providers/userwp";
 import { UserDataProvider } from "../../providers/user-data";
 
-
 /**
  * Generated class for the DetalleEvento page.
  *
@@ -40,7 +39,7 @@ export class DetalleEvento {
       content: "Cargando evento...",
     });
     this.evento = navParams.get('item');
-    console.log(this.evento);
+    //console.log(this.evento);
   }
 
   compartir() {
@@ -51,14 +50,17 @@ export class DetalleEvento {
         alert("Ha fallado al compartir");
       });
   }
-/*  ngAfterViewInit() {
+
+  /*ngAfterViewInit() {
     this.loadMap();
-  }
- 
-  ionViewDidLoad(){
-      this.loadMap();
-  }
-   */
+  }*/
+
+ ionViewDidLoad() {
+    this.evento.start_date=new Date(this.evento.start_date.replace(/-/g, '/'));
+    this.evento.end_date=new Date(this.evento.end_date.replace(/-/g, '/'));
+    this.loadMap();
+}
+
   presentLoading() {
     this.loader.present();
   }

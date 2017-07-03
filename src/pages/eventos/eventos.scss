@@ -61,4 +61,16 @@ page-eventos {
         width: 100%;
         font-size: 11pt;
     }
+
+    .tapped.accionsocial{background-color: color($colors, accionsocial) !important;}
+    .tapped.cine{background-color: color($colors, cine) !important;}
+    .tapped.musica{background-color: color($colors, musica) !important;}
+    .tapped.espectaculos{background-color: color($colors,espectaculos) !important;}
+    .tapped.arteyliteratura{background-color: color($colors,arteyliteratura) !important;}
+    .tapped.exposiciones{background-color: color($colors,exposiciones) !important;}
+    .tapped.ocio{background-color: color($colors, ocio) !important;}
+    .tapped.charlas-y-conferencias{background-color: color($colors, charlas-y-conferencias) !important;}
+    .tapped.cursos-y-talleres{background-color: color($colors, cursos-y-talleres) !important;}
+    .tapped.universidad{background-color: color($colors, universidad) !important;}
+
 }

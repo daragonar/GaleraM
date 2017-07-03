@@ -15,7 +15,6 @@ import { ReversePipe } from "../pipes/reverse";
 import { TruncatePipe } from "../pipes/truncate"
 import { SocialSharing } from '@ionic-native/social-sharing';
 
-
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -27,6 +26,8 @@ import { DetalleEvento } from "../pages/detalle-evento/detalle-evento";
 import { Usuario } from "../pages/usuario/usuario";
 
 import { NgCalendarModule } from 'ionic2-calendar';
+import { MomentModule, DateFormatPipe } from 'angular2-moment';
+import 'moment/locale/es';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { EventProvider } from "../providers/event-provider";
@@ -64,6 +65,7 @@ import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/trans
       dayNames: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
       dayShortNames: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
     }),
+    MomentModule,
     HttpModule,
   ],
   bootstrap: [IonicApp],

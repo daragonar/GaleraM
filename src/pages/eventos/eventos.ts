@@ -24,6 +24,7 @@ export class Eventos {
   public nextUrl: string;
   public searchval: string;
   public hideSlide: boolean;
+  public showMenu: boolean;
   public categoria: number;
   public check:string;
   public Recomend:string="<span><strong>Recomendamos :<br></strong></span>"
@@ -41,6 +42,7 @@ export class Eventos {
     this.sliderEventos = [];
     this.searchBox = false;
     this.hideSlide = false;
+    this.showMenu = false;
     this.categoria=null;
   }
 
@@ -66,7 +68,7 @@ export class Eventos {
   getEventos = function () {
     this.EventosLista = [];
     var today = new Date();
-    var date = today.getUTCFullYear() + "-" + (today.getUTCMonth() + 1) + "-" + today.getUTCDate();
+    var date = today.getUTCFullYear() + "/" + (today.getUTCMonth() + 1) + "/" + today.getUTCDate();
     this.eventosService.getEventsByStartDate(date).subscribe(
       result => {
         this.EventosLista = result.events;
@@ -90,7 +92,7 @@ export class Eventos {
   today() {
       var date = new Date();
       date.setHours(0, 0, 0);
-      return date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate()
+      return date.getUTCFullYear() + "/" + (date.getUTCMonth() + 1) + "/" + date.getUTCDate()
   }
 
   searchItems = function () {
@@ -130,17 +132,23 @@ export class Eventos {
   }
 
   categoryTapped(category) {
-    this.EventosLista = [];
-    this.categoria = category;
-    this.hideSlide=true;
-    this.eventosService.getEventsByCategory(this.categoria).subscribe(
-      result => {
-        this.EventosLista = result.events;
-        this.nextUrl = result.next_rest_url;
-        this.check = result.next_rest_url;
-        this.nextUrl += "&categories=" + this.categoria;
-      }
-    )
+    if(category!=this.categoria){
+      this.EventosLista = [];
+      this.categoria = category;
+      this.hideSlide=true;
+      this.eventosService.getEventsByCategory(this.categoria).subscribe(
+        result => {
+          this.EventosLista = result.events;
+          this.nextUrl = result.next_rest_url;
+          this.check = result.next_rest_url;
+          this.nextUrl += "&categories=" + this.categoria;
+        }
+      )
+    }else{
+      this.hideSlide=false;
+      this.getEventos();
+    }
+    this.showMenu=false;
   }
 
   doInfinite = function (event) {
