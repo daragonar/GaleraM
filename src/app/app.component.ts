@@ -26,7 +26,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       //statusBar.styleDefault();
-      statusBar.styleDefault();
+      statusBar.styleLightContent();
       statusBar.backgroundColorByHexString('#000');
 
       this.storage.getItem('myForm').then(
