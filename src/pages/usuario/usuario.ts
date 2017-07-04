@@ -49,14 +49,14 @@ export class Usuario {
     ionViewWillEnter() {
         this.user = this.navParams.get('info');
         this.listCategory = this.userD.getUserCatData();
-        this.listEvent = this.userD.getUserEvData();
-        let eventos=this.listEvent;
-        this.listEvent= new Array();
-        eventos.forEach(event => {
+        let eventos = [];
+        this.userD.getUserEvData().forEach(event => {
             event.start_date = this.dfp.transform(event.start_date, 'd MMMM, Y');
             event.end_date = this.dfp.transform(event.end_date, 'd MMMM, Y');
-            this.listEvent.push(event);
+            eventos.push(event);
         });
+        this.listEvent=eventos;
+        console.log(this.listEvent);
     }
 
     cerrarSesion() {
