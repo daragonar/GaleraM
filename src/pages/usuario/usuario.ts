@@ -1,3 +1,4 @@
+import { DateFormatPipe } from 'angular2-moment';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, AlertController,  LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -37,7 +38,9 @@ export class Usuario {
         public userD: UserDataProvider,
         public ActShCtrl: ActionSheetController,
         public AlertMsg: AlertController,
-        private camera: Camera) {
+        private camera: Camera,
+        private dfp: DateFormatPipe,
+    ) {
         /*this.user = navParams.get('info');
         this.listCategory = this.userD.getUserCatData();
         this.listEvent = this.userD.getUserEvData();*/
@@ -47,6 +50,13 @@ export class Usuario {
         this.user = this.navParams.get('info');
         this.listCategory = this.userD.getUserCatData();
         this.listEvent = this.userD.getUserEvData();
+        let eventos=this.listEvent;
+        this.listEvent= new Array();
+        eventos.forEach(event => {
+            event.start_date = this.dfp.transform(event.start_date, 'd MMMM, Y');
+            event.end_date = this.dfp.transform(event.end_date, 'd MMMM, Y');
+            this.listEvent.push(event);
+        });
     }
 
     cerrarSesion() {
@@ -133,7 +143,11 @@ export class Usuario {
             loader.present().then(() => {
                 this.eventosService.getEventsByCategory(this.categoria).subscribe(
                     result => {
-                        this.EventosLista = result.events;
+                        result.events.forEach(event => {
+                            event.start_date = this.dfp.transform(event.start_date, 'd MMMM, Y');
+                            event.end_date = this.dfp.transform(event.end_date, 'd MMMM, Y');
+                            this.EventosLista.push(event);
+                        });
                         loader.dismiss();
                     }
                 )

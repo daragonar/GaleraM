@@ -80,10 +80,10 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
@@ -99,10 +99,10 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
@@ -117,10 +117,10 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
@@ -135,10 +135,10 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
@@ -153,10 +153,10 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
@@ -171,10 +171,10 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
@@ -189,17 +189,17 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
                 </ion-item>
               </ion-card-content>
             </ion-card>
-            <button class='category_name universidad' full icon-right ion-item detail-none margin-vertical (press)="followCategory(435)" (click)="openCat('universidad')" [ngClass]="isFollowedCategory(435) ? 'category_followed' : ''">VIDA UNIVERSITARIA <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
+            <button class='category_name universidad' full icon-right ion-item detail-none margin-vertical (press)="followCategory(435)" (click)="openCat('universidad')" [ngClass]="isFollowedCategory(435) ? 'category_followed' : ''">UNIVERSIDAD <ion-icon float-right name="ios-arrow-down"></ion-icon> </button>
             <ion-card *ngIf="categoria=='universidad'">
               <ion-card-content>
                 <ion-item *ngFor="let evento of EventosLista" tappable (click)="eventTapped($event, evento)">
@@ -207,10 +207,10 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
@@ -224,10 +224,10 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
@@ -242,10 +242,10 @@
                     <img [src]="evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'">
                   </ion-thumbnail>
                   <span class="date">
-                    {{evento.start_date|date:'d MMMM, y'}}
+                    {{evento.start_date}}
                   </span>
                   <span *ngIf="evento.end_date != evento.start_date" class="date">
-                    ~ {{evento.end_date|date:'d MMMM, y'}}
+                    ~ {{evento.end_date}}
                   </span>
                   <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
                   <p>{{evento.address}}</p>        
@@ -271,10 +271,10 @@
           <img [src]="evento.image ? evento.image : 'assets/img/thumb.png'">
         </ion-thumbnail>
         <span class="date">
-          {{evento.start_date|date:'d MMMM, y'}}
+          {{evento.start_date}}
         </span>
         <span *ngIf="evento.end_date != evento.start_date" class="date">
-          ~ {{evento.end_date|date:'d MMMM, y'}}
+          ~ {{evento.end_date}}
         </span>
         <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
         <p>{{evento.address}}</p>        
