@@ -66,6 +66,8 @@ export class Eventos {
   }
 
   getEventos = function () {
+    this.categoria="";
+    this.hideSlide = false;
     this.EventosLista = [];
     var today = new Date();
     var date = today.getUTCFullYear() + "/" + (today.getUTCMonth() + 1) + "/" + today.getUTCDate();
