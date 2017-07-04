@@ -27,6 +27,7 @@ export class Usuario {
     categoria: any = null;
     listCategory: any = [];
     listEvent: any = [];
+    followedEvents: any = [];
     image;
 
     constructor(
@@ -49,14 +50,7 @@ export class Usuario {
     ionViewWillEnter() {
         this.user = this.navParams.get('info');
         this.listCategory = this.userD.getUserCatData();
-        let eventos = [];
-        this.userD.getUserEvData().forEach(event => {
-            event.start_date = this.dfp.transform(event.start_date, 'd MMMM, Y');
-            event.end_date = this.dfp.transform(event.end_date, 'd MMMM, Y');
-            eventos.push(event);
-        });
-        this.listEvent=eventos;
-        console.log(this.listEvent);
+        this.listEvent = this.userD.getUserEvData();
     }
 
     cerrarSesion() {
@@ -143,11 +137,7 @@ export class Usuario {
             loader.present().then(() => {
                 this.eventosService.getEventsByCategory(this.categoria).subscribe(
                     result => {
-                        result.events.forEach(event => {
-                            event.start_date = this.dfp.transform(event.start_date, 'd MMMM, Y');
-                            event.end_date = this.dfp.transform(event.end_date, 'd MMMM, Y');
-                            this.EventosLista.push(event);
-                        });
+                        this.EventosLista=result.events;
                         loader.dismiss();
                     }
                 )
