@@ -27,14 +27,16 @@ import { Usuario } from "../pages/usuario/usuario";
 
 import { NgCalendarModule } from 'ionic2-calendar';
 import { MomentModule, DateFormatPipe } from 'angular2-moment';
+//import * as moment from 'moment';
 import 'moment/locale/es';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { EventProvider } from "../providers/event-provider";
 import { Userwp } from "../providers/userwp";
 import { UserDataProvider } from '../providers/user-data';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
+import { Transfer } from '@ionic-native/transfer';
 
 
 @NgModule({
@@ -102,6 +104,8 @@ import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/trans
     NativeStorage,
     SocialSharing,
     Transfer,
+    MomentModule,
+    DateFormatPipe,
   ]
 })
 export class AppModule { }

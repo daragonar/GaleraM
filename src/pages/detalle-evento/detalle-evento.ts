@@ -1,3 +1,4 @@
+import { DateFormatPipe } from 'angular2-moment';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from '@ionic-native/google-maps';
@@ -21,25 +22,32 @@ import { UserDataProvider } from "../../providers/user-data";
   providers: [EventProvider]
 })
 export class DetalleEvento {
-  public evento: any;
-  private loader: any;
-  private posicion: LatLng;
+    public evento: any;
+    private loader: any;
+    private posicion: LatLng;
+    private sdate;
+    private stime;
+    private edate;
+    private etime;
 
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    private eventosService: EventProvider,
-    public loadingCtrl: LoadingController,
-    private userWp: Userwp,
-    public userD: UserDataProvider,
-    private googleMaps: GoogleMaps,
-    private converGeocoder: NativeGeocoder,
-    public AlertMsg: AlertController,
-    private socialSharing: SocialSharing) {
-    this.loader = this.loadingCtrl.create({
-      content: "Cargando evento...",
-    });
-    this.evento = navParams.get('item');
-    //console.log(this.evento);
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      private eventosService: EventProvider,
+      public loadingCtrl: LoadingController,
+      private userWp: Userwp,
+      public userD: UserDataProvider,
+      private googleMaps: GoogleMaps,
+      private converGeocoder: NativeGeocoder,
+      public AlertMsg: AlertController,
+      private socialSharing: SocialSharing,
+      private dfp: DateFormatPipe,
+  ) {
+      this.loader = this.loadingCtrl.create({
+          content: "Cargando evento...",
+      });
+      this.evento = navParams.get('item');
+      //console.log(this.evento);
   }
 
   compartir() {
@@ -56,8 +64,11 @@ export class DetalleEvento {
   }*/
 
  ionViewDidLoad() {
-    this.evento.start_date=new Date(this.evento.start_date.replace(/-/g, '/'));
-    this.evento.end_date=new Date(this.evento.end_date.replace(/-/g, '/'));
+    this.sdate = this.dfp.transform(this.evento.start_date, 'd MMMM, Y');
+    this.edate = this.dfp.transform(this.evento.end_date, 'd MMMM, Y');
+
+    this.stime = this.dfp.transform(this.evento.start_date, 'HH:mm');
+    this.etime = this.dfp.transform(this.evento.end_date, 'HH:mm');
     this.loadMap();
 }
 

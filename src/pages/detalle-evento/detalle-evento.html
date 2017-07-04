@@ -17,8 +17,7 @@
     <button ion-fab mini color="rojoGal" (click)="compartir()"><ion-icon name="share" ></ion-icon></button>
   </ion-fab>
   <div class="header_detail">
-      <!--<span class="date">{{evento.start_date | date:'d MMMM, y' }} ~ {{evento.end_date | date:'d MMMM, y' }}</span>-->
-      <span class="date">{{evento.start_date }} ~ {{evento.end_date }}</span>
+      <span class="date">{{ sdate }} ~ {{ edate }}</span>
 
       <button class="follow_event" (click)="followEvent(evento.id, evento.title, evento.start_date, evento.end_date, evento.categories[0].id, (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'))"><ion-icon [name]="isFollowedEvent(evento.id) ? 'star': 'star-outline'" [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': ''"></ion-icon></button>
   </div>
@@ -49,10 +48,8 @@
             </ion-row>
             <div>
               <h3>Horario</h3>
-              <!--<p>Comienza: el {{evento.start_date | date:'d MMMM, y'}} a las {{evento.start_date | date:'HH:mm'}}</p>
-              <p>Finaliza: el {{evento.end_date | date:'d MMMM, y'}} a las {{evento.end_date | date:'HH:mm'}}</p>-->
-              <p>Comienza: el {{evento.start_date }} a las {{evento.start_date }}</p>
-              <p>Finaliza: el {{evento.end_date }} a las {{evento.end_date }}</p>
+              <p>Comienza: el {{sdate}} a las {{stime}}</p>
+              <p>Finaliza: el {{edate}} a las {{etime}}</p>
               <p *ngIf="evento?.cost">Precio: {{evento.cost_details.values[0]}}{{evento.cost_details.currency_symbol}}</p>
             </div>
             <div #map id="map" style="height:200px;"></div>
