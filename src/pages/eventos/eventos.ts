@@ -157,7 +157,6 @@ export class Eventos {
     if (this.check != undefined) { //Comprobamos si hay más páginas
       this.eventosService.getEventsNextPage(this.nextUrl).subscribe(
         result => {
-          console.log(this.nextUrl);
           result.events.forEach(evento => {
             this.EventosLista.push(evento);
           });

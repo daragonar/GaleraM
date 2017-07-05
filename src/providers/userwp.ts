@@ -97,7 +97,7 @@ export class Userwp {
           if (!result){
             console.log("Error al seguir el evento, la api ha devuelto false/null");
           }else{
-            console.log(result);
+            
           }
         }
       );

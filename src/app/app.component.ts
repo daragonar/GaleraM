@@ -31,7 +31,7 @@ export class MyApp {
 
       this.storage.getItem('myForm').then(
         data => {
-          console.log(data);
+         
           if (data != null) {
               this.storeData = data;
               this.userWp.userLogin(this.storeData).subscribe(

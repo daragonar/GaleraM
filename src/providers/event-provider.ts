@@ -59,8 +59,6 @@ export class EventProvider {
   }
 
   getEventsByRangeDateSum(sdate, edate, page, perPage = 50) {
-    console.log(this.ApiURL + "/tribe/events/v1/events?start_date=" + sdate + "&end_date=" + edate + "&per_page=" + perPage + "&page=" + page)
-    //return this.http.get(this.ApiURL+"/tribe/events/v1/events?start_date="+date+"&page="+page).map(res => res.json());
     return this.http.get(this.ApiURL + "/tribe/events/v1/events?start_date=" + sdate + "&end_date=" + edate + "&per_page=" + perPage + "&page=" + page).map(res => res.json());
   }
 

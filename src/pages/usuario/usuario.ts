@@ -63,11 +63,7 @@ export class Usuario {
     nextEvents() {
         if (this.listEvent.length>0) {
             this.listEvent.forEach(element => {
-                console.log(element)
-                console.log(element.start_date)
-                console.log(new Date())
-                console.log(DifferencePipe.prototype.transform(element.start_date,new Date(),'days',false))
-                let dateDiff=DifferencePipe.prototype.transform(element.start_date,new Date(),'days',false);
+               let dateDiff=DifferencePipe.prototype.transform(element.start_date,new Date(),'days',false);
                 if(dateDiff<=7 && dateDiff>=0){
                     this.eventNot++;
                 }
@@ -142,7 +138,7 @@ export class Usuario {
         this.userWp.getUserImage().subscribe(
             result => {
                 this.image = result;
-                console.log(this.image);
+               
                 
             }
         );
