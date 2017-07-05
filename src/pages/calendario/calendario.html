@@ -32,10 +32,9 @@
   </div>
   <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
     <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
-  <ion-list-header>
-    <button ion-button [disabled]="isToday" (click)="today()">Hoy</button>
-  </ion-list-header>
-        
+    <div no-padding no-margin text-center class="calendar-footer">
+        <button ion-button [disabled]="isToday" (click)="today()" color="dark" small>Hoy</button>
+    </div>
       <ion-item-sliding #slidingitem *ngFor="let evento of selectedDate?.events "
           [ngClass]="{event_followed: isFollowedEvent(evento.id), category_followed: isFollowedCategory(evento.category_id)}">
           <button ion-item detail-none (click)="eventSelected(evento,evento.item)" [ngClass]="evento.category_slug">

@@ -11,7 +11,6 @@ page-calendario {
 
     ion-item-options[side=right] button{
         background-color: #A1A1A1;
-        font-size: 18px;
     }
 
     ion-item-options[side=right] span{
@@ -72,6 +71,12 @@ page-calendario {
         font-weight: bold;
         padding: 5px 0;
     }
+
+    .calendar-footer{
+        background-color: #666666;
+        margin-bottom: 20px;
+    }
+
 
     .table-bordered[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1]{
         background-color: #666666;
