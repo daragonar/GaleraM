@@ -64,8 +64,8 @@ export class DetalleEvento {
   }*/
 
  ionViewDidLoad() {
-    this.sdate = this.dfp.transform(this.evento.start_date, 'd MMMM, Y');
-    this.edate = this.dfp.transform(this.evento.end_date, 'd MMMM, Y');
+    this.sdate = this.dfp.transform(this.evento.start_date, 'D MMMM, Y');
+    this.edate = this.dfp.transform(this.evento.end_date, 'D MMMM, Y');
 
     this.stime = this.dfp.transform(this.evento.start_date, 'HH:mm');
     this.etime = this.dfp.transform(this.evento.end_date, 'HH:mm');
