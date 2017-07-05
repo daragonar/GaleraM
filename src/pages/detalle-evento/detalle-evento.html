@@ -19,42 +19,36 @@
   <div class="header_detail">
       <span class="date">{{ sdate }} ~ {{ edate }}</span>
 
-      <button class="follow_event" (click)="followEvent(evento.id, evento.title, evento.start_date, evento.end_date, evento.categories[0].id, (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'))"><ion-icon [name]="isFollowedEvent(evento.id) ? 'star': 'star-outline'" [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': ''"></ion-icon></button>
+      <button class="follow_event" (click)="followEvent(evento.id, evento.title, evento.start_date, evento.end_date, categoria.id, (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'))"><ion-icon [name]="isFollowedEvent(evento.id) ? 'star': 'star-outline'" [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': ''"></ion-icon></button>
   </div>
   <h1 class="title" [innerHTML]="evento.title |safe: 'html'"></h1>
   <img src="{{evento.image.url}}">
   <p class="description" [innerHTML]="evento.description | removeTags | safe: 'html'"></p>
-  <ion-grid>
-    <ion-row>
-        <ion-col col-12 col-sm *ngIf="(evento.description | removeTags: 'imagesrc')?.length>0">
-          <img src="{{evento?.description | removeTags: 'imagesrc'}}">
-        </ion-col>
-        <ion-col col-12 col-sm>
-          <section class="bggray">
-            <ion-row>
-            <div *ngIf="evento?.venue.venue" col-6 col-sm>
-              <h3>Lugar</h3>
-              <p><strong>{{evento?.venue.venue}}</strong></p>
-              <p><em>{{evento?.venue.address}}</em></p>
-              <p><em>{{evento?.venue.city}}, {{evento?.venue.province}} {{evento?.venue.zip}} {{evento?.venue.country}}</em></p>
-            </div>
-            <div col-6 col-sm>
-              <button ion-button block small class='category_name' color = {{evento.categories[0].slug}}>{{evento.categories[0].name}}</button>
+    <div *ngIf="(evento.description | removeTags: 'imagesrc')?.length>0">
+      <img src="{{evento?.description | removeTags: 'imagesrc'}}">
+    </div>
+    <section class="bggray">
+      <ion-row>
+      <div *ngIf="evento?.venue.venue" col-6 col-sm>
+        <h3>Lugar</h3>
+        <p><strong>{{evento?.venue.venue}}</strong></p>
+        <p><em>{{evento?.venue.address}}</em></p>
+        <p><em>{{evento?.venue.city}}, {{evento?.venue.province}} {{evento?.venue.zip}} {{evento?.venue.country}}</em></p>
+      </div>
+      <div col-6 col-sm id='follow-buttons'>
+        <button ion-button block small class='category_name' color = {{categoria.slug}}>{{categoria.name}}</button>
 
-              <button ion-button block outline color="dark" small (click)="followCategory(evento.categories[0].id)" color = {{evento.categories[0].slug}} [ngClass]="isFollowedCategory(evento.categories[0].id) ? 'category_followed '+ evento.categories[0].slug: evento.categories[0].slug"><span [innerHTML]="isFollowedCategory(evento.categories[0].id) ? 'CATEGORÍA SEGUIDA': 'SEGUIR CATEGORÍA'"></span>  <ion-icon [name]="isFollowedCategory(evento.categories[0].id) ? 'heart': 'heart-outline'"></ion-icon></button>
+        <button ion-button block outline color="dark" small (click)="followCategory(categoria.id)" color = {{categoria.slug}} [ngClass]="isFollowedCategory(categoria.id) ? 'category_followed '+ categoria.slug: categoria.slug"><span [innerHTML]="isFollowedCategory(categoria.id) ? 'CATEGORÍA SEGUIDA': 'SEGUIR CATEGORÍA'"></span>  <ion-icon [name]="isFollowedCategory(categoria.id) ? 'heart': 'heart-outline'"></ion-icon></button>
 
-              <button ion-button block outline color="dark" small (click)="followEvent(evento.id, evento.title, evento.start_date, evento.end_date, evento.categories[0].id, (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'))" [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': ''"><span [innerHTML]="isFollowedEvent(evento.id) ? 'EVENTO SEGUIDO': 'SEGUIR EVENTO'"></span>  <ion-icon [name]="isFollowedEvent(evento.id) ? 'star': 'star-outline'"></ion-icon></button>
-            </div>
-            </ion-row>
-            <div>
-              <h3>Horario</h3>
-              <p>Comienza: el {{sdate}} a las {{stime}}</p>
-              <p>Finaliza: el {{edate}} a las {{etime}}</p>
-              <p *ngIf="evento?.cost">Precio: {{evento.cost_details.values[0]}}{{evento.cost_details.currency_symbol}}</p>
-            </div>
-            <div #map id="map" style="height:200px;"></div>
-          </section>
-        </ion-col>
-    </ion-row>
-  </ion-grid>
+        <button ion-button block outline color="dark" small (click)="followEvent(evento.id, evento.title, evento.start_date, evento.end_date, categoria.id, (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'))" [ngClass]="isFollowedEvent(evento.id) ? 'event_followed': ''"><span [innerHTML]="isFollowedEvent(evento.id) ? 'EVENTO SEGUIDO': 'SEGUIR EVENTO'"></span>  <ion-icon [name]="isFollowedEvent(evento.id) ? 'star': 'star-outline'"></ion-icon></button>
+      </div>
+      </ion-row>
+      <div>
+        <h3>Horario</h3>
+        <p>Comienza: el {{sdate}} a las {{stime}}</p>
+        <p>Finaliza: el {{edate}} a las {{etime}}</p>
+        <p *ngIf="evento?.cost">Precio: {{evento.cost_details.values[0]}}{{evento.cost_details.currency_symbol}}</p>
+      </div>
+      <div #map id="map" style="height:200px;"></div>
+    </section>
 </ion-content>

@@ -73,7 +73,8 @@ export class Calendario {
                         this.eventosService.getEventsByRangeDateSum(sdate, edate, pag).subscribe(resultSum => {
                             var eventsCalendar = [];
                             resultSum.events.forEach(function (evento) {
-                                    //console.log(evento);
+                                //console.log(evento);
+                                var categoria=(evento.categories[0].slug!='recomendado'?evento.categories[0]:evento.categories[1]);
                                 eventsCalendar.push({
                                     startTime: new Date(evento.start_date.replace(/-/g, '/')),
                                     endTime: new Date(evento.end_date.replace(/-/g, '/')),
@@ -82,10 +83,10 @@ export class Calendario {
                                     id: evento.id,
                                     image: (evento.image ? evento.image.sizes.thumbnail.url : 'assets/img/thumb.png'),
                                     address: (evento.venue.venue ? evento.venue.venue + ", " + evento.venue.address : ''),
-                                    category_id: evento.categories[0].id,
-                                    category_slug: evento.categories[0].slug,
-                                    category_item_style: "item_" + evento.categories[0].slug,
-                                    category_name: evento.categories[0].name,
+                                    category_id: categoria.id,
+                                    category_slug: categoria.slug,
+                                    category_item_style: "item_" + categoria.slug,
+                                    category_name: categoria.name,
                                     item: evento
                                 })
                             });
@@ -132,7 +133,7 @@ export class Calendario {
                     }, {
                         text: 'Login',
                         handler: () => {
-                            this.navCtrl.push(Login);
+                            this.navCtrl.parent.select(3);
                         }
                     }
                 ]
@@ -178,7 +179,7 @@ export class Calendario {
                     }, {
                         text: 'Login',
                         handler: () => {
-                            this.navCtrl.push(Login);
+                            this.navCtrl.parent.select(3);
                         }
                     }
                 ]

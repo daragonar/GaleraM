@@ -27,7 +27,7 @@ export class EventProvider {
   }
 
   getEventsSlider() {
-    return this.http.get(this.ApiURL + "/tribe/events/v1/events?categories=9080").map(res => res.json());
+    return this.http.get(this.ApiURL + "/tribe/events/v1/events?categories=recomendado").map(res => res.json());
   }
   getEvent(id) {
     return this.http.get(this.ApiURL + "/tribe/events/v1/events/" + id).map(res => res.json());

@@ -30,27 +30,27 @@ page-calendario {
     }
 
 
-    ion-item.accionsocial{border-left: 4px solid color($colors, accionsocial);}
-    ion-item.cine{border-left: 4px solid color($colors, cine);}
-    ion-item.musica{border-left: 4px solid color($colors, musica);}
-    ion-item.espectaculos{border-left: 4px solid color($colors,espectaculos);}
-    ion-item.arteyliteratura{border-left: 4px solid color($colors,arteyliteratura);}
-    ion-item.exposiciones{border-left: 4px solid color($colors,exposiciones);}
-    ion-item.ocio{border-left: 4px solid color($colors, ocio);}
-    ion-item.charlas-y-conferencias{border-left: 4px solid color($colors, charlas-y-conferencias);}
-    ion-item.cursos-y-talleres{border-left: 4px solid color($colors, cursos-y-talleres);}
-    ion-item.universidad{border-left: 4px solid color($colors, universidad);}
+    ion-item-sliding .accionsocial{border-left: 4px solid color($colors, accionsocial);}
+    ion-item-sliding .cine{border-left: 4px solid color($colors, cine);}
+    ion-item-sliding .musica{border-left: 4px solid color($colors, musica);}
+    ion-item-sliding .espectaculos{border-left: 4px solid color($colors,espectaculos);}
+    ion-item-sliding .arteyliteratura{border-left: 4px solid color($colors,arteyliteratura);}
+    ion-item-sliding .exposiciones{border-left: 4px solid color($colors,exposiciones);}
+    ion-item-sliding .ocio{border-left: 4px solid color($colors, ocio);}
+    ion-item-sliding .charlas-y-conferencias{border-left: 4px solid color($colors, charlas-y-conferencias);}
+    ion-item-sliding .cursos-y-talleres{border-left: 4px solid color($colors, cursos-y-talleres);}
+    ion-item-sliding .universidad{border-left: 4px solid color($colors, universidad);}
 
-    button.accionsocial{background-color: color($colors, accionsocial);}
-    button.cine{background-color: color($colors, cine);}
-    button.musica{background-color: color($colors, musica);}
-    button.espectaculos{background-color: color($colors,espectaculos);}
-    button.arteyliteratura{background-color: color($colors,arteyliteratura);}
-    button.exposiciones{background-color: color($colors,exposiciones);}
-    button.ocio{background-color: color($colors, ocio);}
-    button.charlas-y-conferencias{background-color: color($colors, charlas-y-conferencias);}
-    button.cursos-y-talleres{background-color: color($colors, cursos-y-talleres);}
-    button.universidad{background-color: color($colors, universidad);}
+    ion-item-options button.accionsocial{background-color: color($colors, accionsocial);}
+    ion-item-options button.cine{background-color: color($colors, cine);}
+    ion-item-options button.musica{background-color: color($colors, musica);}
+    ion-item-options button.espectaculos{background-color: color($colors,espectaculos);}
+    ion-item-options button.arteyliteratura{background-color: color($colors,arteyliteratura);}
+    ion-item-options button.exposiciones{background-color: color($colors,exposiciones);}
+    ion-item-options button.ocio{background-color: color($colors, ocio);}
+    ion-item-options button.charlas-y-conferencias{background-color: color($colors, charlas-y-conferencias);}
+    ion-item-options button.cursos-y-talleres{background-color: color($colors, cursos-y-talleres);}
+    ion-item-options button.universidad{background-color: color($colors, universidad);}
 
     .event_followed .item-block{
         border-right: 4px solid #000 !important;

@@ -1,6 +1,11 @@
 page-usuario {
     font-family: "antic-slab";
 
+    ion-avatar, ion-avatar img{
+        width: 64px !important;
+        height: 64px !important;
+    }
+
      .title-md{
         margin-left:34px !important;
     }
@@ -59,5 +64,13 @@ page-usuario {
     ion-card, ion-card-content{
         margin: 0 !important;
         padding: 0 !important;
+    }
+
+    #events-followed span{
+        font-size: 1.4rem;
+    }
+
+    #events-followed p{
+        color: black;
     }
 }

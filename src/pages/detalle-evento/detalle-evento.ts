@@ -29,6 +29,7 @@ export class DetalleEvento {
     private stime;
     private edate;
     private etime;
+    private categoria;
 
   constructor(
       public navCtrl: NavController,
@@ -47,6 +48,7 @@ export class DetalleEvento {
           content: "Cargando evento...",
       });
       this.evento = navParams.get('item');
+      this.categoria=(this.evento.categories[0].slug!='recomendado'?this.evento.categories[0]:this.evento.categories[1]);
       //console.log(this.evento);
   }
 
@@ -99,7 +101,7 @@ export class DetalleEvento {
                   }, {
                       text: 'Login',
                       handler: () => {
-                          this.navCtrl.push(Login);
+                          this.navCtrl.parent.select(3);
                       }
                   }
               ]
@@ -145,7 +147,7 @@ export class DetalleEvento {
                   }, {
                       text: 'Login',
                       handler: () => {
-                          this.navCtrl.push(Login);
+                          this.navCtrl.parent.select(3);
                       }
                   }
               ]

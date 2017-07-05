@@ -20,16 +20,16 @@
   </ion-navbar>
   <div id="categories" [class.hide]="!showMenu">
     <ion-row>
-      <ion-col col-4 align-self-center><button (click)="categoryTapped('cine')" class="cine" [ngClass]="(categoria=='cine') ? 'tapped' : ''">Cine</button></ion-col>
-      <ion-col col-4 align-self-center><button (click)="categoryTapped('musica')" class="musica" [ngClass]="(categoria=='musica') ? 'tapped' : ''">Música</button></ion-col>
-      <ion-col col-4 align-self-center><button (click)="categoryTapped('espectaculos')" class="espectaculos" [ngClass]="(categoria=='espectaculos') ? 'tapped' : ''">Espectáculos</button></ion-col>
-      <ion-col col-5 align-self-center><button (click)="categoryTapped('arteyliteratura')" class="arteyliteratura" [ngClass]="(categoria=='arteyliteratura') ? 'tapped' : ''">Arte y Literatura</button></ion-col>
-      <ion-col col-4 align-self-center><button (click)="categoryTapped('exposiciones')" class="exposiciones" [ngClass]="(categoria=='exposiciones') ? 'tapped' : ''">Exposiciones</button></ion-col>
-      <ion-col col-3 align-self-center><button (click)="categoryTapped('ocio')" class="ocio" [ngClass]="(categoria=='ocio') ? 'tapped' : ''">Ocio</button></ion-col>
-      <ion-col col-6 align-self-center><button (click)="categoryTapped('accionsocial')" class="accionsocial" [ngClass]="(categoria=='accionsocial') ? 'tapped' : ''">Acción Social</button></ion-col>
-      <ion-col col-6 align-self-center><button (click)="categoryTapped('universidad')" class="universidad" [ngClass]="(categoria=='universidad') ? 'tapped' : ''">Universidad</button></ion-col>
-      <ion-col col-6 align-self-center><button (click)="categoryTapped('cursos-y-talleres')" class="cursos-y-talleres" [ngClass]="(categoria=='cursos-y-talleres') ? 'tapped' : ''">Cursos y Talleres</button></ion-col>
-      <ion-col col-6 align-self-center><button (click)="categoryTapped('charlas-y-conferencias')" class="charlas-y-conferencias" [ngClass]="(categoria=='charlas-y-conferencias') ? 'tapped' : ''">Charlas y Conferencias</button></ion-col>
+      <ion-col col-4 align-self-center><button (click)="categoria!='cine' ? categoryTapped('cine'):categoryTapped('')" class="cine" [ngClass]="(categoria=='cine') ? 'tapped' : ''">Cine</button></ion-col>
+      <ion-col col-4 align-self-center><button (click)="categoria!='musica' ? categoryTapped('musica'):categoryTapped('')" class="musica" [ngClass]="(categoria=='musica') ? 'tapped' : ''">Música</button></ion-col>
+      <ion-col col-4 align-self-center><button (click)="categoria!='espectaculos' ? categoryTapped('espectaculos'):categoryTapped('')" class="espectaculos" [ngClass]="(categoria=='espectaculos') ? 'tapped' : ''">Espectáculos</button></ion-col>
+      <ion-col col-5 align-self-center><button (click)="categoria!='arteyliteratura' ? categoryTapped('arteyliteratura'):categoryTapped('')" class="arteyliteratura" [ngClass]="(categoria=='arteyliteratura') ? 'tapped' : ''">Arte y Literatura</button></ion-col>
+      <ion-col col-4 align-self-center><button (click)="categoria!='exposiciones' ? categoryTapped('exposiciones'):categoryTapped('')" class="exposiciones" [ngClass]="(categoria=='exposiciones') ? 'tapped' : ''">Exposiciones</button></ion-col>
+      <ion-col col-3 align-self-center><button (click)="categoria!='ocio' ? categoryTapped('ocio'):categoryTapped('')" class="ocio" [ngClass]="(categoria=='ocio') ? 'tapped' : ''">Ocio</button></ion-col>
+      <ion-col col-6 align-self-center><button (click)="categoria!='accionsocial' ? categoryTapped('accionsocial'):categoryTapped('')" class="accionsocial" [ngClass]="(categoria=='accionsocial') ? 'tapped' : ''">Acción Social</button></ion-col>
+      <ion-col col-6 align-self-center><button (click)="categoria!='universidad' ? categoryTapped('universidad'):categoryTapped('')" class="universidad" [ngClass]="(categoria=='universidad') ? 'tapped' : ''">Universidad</button></ion-col>
+      <ion-col col-6 align-self-center><button (click)="categoria!='cursos-y-talleres' ? categoryTapped('cursos-y-talleres'):categoryTapped('')" class="cursos-y-talleres" [ngClass]="(categoria=='cursos-y-talleres') ? 'tapped' : ''">Cursos y Talleres</button></ion-col>
+      <ion-col col-6 align-self-center><button (click)="categoria!='charlas-y-conferencias' ? categoryTapped('charlas-y-conferencias'):categoryTapped('')" class="charlas-y-conferencias" [ngClass]="(categoria=='charlas-y-conferencias') ? 'tapped' : ''">Charlas y Conferencias</button></ion-col>
     </ion-row>
   </div>
   <ion-searchbar

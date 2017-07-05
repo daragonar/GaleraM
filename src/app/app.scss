@@ -29,7 +29,9 @@ ion-title img{
   text-align: center;
 }
 
-    
+.tabs-md .tab-button-text{
+  font-size: 1rem;
+}
 
 .tabs-ios .tab-button-icon{
   height: auto!important;
@@ -40,60 +42,59 @@ ion-title img{
   color:black !important;
 }
 
-.ion-ios-calendario, .ion-ios-calendario-outline, .ion-md-calendario {
+.ion-ios-calendario-outline, .ion-ios-calendario-outline, .ion-md-calendario {
   content: url(../assets/img/ui/calendario.png);
   width: 48px;
 }
 
-.ion-ios-calendario[ng-reflect-is-active=true], .ion-ios-calendario-outline[ng-reflect-is-active=true],
-.ion-md-calendario[ng-reflect-is-active=true] {
+.tab-button[aria-selected=true] .ion-ios-calendario, .tab-button[aria-selected=true] .ion-md-calendario {
   content: url(../assets/img/ui/calendario-active.png);
   width: 48px;
 }
 
-.ion-ios-revista, .ion-ios-revista-outline, .ion-md-revista {
+.ion-ios-revista-outline, .ion-md-revista {
   content: url(../assets/img/ui/revista.png);
   width: 32px;
   height: 32px;
 }
 
-.ion-ios-revista[ng-reflect-is-active=true], .ion-ios-revista-outline[ng-reflect-is-active=true], .ion-md-revista[ng-reflect-is-active=true] {
+.tab-button[aria-selected=true] .ion-ios-revista, .tab-button[aria-selected=true] .ion-md-revista {
   content: url(../assets/img/ui/revista-active.png);
   width: 32px;
   height: 32px;
 }
 
-.ion-ios-usuario, .ion-ios-usuario-outline, .ion-md-usuario {
+.ion-ios-usuario-outline, .ion-md-usuario {
   content: url(../assets/img/ui/usuario.png);
   width: 32px;
   height: 32px;
 }
 
-.ion-ios-usuario[ng-reflect-is-active=true], .ion-ios-usuario-outline[ng-reflect-is-active=true], .ion-md-usuario[ng-reflect-is-active=true] {
+.tab-button[aria-selected=true] .ion-ios-usuario, .tab-button[aria-selected=true] .ion-md-usuario {
   content: url(../assets/img/ui/usuario-active.png);
   width: 32px;
   height: 32px;
 }
 
-.ion-ios-eventos, .ion-ios-eventos-outline, .ion-md-eventos {
+.ion-ios-eventos-outline, .ion-md-eventos {
   content: url(../assets/img/ui/eventos.png);
   width: 32px;
   height: 32px;
 }
 
-.ion-ios-eventos[ng-reflect-is-active=true], .ion-ios-eventos-outline[ng-reflect-is-active=true], .ion-md-eventos[ng-reflect-is-active=true] {
+.tab-button[aria-selected=true] .ion-ios-eventos, .tab-button[aria-selected=true] .ion-md-eventos {
   content: url(../assets/img/ui/eventos-active.png);
   width: 32px;
   height: 32px;
 }
 
-.ion-ios-redes, .ion-ios-redes-outline, .ion-md-redes {
+.ion-ios-redes-outline, .ion-md-redes {
   content: url(../assets/img/ui/redes.png);
   width: 32px;
   height: 32px;
 }
 
-.ion-ios-redes[ng-reflect-is-active=true], .ion-ios-redes-outline[ng-reflect-is-active=true], .ion-md-redes[ng-reflect-is-active=true] {
+.tab-button[aria-selected=true] .ion-ios-redes, .tab-button[aria-selected=true] .ion-md-redes {
   content: url(../assets/img/ui/redes-active.png);
   width: 32px;
   height: 32px;

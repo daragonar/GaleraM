@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Keyboard } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Keyboard, AlertController } from 'ionic-angular';
 import { EventProvider } from "../../providers/event-provider";
 import { DetalleEvento } from "../detalle-evento/detalle-evento";
 
@@ -34,7 +34,9 @@ export class Eventos {
     public navParams: NavParams,
     private eventosService: EventProvider,
     public loadingCtrl: LoadingController,
-    public keyboard: Keyboard) {
+    public keyboard: Keyboard,
+    public AlertMsg: AlertController,
+  ) {
     this.loader = this.loadingCtrl.create({
       content: "Obteniendo Eventos...",
     });
@@ -115,7 +117,12 @@ export class Eventos {
           this.check = result.next_rest_url;
         },
         error =>{
-          alert("No hay eventos con estos términos de búsqueda")
+          let alert = this.AlertMsg.create({
+              title: 'La Galera Magazine',
+              subTitle: 'No se han encontrado eventos con estos términos de búsqueda',
+              buttons: ['Ok']
+          });
+          alert.present();
         }
       )
       loader.dismiss();
@@ -133,7 +140,7 @@ export class Eventos {
   }
 
   categoryTapped(category) {
-    if(category!=this.categoria){
+    if(category!=this.categoria && category != ''){
       this.EventosLista = [];
       this.categoria = category;
       this.hideSlide=true;
@@ -143,13 +150,26 @@ export class Eventos {
           this.nextUrl = result.next_rest_url;
           this.check = result.next_rest_url;
           this.nextUrl += "&categories=" + this.categoria;
+          this.showMenu=false;
+        },
+        error =>{
+          let alert = this.AlertMsg.create({
+              title: 'La Galera Magazine',
+              subTitle: 'No hay eventos próximos en esta categoría',
+              buttons: ['Ok']
+          });
+          alert.present();
+          this.hideSlide=false;
+          this.getEventos();
+          this.showMenu=false;
         }
       )
     }else{
+      this.categoria = category;
       this.hideSlide=false;
       this.getEventos();
+      this.showMenu=false;
     }
-    this.showMenu=false;
   }
 
   doInfinite = function (event) {

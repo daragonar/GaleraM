@@ -60,6 +60,10 @@ page-detalle-evento {
         color: #FFC139;
     }
 
+    #follow-buttons span{
+        font-size: 1rem !important;
+    }
+
     .category_name.accionsocial{background-color: color($colors, accionsocial);}
     .category_name.cine{background-color: color($colors, cine);}
     .category_name.musica{background-color: color($colors, musica);}

@@ -56,8 +56,8 @@ export class Usuario {
         this.listEvent = this.userD.getUserEvData();
         this.image = this.getAvatar();
          setTimeout(() => {
-                this.nextEvents();
-            }, 1000);
+            this.nextEvents();
+        }, 1000);
     }
 
     nextEvents() {
@@ -124,22 +124,17 @@ export class Usuario {
         }
         this.camera.getPicture(options).then(imageData => {
             imageData = "data:image/jpeg;base64," + imageData;
-            this.image = this.userWp.setUserImage(imageData);
-            setTimeout(() => {
-                this.image = this.getAvatar();
-            }, 1000);
+            this.userWp.setUserImage(imageData);
+                this.image = imageData;
         }, (error) => {
             console.error(error);
         });
-
     }
 
     getAvatar() {
         this.userWp.getUserImage().subscribe(
             result => {
                 this.image = result;
-               
-                
             }
         );
     }
@@ -161,9 +156,17 @@ export class Usuario {
                 this.eventosService.getEventsByCategory(this.categoria).subscribe(
                     result => {
                         this.EventosLista = result.events;
-                        loader.dismiss();
+                    },
+                    error =>{
+                        let alert = this.AlertMsg.create({
+                            title: 'La Galera Magazine',
+                            subTitle: 'No hay eventos próximos en esta categoría',
+                            buttons: ['Ok']
+                        });
+                        alert.present();
                     }
                 )
+                loader.dismiss();
             });
         }
     }
@@ -204,7 +207,7 @@ export class Usuario {
                     }, {
                         text: 'Login',
                         handler: () => {
-                            this.navCtrl.push(Login);
+                            this.navCtrl.parent.select(3);
                         }
                     }
                 ]

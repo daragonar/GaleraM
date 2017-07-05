@@ -39,7 +39,7 @@
         <ion-list no-padding no-margin>
           <ion-item no-lines>
             <ion-avatar item-left>
-            <ion-icon small name="ios-brush" tappable (click)="editImagen()" float-right class="openTabs"></ion-icon>
+            <ion-icon small name="ios-brush" tappable (click)="editImagen()" float-right class="openTabs" style="position: absolute; float: right; left: 64px;"></ion-icon>
               <ion-badge item-end></ion-badge>
               <img [src]="(image!=''?image:'https://randomuser.me/api/portraits/lego/5.jpg')" />
             </ion-avatar>
@@ -262,7 +262,7 @@
   <ion-list-header>
     EVENTOS QUE SIGUES
   </ion-list-header>
-  <ion-item-group>
+  <ion-item-group id='events-followed'>
     <ion-item no-lines *ngIf="listEvent.lenght==0">
         Actualmente no sigues ning&uacute;n evento
     </ion-item>
@@ -276,8 +276,7 @@
         <span *ngIf="evento.end_date != evento.start_date" class="date">
           ~ {{dfp.transform(evento.end_date, 'D MMMM, Y')}}
         </span>
-        <h2 class="event-detail" [innerHTML]="evento.title | safe: 'html'"></h2>  
-        <p>{{evento.address}}</p>        
+        <p class="event-detail" [innerHTML]="evento.title | safe: 'html'"></p>         
       </button>
   </ion-item-group>
 </ion-list>
