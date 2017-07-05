@@ -1,6 +1,10 @@
 page-usuario {
     font-family: "antic-slab";
 
+     .title-md{
+        margin-left:34px !important;
+    }
+
     .category_name.accionsocial{background-color: color($colors, accionsocial);}
     .category_name.cine{background-color: color($colors, cine);}
     .category_name.musica{background-color: color($colors, musica);}

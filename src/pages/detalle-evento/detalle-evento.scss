@@ -16,7 +16,7 @@ page-detalle-evento {
     ion-title.title{margin-left: -56px;}
 
     .title-ios{
-        margin-left:0px
+        margin-left:0px !important;
     }
     .description{
         text-align: justify;

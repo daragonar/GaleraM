@@ -1,12 +1,13 @@
 import { DateFormatPipe } from 'angular2-moment';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, AlertController,  LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Login } from "../login/login";
 import { DetalleEvento } from "../detalle-evento/detalle-evento";
 import { Userwp } from "../../providers/userwp";
 import { EventProvider } from "../../providers/event-provider";
 import { UserDataProvider } from "../../providers/user-data";
+import { DifferencePipe } from 'angular2-moment';
 /**
  * Generated class for the Usuario page.
  *
@@ -28,7 +29,7 @@ export class Usuario {
     listCategory: any = [];
     listEvent: any = [];
     followedEvents: any = [];
-    image;
+    image: any;
 
     constructor(
         private userWp: Userwp,
@@ -42,15 +43,36 @@ export class Usuario {
         private camera: Camera,
         private dfp: DateFormatPipe,
     ) {
+        this.image = "";
         /*this.user = navParams.get('info');
         this.listCategory = this.userD.getUserCatData();
         this.listEvent = this.userD.getUserEvData();*/
     }
 
     ionViewWillEnter() {
+        this.eventNot=0;
         this.user = this.navParams.get('info');
         this.listCategory = this.userD.getUserCatData();
         this.listEvent = this.userD.getUserEvData();
+        this.image = this.getAvatar();
+         setTimeout(() => {
+                this.nextEvents();
+            }, 1000);
+    }
+
+    nextEvents() {
+        if (this.listEvent.length>0) {
+            this.listEvent.forEach(element => {
+                console.log(element)
+                console.log(element.start_date)
+                console.log(new Date())
+                console.log(DifferencePipe.prototype.transform(element.start_date,new Date(),'days',false))
+                let dateDiff=DifferencePipe.prototype.transform(element.start_date,new Date(),'days',false);
+                if(dateDiff<=7 && dateDiff>=0){
+                    this.eventNot++;
+                }
+            });
+        }
     }
 
     cerrarSesion() {
@@ -106,17 +128,22 @@ export class Usuario {
         }
         this.camera.getPicture(options).then(imageData => {
             imageData = "data:image/jpeg;base64," + imageData;
-            this.image=this.userWp.setUserImage(imageData);
+            this.image = this.userWp.setUserImage(imageData);
+            setTimeout(() => {
+                this.image = this.getAvatar();
+            }, 1000);
         }, (error) => {
             console.error(error);
         });
+
     }
 
-    getAvatar(){
-        return this.userWp.getUserImage().subscribe(
+    getAvatar() {
+        this.userWp.getUserImage().subscribe(
             result => {
-                this.image=result;
-                //console.log(this.image);
+                this.image = result;
+                console.log(this.image);
+                
             }
         );
     }
@@ -137,7 +164,7 @@ export class Usuario {
             loader.present().then(() => {
                 this.eventosService.getEventsByCategory(this.categoria).subscribe(
                     result => {
-                        this.EventosLista=result.events;
+                        this.EventosLista = result.events;
                         loader.dismiss();
                     }
                 )

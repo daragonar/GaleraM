@@ -25,7 +25,7 @@
         <ion-list no-padding no-margin>
           <ion-item>
             <p> Notificaciones
-              <ion-icon name="alert"></ion-icon>
+              <ion-icon *ngIf="eventNot>0" name="alert"></ion-icon>
               <ion-icon [name]="flechaNot" tappable (click)="openNoti()" float-right class="openTabs"></ion-icon>
             </p>
             <p *ngIf="openNot && eventNot==0">Sin proximos eventos.</p>
@@ -41,7 +41,7 @@
             <ion-avatar item-left>
             <ion-icon small name="ios-brush" tappable (click)="editImagen()" float-right class="openTabs"></ion-icon>
               <ion-badge item-end></ion-badge>
-              <img [src]="(getAvatar()?image:'https://randomuser.me/api/portraits/lego/5.jpg')" />
+              <img [src]="(image!=''?image:'https://randomuser.me/api/portraits/lego/5.jpg')" />
             </ion-avatar>
             <h2>Favoritos</h2>
             <p>Eventos : {{listEvent?.length}}</p>

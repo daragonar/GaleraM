@@ -66,7 +66,6 @@ export class Eventos {
   }
 
   getEventos = function () {
-    this.categoria="";
     this.hideSlide = false;
     this.EventosLista = [];
     var today = new Date();
