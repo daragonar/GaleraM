@@ -51,7 +51,7 @@
             [speed]= "'300'" [direction] = "'horizontal'">
     <ion-slide tappable *ngFor="let Sevents of sliderEventos"  (click)="eventTapped($event, Sevents)" [style.background-image]= "Sevents.image ? ('url(' + Sevents.image.sizes.medium_large.url + ')' | safe: 'style') : 'url(assets/img/thumb.png)'"
         style="background:center center/cover">
-      <h3 [innerHTML]=" Recomend + Sevents.title "></h3>
+      <h3 class="tituloSlider" [innerHTML]=" Recomend + Sevents.title "></h3>
     </ion-slide>
    
   </ion-slides>
