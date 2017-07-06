@@ -179,7 +179,8 @@ export class DetalleEvento {
         .then((coordinates: NativeGeocoderForwardResult) => {
           console.log(coordinates.latitude, coordinates.longitude);
           this.posicion = new LatLng(Number(coordinates.latitude), Number(coordinates.longitude));
-
+            if (coordinates)
+          {
           // create CameraPosition
           let cameraPosition: CameraPosition = {
             target: this.posicion,
@@ -196,10 +197,12 @@ export class DetalleEvento {
             title: this.evento.venue.venue
           };
 
-          const marker = map.addMarker(markerOptions)
+          let marker = map.addMarker(markerOptions)
             .then((marker: Marker) => {
               marker.showInfoWindow();
             });
+            
+            }
 
         })
         .catch((error: any) => console.log(error));
