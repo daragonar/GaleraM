@@ -20,7 +20,7 @@ export class RemoveTags implements PipeTransform {
       }
       default: {
         value = value + ''; // make sure it's a string
-        return value ? String(value).replace(/<[img+h1][^>]+>/gm, '') : '';
+        return value ? String(value).replace(/<[img+h1][^>]+>|<p>&nbsp;<\/p>/gm, '') : '';
       }
     }
   }
